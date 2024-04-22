@@ -18,11 +18,19 @@ namespace Dominio
             UltimoId++;
         }
 
-        public Ovino(double pesoEstimadoLana)
+        public Ovino(string numeroCaravana, Sexo sexo, string raza, DateTime fechaNacimiento, double costoAdquisicion, double peso, bool esHibrido, double pesoEstimadoLana) : base(numeroCaravana, sexo, raza, fechaNacimiento, costoAdquisicion, peso, esHibrido)
         {
-            Id = UltimoId;
-            UltimoId++;
             PesoEstimadoLana = pesoEstimadoLana;
+        }
+
+        public override double CalcularPrecioVenta()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Validar()
+        {
+            //todo
         }
     }
 }

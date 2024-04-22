@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    public class Empleado
+    public abstract class Empleado: IValidable
     {
         public int Id { get; set; }
         public static int UltimoId { get; set; } = 1;
         public string Email { get; set; }
+        public string Contrasenia { get; set; }
         public string Nombre { get; set; }
         public DateTime FechaIngreso { get; set; }
 
@@ -28,5 +29,7 @@ namespace Dominio
             Nombre = nombre;
             FechaIngreso = fechaIngreso;
         }
+
+        public abstract void Validar();
     }
 }

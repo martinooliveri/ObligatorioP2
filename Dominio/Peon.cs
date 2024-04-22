@@ -11,16 +11,16 @@ namespace Dominio
         public bool EsResidente { get; set; }
         private List<Tarea> _tareas { get; } = new List<Tarea>();
 
-        public Peon()
+        public Peon() { }
+
+        public Peon(string email, string nombre, DateTime fechaIngreso, bool esResidente) : base(email, nombre, fechaIngreso)
         {
-            Id = UltimoId;
-            UltimoId++;
-        }
-        public Peon(bool esResidente)
-        {
-            Id = UltimoId;
-            UltimoId++;
             EsResidente = esResidente;
+        }
+
+        public override void Validar()
+        {
+            throw new NotImplementedException();
         }
     }
 }

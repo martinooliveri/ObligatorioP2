@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    public class Tarea
+    public class Tarea : IValidable
     {
         public int Id { get; set; }
         public static int UltimoId { get; set; } = 1;
@@ -31,6 +31,11 @@ namespace Dominio
             FueCompletada = fueCompletada;
             FechaDeCierre = fechaDeCierre;
             Comentario = comentario;
+        }
+
+        public void Validar()
+        {
+
         }
     }
 }

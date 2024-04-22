@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    public class Vacuna
+    public class Vacuna: IValidable
     {
         public int Id { get; set; }
         public static int UltimoId { get; set; } = 1;
@@ -27,6 +27,11 @@ namespace Dominio
             Nombre = nombre;
             Descripcion = descripcion;
             PatogenoPrevenido = patogenoPrevenido;
+        }
+
+        public void Validar()
+        {
+
         }
     }
 }

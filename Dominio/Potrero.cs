@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    public class Potrero
+    public class Potrero : IValidable
     {
         public int Id { get; set; }
         public static int UltimoId { get; set; } = 1;
@@ -27,6 +27,11 @@ namespace Dominio
             Descripcion = descripcion;
             Hectareas = hectareas;
             CapacidadMaxima = capacidadMaxima;
+        }
+
+        public void Validar()
+        {
+
         }
     }
 }

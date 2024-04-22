@@ -10,17 +10,26 @@ namespace Dominio
     {
         public Alimentacion Alimentacion { get; set; }
         public static double PrecioKiloBovinoEnPie { get; set; } = 1;
-        
-        public Bovino() 
+
+        public Bovino()
         {
             Id = UltimoId;
             UltimoId++;
         }
-        public Bovino(Alimentacion alimentacion)
+
+        public Bovino(string numeroCaravana, Sexo sexo, string raza, DateTime fechaNacimiento, double costoAdquisicion, double peso, bool esHibrido, Alimentacion alimentacion) : base(numeroCaravana, sexo, raza, fechaNacimiento, costoAdquisicion, peso, esHibrido)
         {
-            Id = UltimoId;
-            UltimoId++;
             Alimentacion = alimentacion;
+        }
+
+        public override double CalcularPrecioVenta()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Validar()
+        {
+            //todo
         }
     }
 }

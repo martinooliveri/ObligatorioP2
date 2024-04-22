@@ -6,20 +6,21 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    public class Capataz
+    public class Capataz : Empleado
     {
         public int NumeroSupervisados { get; set; }
 
         public Capataz()
         {
-            Id = UltimoId;
-            UltimoId++;
         }
         public Capataz(int numeroSupervisados)
         {
-            Id = UltimoId;
-            UltimoId++;
             NumeroSupervisados = numeroSupervisados;
+        }
+
+        public override void Validar()
+        {
+            throw new NotImplementedException();
         }
     }
 }
