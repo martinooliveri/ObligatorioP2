@@ -42,6 +42,14 @@ namespace Dominio
 
         public abstract double CalcularPrecioVenta();
 
-        public abstract void Validar();
+        public virtual void Validar() { }
+
+        public void Vacunar(Vacuna vacuna)
+        {
+            //validar animal
+            Vacunacion vacunacion = new Vacunacion(vacuna);
+            //validar vacunacion
+            _vacunaciones.Add(vacunacion);
+        }
     }
 }
