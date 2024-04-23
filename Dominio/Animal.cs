@@ -42,14 +42,52 @@ namespace Dominio
 
         public abstract double CalcularPrecioVenta();
 
-        public virtual void Validar() { }
-
-        public void Vacunar(Vacuna vacuna)
+        public virtual void Validar() 
         {
-            //validar animal
+            ValidarNumeroCaravana();
+            ValidarSexo();
+            ValidarRaza();
+            ValidarFechaNacimiento();
+            ValidarCostoAdquisicion();
+            ValidarPesoActual();
+        }
+
+        private void ValidarNumeroCaravana()
+        {
+            throw new NotImplementedException();
+        }
+        private void ValidarSexo()
+        {
+            throw new NotImplementedException();
+        }
+        private void ValidarRaza()
+        {
+            throw new NotImplementedException();
+        }
+        private void ValidarFechaNacimiento()
+        {
+            throw new NotImplementedException();
+        }
+        private void ValidarCostoAdquisicion()
+        {
+            throw new NotImplementedException();
+        }
+        private void ValidarPesoActual()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void VacunarAnimal(Vacuna vacuna)
+        {
+            vacuna.Validar();
             Vacunacion vacunacion = new Vacunacion(vacuna);
-            //validar vacunacion
             _vacunaciones.Add(vacunacion);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is Animal animal &&
+                   NumeroCaravana == animal.NumeroCaravana;
         }
     }
 }
