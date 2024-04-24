@@ -69,16 +69,16 @@ namespace Dominio
         }
         private void PreCargarTareas()
         {
-            Tarea t1 = new Tarea("Barrer el piso", DateTime.Now.plusDays(5), true, DateTime.Now.plusDays(4), "Comentario del peón 1");
-            Tarea t2 = new Tarea("Limpiar ventanas", DateTime.Now.plusDays(7), false, DateTime.Now.plusDays(6), "Comentario del peón 2");
-            Tarea t3 = new Tarea("Podar arbustos", DateTime.Now.plusDays(8), true, DateTime.Now.plusDays(7), "Comentario del peón 3");
-            Tarea t4 = new Tarea("Regar plantas", DateTime.Now.plusDays(6), false, DateTime.Now.plusDays(5), "Comentario del peón 4");
-            Tarea t5 = new Tarea("Pintar paredes", DateTime.Now.plusDays(10), true, DateTime.Now.plusDays(9), "Comentario del peón 5");
-            Tarea t6 = new Tarea("Reparar techo", DateTime.Now.plusDays(9), false, DateTime.Now.plusDays(8), "Comentario del peón 6");
-            Tarea t7 = new Tarea("Cortar césped", DateTime.Now.plusDays(11), true, DateTime.Now.plusDays(10), "Comentario del peón 7");
-            Tarea t8 = new Tarea("Arreglar cercas", DateTime.Now.plusDays(8), false, DateTime.Now.plusDays(7), "Comentario del peón 8");
-            Tarea t9 = new Tarea("Lavar vehículos", DateTime.Now.plusDays(6), true, DateTime.Now.plusDays(5), "Comentario del peón 9");
-            Tarea t10 = new Tarea("Alimentar animales", DateTime.Now.plusDays(7), false, DateTime.Now.plusDays(6), "Comentario del peón 10");
+            Tarea t1 = new Tarea("Barrer el piso", DateTime.Now.AddDays(5), true, DateTime.Now.AddDays(4), "Comentario del peón 1");
+            Tarea t2 = new Tarea("Limpiar ventanas", DateTime.Now.AddDays(7), false, DateTime.Now.AddDays(6), "Comentario del peón 2");
+            Tarea t3 = new Tarea("Podar arbustos", DateTime.Now.AddDays(8), true, DateTime.Now.AddDays(7), "Comentario del peón 3");
+            Tarea t4 = new Tarea("Regar plantas", DateTime.Now.AddDays(6), false, DateTime.Now.AddDays(5), "Comentario del peón 4");
+            Tarea t5 = new Tarea("Pintar paredes", DateTime.Now.AddDays(10), true, DateTime.Now.AddDays(9), "Comentario del peón 5");
+            Tarea t6 = new Tarea("Reparar techo", DateTime.Now.AddDays(9), false, DateTime.Now.AddDays(8), "Comentario del peón 6");
+            Tarea t7 = new Tarea("Cortar césped", DateTime.Now.AddDays(11), true, DateTime.Now.AddDays(10), "Comentario del peón 7");
+            Tarea t8 = new Tarea("Arreglar cercas", DateTime.Now.AddDays(8), false, DateTime.Now.AddDays(7), "Comentario del peón 8");
+            Tarea t9 = new Tarea("Lavar vehículos", DateTime.Now.AddDays(6), true, DateTime.Now.AddDays(5), "Comentario del peón 9");
+            Tarea t10 = new Tarea("Alimentar animales", DateTime.Now.AddDays(7), false, DateTime.Now.AddDays(6), "Comentario del peón 10");
 
             AltaTarea(t1);
             AltaTarea(t2);
