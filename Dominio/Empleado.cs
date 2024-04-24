@@ -30,6 +30,13 @@ namespace Dominio
             FechaIngreso = fechaIngreso;
         }
 
-        public abstract void Validar();
+        public abstract void Validar() { }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is Empleado empleado &&
+                   Id == empleado.Id &&
+                   Nombre == empleado.Nombre;
+        }
     }
 }

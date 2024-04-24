@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -31,7 +32,41 @@ namespace Dominio
 
         public void Validar()
         {
+            ValidarNombre();
+            ValidarDescripcion();
+            ValidarPatogeno();
+        }
 
+        public void ValidarNombre()
+        {
+            if (string.IsNullOrEmpty(Nombre))
+            {
+                throw new Exception("Nombre de la vacuna no puede ser vacio");
+            }
+        }
+
+        public void ValidarDescripcion()
+        {
+            if (string.IsNullOrEmpty(Descripcion))
+            {
+                throw new Exception("Descripcion de la vacuna no puede ser vacio");
+            }
+        }
+
+        public void ValidarPatogeno()
+        {
+            if (string.IsNullOrEmpty(PatogenoPrevenido))
+            {
+                throw new Exception("Patogeno prevenido de la vacuna no puede ser vacio");
+            }
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is Vacuna vacuna &&
+                   Id == vacuna.Id &&
+                   Nombre == vacuna.Nombre &&
+                   PatogenoPrevenido == vacuna.PatogenoPrevenido;
         }
     }
 }
