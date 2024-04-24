@@ -54,23 +54,38 @@ namespace Dominio
 
         private void ValidarNumeroCaravana()
         {
-            throw new NotImplementedException();
+            if(string.IsNullOrWhiteSpace(NumeroCaravana))
+            {
+                throw new Exception("Numero de caravana ingresado no es valido");
+            }
         }
         private void ValidarSexo()
         {
-            throw new NotImplementedException();
+            if (Sexo != Sexo.Macho && Sexo != Sexo.Hembra)
+            {
+                throw new Exception("Sexo no es valido");
+            }
         }
         private void ValidarRaza()
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrWhiteSpace(Raza))
+            {
+                throw new Exception("Raza ingresada no es valida");
+            }
         }
         private void ValidarFechaNacimiento()
         {
-            throw new NotImplementedException();
+            if (FechaNacimiento < new DateTime(2000,01,01))
+            {
+                throw new Exception("Fecha ingresada no es valida");
+            }
         }
         private void ValidarCostoAdquisicion()
         {
-            throw new NotImplementedException();
+            if(CostoAdquisicion < 1)
+            {
+                throw new Exception("Costo de adquisicion no es valido");
+            }
         }
         private void ValidarPesoActual()
         {

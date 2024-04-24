@@ -40,16 +40,16 @@ namespace Dominio
         {
             Random rnd = new Random();
 
-            Peon p1 = new Peon("martinooliveri@gmail.com", "Martino Oliveri", DateTime.Now.AddDays(rnd.Next(1, 100)), true);
-            Peon p2 = new Peon("usuario1@example.com", "Maria Rodriguez", DateTime.Now.AddDays(rnd.Next(1, 100)), false);
-            Peon p3 = new Peon("correo2@gmail.com", "Juan Pérez", DateTime.Now.AddDays(rnd.Next(1, 100)), true);
-            Peon p4 = new Peon("usuario3@example.com", "Luisa Martinez", DateTime.Now.AddDays(rnd.Next(1, 100)), false);
-            Peon p5 = new Peon("correo4@gmail.com", "Ana García", DateTime.Now.AddDays(rnd.Next(1, 100)), true);
-            Peon p6 = new Peon("email5@example.com", "Pedro López", DateTime.Now.AddDays(rnd.Next(1, 100)), false);
-            Peon p7 = new Peon("correo6@gmail.com", "Laura Fernández", DateTime.Now.AddDays(rnd.Next(1, 100)), true);
-            Peon p8 = new Peon("usuario7@example.com", "Diego Sanchez", DateTime.Now.AddDays(rnd.Next(1, 100)), false);
-            Peon p9 = new Peon("correo8@gmail.com", "Carolina Gómez", DateTime.Now.AddDays(rnd.Next(1, 100)), true);
-            Peon p10 = new Peon("email9@example.com", "Roberto Diaz", DateTime.Now.AddDays(rnd.Next(1, 100)), false);
+            Peon p1 = new Peon("martinooliveri@gmail.com", "Martino Oliveri", DateTime.Now.AddDays(rnd.Next(-1, -100)), true);
+            Peon p2 = new Peon("usuario1@example.com", "Maria Rodriguez", DateTime.Now.AddDays(rnd.Next(-1, -100)), false);
+            Peon p3 = new Peon("correo2@gmail.com", "Juan Pérez", DateTime.Now.AddDays(rnd.Next(-1, -100)), true);
+            Peon p4 = new Peon("usuario3@example.com", "Luisa Martinez", DateTime.Now.AddDays(rnd.Next(-1, -100)), false);
+            Peon p5 = new Peon("correo4@gmail.com", "Ana García", DateTime.Now.AddDays(rnd.Next(-1, -100)), true);
+            Peon p6 = new Peon("email5@example.com", "Pedro López", DateTime.Now.AddDays(rnd.Next(-1, -100)), false);
+            Peon p7 = new Peon("correo6@gmail.com", "Laura Fernández", DateTime.Now.AddDays(rnd.Next(-1, -100)), true);
+            Peon p8 = new Peon("usuario7@example.com", "Diego Sanchez", DateTime.Now.AddDays(rnd.Next(-1, -100)), false);
+            Peon p9 = new Peon("correo8@gmail.com", "Carolina Gómez", DateTime.Now.AddDays(rnd.Next(-1, -100)), true);
+            Peon p10 = new Peon("email9@example.com", "Roberto Diaz", DateTime.Now.AddDays(rnd.Next(-1, -100)), false);
             Capataz c1 = new Capataz(5);
             Capataz c2 = new Capataz(4);
             
