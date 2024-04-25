@@ -20,10 +20,14 @@ namespace Dominio
         {
             PrecargarDatos();
         }
-
-        public static Sistema Instancia() //singleton pattern para impedir crear otra instancia del Sistema
+       
+        public static Sistema GetInstancia()
         {
-            return _instancia ??= new Sistema(); //que elegante
+            if (_instancia == null)
+            {
+                return _instancia = new Sistema();
+            }
+            return _instancia;
         }
 
         #region PRECARGA_DE_DATOS
@@ -50,9 +54,10 @@ namespace Dominio
             Peon p8 = new Peon("usuario7@example.com", "Diego Sanchez", DateTime.Now.AddDays(rnd.Next(-1, -100)), false);
             Peon p9 = new Peon("correo8@gmail.com", "Carolina Gómez", DateTime.Now.AddDays(rnd.Next(-1, -100)), true);
             Peon p10 = new Peon("email9@example.com", "Roberto Diaz", DateTime.Now.AddDays(rnd.Next(-1, -100)), false);
-            Capataz c1 = new Capataz(5);
-            Capataz c2 = new Capataz(4);
-            
+            Capataz c1 = new Capataz("federicochaer@example.com", "Federico Chaer", new DateTime(2003, 12, 15), 8);
+            Capataz c2 = new Capataz("john@example.com", "John Doe", new DateTime(2014, 4, 24), 5);
+
+
             AltaEmpleado(p1);
             AltaEmpleado(p2);
             AltaEmpleado(p3);
