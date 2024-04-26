@@ -35,7 +35,22 @@ namespace Dominio
 
         public void Validar()
         {
-
+            if (string.IsNullOrEmpty(Descripcion))
+            {
+                throw new Exception("La descripcion de la tarea debe existir");
+            }
+            if(FechaRealizacion > DateTime.Now)
+            {
+                throw new Exception("La fecha de realizacion tiene que ser anterior a la de ahora");
+            }
+            /*if(FechaDeCierre < FechaRealizacion)
+            {
+                throw new Exception ("La fecha de cierre no puede ser anterior a la fecha de inicio");
+            }*/
         }
+
+
+
+
     }
 }

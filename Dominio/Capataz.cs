@@ -38,8 +38,5 @@ namespace Dominio
             throw new NotImplementedException();
         }
 
-        public void AsignarTareas(Peon p, Tarea t)
-        {
-        }
     }
 }

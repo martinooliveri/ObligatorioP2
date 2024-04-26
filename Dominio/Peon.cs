@@ -36,7 +36,7 @@ namespace Dominio
             }
             throw new NotImplementedException();
         }
-        public void CerrarTarea(Tarea t)
+        public void CompletarTarea(Tarea t)
         {
             Tarea.FueCompletada = true;
             Tarea.FechaDeCierre = DateTime.Now;

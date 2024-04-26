@@ -32,11 +32,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Usuario\\OneDrive\\Desktop\\ORT\\PROGRAMACION2\\oblig\\IUConsola\\IUConsola.csproj",
+      "projectUniqueName": "C:\\Users\\Usuario\\OneDrive\\Desktop\\ORT\\PROGRAMACION2\\oblig.1\\IUConsola\\IUConsola.csproj",
       "projectName": "IUConsola",
-      "projectPath": "C:\\Users\\Usuario\\OneDrive\\Desktop\\ORT\\PROGRAMACION2\\oblig\\IUConsola\\IUConsola.csproj",
+      "projectPath": "C:\\Users\\Usuario\\OneDrive\\Desktop\\ORT\\PROGRAMACION2\\oblig.1\\IUConsola\\IUConsola.csproj",
       "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Usuario\\OneDrive\\Desktop\\ORT\\PROGRAMACION2\\oblig\\IUConsola\\obj\\",
+      "outputPath": "C:\\Users\\Usuario\\OneDrive\\Desktop\\ORT\\PROGRAMACION2\\oblig.1\\IUConsola\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -53,8 +53,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\Usuario\\OneDrive\\Desktop\\ORT\\PROGRAMACION2\\oblig\\Dominio\\Dominio.csproj": {
-              "projectPath": "C:\\Users\\Usuario\\OneDrive\\Desktop\\ORT\\PROGRAMACION2\\oblig\\Dominio\\Dominio.csproj"
+            "C:\\Users\\Usuario\\OneDrive\\Desktop\\ORT\\PROGRAMACION2\\oblig.1\\Dominio\\Dominio.csproj": {
+              "projectPath": "C:\\Users\\Usuario\\OneDrive\\Desktop\\ORT\\PROGRAMACION2\\oblig.1\\Dominio\\Dominio.csproj"
             }
           }
         }

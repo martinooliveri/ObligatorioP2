@@ -218,13 +218,40 @@ namespace Dominio
             AltaPotrero(p10);
             foreach(Animal a in _animales)
             {
-                p1.AgregarAnimal(a);
+                AgregarAnimalAPotrero(a, p1);
             }
 
 
         }
 
         #endregion
+
+        public void AgregarAnimalAPotrero(Animal a, Potrero p)
+        {
+            try
+            {
+                a.Validar();
+                if(!AnimalEstaLibre(a))
+                {
+                    throw new Exception("Animal no esta libre");
+                }
+                if(p.GetCantidadAnimales() == p.CapacidadMaxima)
+                {
+                    throw new Exception("Capacidad maxima");
+                }             
+                _animales.Add(a);
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        private bool AnimalEstaLibre(Animal a)
+        {
+            throw new NotImplementedException();
+        }
 
         public void AltaAnimal(Animal a)
         {
@@ -306,7 +333,7 @@ namespace Dominio
             catch (Exception e)
             {
 
-                throw;
+                throw e;
             }
             _tareas.Add(t);
         }
@@ -326,7 +353,7 @@ namespace Dominio
             }
             catch (Exception e)
             {
-                throw;
+                throw e;
             }
             _vacunas.Add(v);
         }

@@ -37,26 +37,7 @@ namespace Dominio
             ValidarCapacidadMaxima();
         }
 
-        public void AgregarAnimal(Animal a)
-        {
-            try
-            {
-                a.Validar();
-                if (!_animales.Contains(a))
-                {
-                    _animales.Add(a);
-                }
-                else
-                {
-                    throw new Exception("Animal ya existe; no fue guardado");
-                }
-
-            }
-            catch (Exception e)
-            {
-                throw;
-            }
-        }
+       
 
         private void ValidarDescripcion()
         {
@@ -86,6 +67,15 @@ namespace Dominio
                    Id == potrero.Id &&
                    Hectareas == potrero.Hectareas &&
                    CapacidadMaxima == potrero.CapacidadMaxima;
+        }
+        public Animal GetAnimalPorCaravana(string idCaravada)
+        {
+            // crear animal
+        }
+
+        internal int GetCantidadAnimales()
+        {
+            throw new NotImplementedException();
         }
     }
 }
