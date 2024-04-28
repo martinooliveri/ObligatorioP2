@@ -24,7 +24,7 @@ namespace Dominio
             EsResidente = esResidente;
         }
 
-        public void Validar()
+        public override void Validar()
         {
             try
             {

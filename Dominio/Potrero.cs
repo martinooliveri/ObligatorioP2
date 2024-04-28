@@ -72,14 +72,20 @@ namespace Dominio
                    Hectareas == potrero.Hectareas &&
                    CapacidadMaxima == potrero.CapacidadMaxima;
         }
-        public Animal GetAnimalPorCaravana(string idCaravada)
+
+        public double CalcularPrecioVenta()
         {
-            // crear animal
+            double precioVenta = 0;
+            foreach(Animal a in _animales)
+            {
+                precioVenta += a.CalcularPrecioVenta();
+            }
+            return precioVenta;
         }
 
-        internal int GetCantidadAnimales()
+        public int GetCantidadAnimales()
         {
-            throw new NotImplementedException();
+            return _animales.Count;
         }
 
     }

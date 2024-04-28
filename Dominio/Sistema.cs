@@ -68,7 +68,7 @@ namespace Dominio
             AltaEmpleado(c1);
             AltaEmpleado(c2);
         }
-        private void PreCargarTareas()
+        private void PreCargarTareas(Peon p)
         {
             Tarea t1 = new Tarea("Barrer el piso", DateTime.Now.AddDays(5), true, DateTime.Now.AddDays(4), "Comentario del peón 1");
             Tarea t2 = new Tarea("Limpiar ventanas", DateTime.Now.AddDays(7), false, DateTime.Now.AddDays(6), "Comentario del peón 2");
@@ -91,6 +91,8 @@ namespace Dominio
             AltaTarea(t8);
             AltaTarea(t9);
             AltaTarea(t10);
+
+            p.
 
         }
         private void PreCargarAnimales()
@@ -163,7 +165,11 @@ namespace Dominio
             o1.VacunarAnimal(v1);
             o2.VacunarAnimal(v2);
             b1.VacunarAnimal(v3);
+
+            Bovino.PrecioKiloBovinoEnPie = 20;
+
         }
+
         private void PreCargarVacunas()
         {
             Vacuna v1 = new Vacuna("Rabia", "Vacuna contra la rabia en animales", "Virus de la rabia");
@@ -222,6 +228,12 @@ namespace Dominio
 
         #endregion
 
+        public void AddTareaToPeon(Tarea t, Peon p)
+        {
+            //todo
+        }
+
+        //agrega un animal al potrero si y solo si el animal esta libre y no excede la capacidad maxima del potrero
         public void AddAnimalToPotrero(Animal a, Potrero p)
         {
             try

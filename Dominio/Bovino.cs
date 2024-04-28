@@ -22,18 +22,25 @@ namespace Dominio
             Alimentacion = alimentacion;
         }
 
+        //Si el animal es hembra o su alimentacion es pastura,
+        //se le agregan correspondientes recargos locales
         public override double CalcularGananciaEstimada()
         {
-            if(Sexo == Sexo.Hembra)
-            {
-                return PrecioKiloBovinoEnPie * PesoActual
-            }
-            return PrecioKiloBovinoEnPie * PesoActual
+            int esHembra = (Sexo == Sexo.Hembra) ? 1 : 0;
+            int esDePastura = (Alimentacion == Alimentacion.Pastura) ? 1 : 0;
+            double gananciaPorPeso = PrecioKiloBovinoEnPie * PesoActual;
+            double recargoHembra = gananciaPorPeso * 0.30 * esHembra;
+            double recargoPastura = gananciaPorPeso * 0.10 * esDePastura;
+
+            return gananciaPorPeso + recargoHembra + recargoPastura;
         }
 
         public override void Validar()
         {
-            //todo
+            if(Alimentacion != Alimentacion.Pastura && Alimentacion != Alimentacion.Grano)
+            {
+                throw new Exception("Alimentacion ingresada no es valida");
+            }
         }
     }
 }

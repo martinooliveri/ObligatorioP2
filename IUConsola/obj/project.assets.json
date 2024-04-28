@@ -32,11 +32,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\guada\\Source\\Repos\\ObligatorioP2\\IUConsola\\IUConsola.csproj",
+      "projectUniqueName": "C:\\Users\\guada\\Source\\Repos\\martinooliveri\\ObligatorioP2\\IUConsola\\IUConsola.csproj",
       "projectName": "IUConsola",
-      "projectPath": "C:\\Users\\guada\\Source\\Repos\\ObligatorioP2\\IUConsola\\IUConsola.csproj",
+      "projectPath": "C:\\Users\\guada\\Source\\Repos\\martinooliveri\\ObligatorioP2\\IUConsola\\IUConsola.csproj",
       "packagesPath": "C:\\Users\\guada\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\guada\\Source\\Repos\\ObligatorioP2\\IUConsola\\obj\\",
+      "outputPath": "C:\\Users\\guada\\Source\\Repos\\martinooliveri\\ObligatorioP2\\IUConsola\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\guada\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -53,8 +53,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\guada\\Source\\Repos\\ObligatorioP2\\Dominio\\Dominio.csproj": {
-              "projectPath": "C:\\Users\\guada\\Source\\Repos\\ObligatorioP2\\Dominio\\Dominio.csproj"
+            "C:\\Users\\guada\\Source\\Repos\\martinooliveri\\ObligatorioP2\\Dominio\\Dominio.csproj": {
+              "projectPath": "C:\\Users\\guada\\Source\\Repos\\martinooliveri\\ObligatorioP2\\Dominio\\Dominio.csproj"
             }
           }
         }
