@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\guada\\Source\\Repos\\martinooliveri\\ObligatorioP2\\IUConsola\\IUConsola.csproj": {}
+    "C:\\Users\\Usuario\\OneDrive\\Desktop\\ORT\\PROGRAMACION2\\oblig\\IUConsola\\IUConsola.csproj": {}
   },
   "projects": {
-    "C:\\Users\\guada\\Source\\Repos\\martinooliveri\\ObligatorioP2\\Dominio\\Dominio.csproj": {
+    "C:\\Users\\Usuario\\OneDrive\\Desktop\\ORT\\PROGRAMACION2\\oblig\\Dominio\\Dominio.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\guada\\Source\\Repos\\martinooliveri\\ObligatorioP2\\Dominio\\Dominio.csproj",
+        "projectUniqueName": "C:\\Users\\Usuario\\OneDrive\\Desktop\\ORT\\PROGRAMACION2\\oblig\\Dominio\\Dominio.csproj",
         "projectName": "Dominio",
-        "projectPath": "C:\\Users\\guada\\Source\\Repos\\martinooliveri\\ObligatorioP2\\Dominio\\Dominio.csproj",
-        "packagesPath": "C:\\Users\\guada\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\guada\\Source\\Repos\\martinooliveri\\ObligatorioP2\\Dominio\\obj\\",
+        "projectPath": "C:\\Users\\Usuario\\OneDrive\\Desktop\\ORT\\PROGRAMACION2\\oblig\\Dominio\\Dominio.csproj",
+        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Usuario\\OneDrive\\Desktop\\ORT\\PROGRAMACION2\\oblig\\Dominio\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\guada\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -60,21 +60,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\guada\\Source\\Repos\\martinooliveri\\ObligatorioP2\\IUConsola\\IUConsola.csproj": {
+    "C:\\Users\\Usuario\\OneDrive\\Desktop\\ORT\\PROGRAMACION2\\oblig\\IUConsola\\IUConsola.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\guada\\Source\\Repos\\martinooliveri\\ObligatorioP2\\IUConsola\\IUConsola.csproj",
+        "projectUniqueName": "C:\\Users\\Usuario\\OneDrive\\Desktop\\ORT\\PROGRAMACION2\\oblig\\IUConsola\\IUConsola.csproj",
         "projectName": "IUConsola",
-        "projectPath": "C:\\Users\\guada\\Source\\Repos\\martinooliveri\\ObligatorioP2\\IUConsola\\IUConsola.csproj",
-        "packagesPath": "C:\\Users\\guada\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\guada\\Source\\Repos\\martinooliveri\\ObligatorioP2\\IUConsola\\obj\\",
+        "projectPath": "C:\\Users\\Usuario\\OneDrive\\Desktop\\ORT\\PROGRAMACION2\\oblig\\IUConsola\\IUConsola.csproj",
+        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Usuario\\OneDrive\\Desktop\\ORT\\PROGRAMACION2\\oblig\\IUConsola\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\guada\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -88,8 +88,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\guada\\Source\\Repos\\martinooliveri\\ObligatorioP2\\Dominio\\Dominio.csproj": {
-                "projectPath": "C:\\Users\\guada\\Source\\Repos\\martinooliveri\\ObligatorioP2\\Dominio\\Dominio.csproj"
+              "C:\\Users\\Usuario\\OneDrive\\Desktop\\ORT\\PROGRAMACION2\\oblig\\Dominio\\Dominio.csproj": {
+                "projectPath": "C:\\Users\\Usuario\\OneDrive\\Desktop\\ORT\\PROGRAMACION2\\oblig\\Dominio\\Dominio.csproj"
               }
             }
           }
@@ -124,7 +124,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

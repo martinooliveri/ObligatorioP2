@@ -1,4 +1,6 @@
-﻿namespace IUConsola
+﻿using Dominio;
+
+namespace IUConsola
 {
     internal class Program
     {
@@ -11,8 +13,60 @@
             Console.WriteLine("2.-MOSTRAR LOS POTREROS ");
             Console.WriteLine("3.-ASIGNAR PRECIO DE OVINOS POR KG");
             Console.WriteLine("4.-DAR DE ALTA UN BOVINO");
+            string option = Console.ReadLine();
 
+            if (option == "1")
+            {
+                Console.WriteLine();
+            } 
+            if (option == "2")
+            {
+                Console.WriteLine();
+            }
+            if(option == "3")
+            {
+                Console.WriteLine();
+            }
+            if( option == "4")
+            {
+                Console.WriteLine("Escriba un numero de caravana.");
+                string numeroCaravana = Console.ReadLine();
+                Console.WriteLine("Escriba un sexo entre MACHO/HEMBRA.");
+                Sexo sexo;
+                if (!Enum.TryParse(Console.ReadLine(), true, out sexo))
+                {
+                    Console.WriteLine("Sexo inválido. Por favor, escriba MACHO o HEMBRA.");
+                };
+                Console.WriteLine("Escriba una raza de bovino.");
+                string raza = Console.ReadLine();
+                Console.WriteLine("Escriba la fecha de nacimiento.");
+                DateTime fechaNacimiento = DateTime.Parse(Console.ReadLine());  
+                Console.WriteLine("Escriba el costo de adquisicion.");
+                double costoAdq = double.Parse(Console.ReadLine());
+                Console.WriteLine("Escriba el peso del animal.");
+                double peso = double.Parse(Console.ReadLine());
+                Console.WriteLine("Escriba si es hibrido o no S/N.");
+                bool hibrido;
+                if(Console.ReadLine() == "S") 
+                {
+                    hibrido = true;
+                }
+                if(Console.ReadLine() == "N")
+                {
+                    hibrido = false;
+                }
+                Console.WriteLine("Escriba la alimentacion si Grano o Pastura");
+                Alimentacion alimentacion;
+                if (!Enum.TryParse(Console.ReadLine(), true, out alimentacion))
+                {
+                    Console.WriteLine("Alimentacián inválida ingrese Grano o Pastura");
+                }
+                Sistema.AltaAnimal(numeroCaravana, sexo, raza, fechaNacimiento, costoAdq, peso, hibrido);
+            };
+            
+            Console.ReadKey();
         }
+
         static void AltaBovino()
         {
             Console.Clear();
