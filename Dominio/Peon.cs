@@ -12,6 +12,10 @@ namespace Dominio
         public Tarea Tarea { get; set; }
         private List<Tarea> _tareas { get; } = new List<Tarea>();
 
+        public List<Tarea> GetTareas()
+        {
+            return _tareas;
+        }
 
         public Peon() { }
 
@@ -20,26 +24,46 @@ namespace Dominio
             EsResidente = esResidente;
         }
 
-        public override void Validar()
+        public void Validar()
+        {
+            try
+            {
+                ValidarEmail();
+                ValidarNombre();
+                ValidarContrasenia();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
+
+        private void ValidarEmail()
         {
             if (string.IsNullOrEmpty(Email))
             {
-                throw new Exception("El mail tiene que existir");
+                throw new Exception("La direccion de correo eletronico no puede estar vacia");
             }
+            if (!Email.Contains('@') || !Email.Contains('.'))
+            {
+                throw new Exception("La direccion de correo electronico no es valida");
+            }
+        }
+        private void ValidarNombre()
+        {
+            if (string.IsNullOrEmpty(Nombre))
+            {
+                throw new Exception("El nombre no puede ser vacio");
+            }
+        }
+        private void ValidarContrasenia()
+        {
             if (string.IsNullOrEmpty(Contrasenia))
             {
                 throw new Exception("La contraseña debe existir");
             }
-            if (string.IsNullOrEmpty(Nombre))
-            {
-                throw new Exception("El nombre debe existir");
-            }
-            throw new NotImplementedException();
-        }
-        public void CompletarTarea(Tarea t)
-        {
-            Tarea.FueCompletada = true;
-            Tarea.FechaDeCierre = DateTime.Now;
         }
     }
 }

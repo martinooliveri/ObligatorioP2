@@ -20,14 +20,10 @@ namespace Dominio
         {
             PrecargarDatos();
         }
-       
+
         public static Sistema GetInstancia()
         {
-            if (_instancia == null)
-            {
-                return _instancia = new Sistema();
-            }
-            return _instancia;
+            return _instancia ??= new Sistema();
         }
 
         #region PRECARGA_DE_DATOS
@@ -163,7 +159,7 @@ namespace Dominio
             Vacuna v1 = new Vacuna("Rabia", "Vacuna contra la rabia en animales", "Virus de la rabia");
             Vacuna v2 = new Vacuna("Moquillo", "Vacuna para prevenir el moquillo en perros", "Virus del moquillo canino");
             Vacuna v3 = new Vacuna("Parvovirus", "Vacuna contra el parvovirus en cachorros", "Parvovirus canino");
-            
+
             o1.VacunarAnimal(v1);
             o2.VacunarAnimal(v2);
             b1.VacunarAnimal(v3);
@@ -180,7 +176,7 @@ namespace Dominio
             Vacuna v8 = new Vacuna("Bronquitis", "Vacuna contra la bronquitis infecciosa en aves", "Virus de la bronquitis infecciosa aviar");
             Vacuna v9 = new Vacuna("Gripe Aviar", "Vacuna contra la gripe aviar en aves de corral", "Virus de la gripe aviar H5N1");
             Vacuna v10 = new Vacuna("Pasteurelosis", "Vacuna para prevenir la pasteurelosis en conejos", "Pasteurella multocida");
-            
+
             AltaVacuna(v1);
             AltaVacuna(v2);
             AltaVacuna(v3);
@@ -192,7 +188,7 @@ namespace Dominio
             AltaVacuna(v9);
             AltaVacuna(v10);
 
-            
+
         }
         private void PreCargarPotreros()
         {
@@ -216,7 +212,7 @@ namespace Dominio
             AltaPotrero(p8);
             AltaPotrero(p9);
             AltaPotrero(p10);
-            foreach(Animal a in _animales)
+            foreach (Animal a in _animales)
             {
                 AgregarAnimalAPotrero(a, p1);
             }
@@ -226,21 +222,20 @@ namespace Dominio
 
         #endregion
 
-        public void AgregarAnimalAPotrero(Animal a, Potrero p)
+        public void AddAnimalToPotrero(Animal a, Potrero p)
         {
             try
             {
                 a.Validar();
-                if(!AnimalEstaLibre(a))
+                if (!AnimalEstaLibre(a))
                 {
                     throw new Exception("Animal no esta libre");
                 }
-                if(p.GetCantidadAnimales() == p.CapacidadMaxima)
+                if (p.GetCantidadAnimales() == p.CapacidadMaxima)
                 {
                     throw new Exception("Capacidad maxima");
-                }             
+                }
                 _animales.Add(a);
-
             }
             catch (Exception e)
             {
@@ -248,33 +243,42 @@ namespace Dominio
             }
         }
 
-        private bool AnimalEstaLibre(Animal a)
+        //fue necesario implementar Equals en la clase Animal para usar Contains() 
+        public bool AnimalEstaLibre(Animal a)
         {
-            throw new NotImplementedException();
+            bool estaLibre = true;
+            foreach (Potrero p in _potreros)
+            {
+                if (p.GetAnimales().Contains(a))
+                {
+                    estaLibre = false;
+                    break;
+                }
+            }
+            return estaLibre;
         }
+        
 
         public void AltaAnimal(Animal a)
         {
             try
             {
                 a.Validar();
-                if(!_animales.Contains(a))
+                if (!_animales.Contains(a))
                 {
                     _animales.Add(a);
                 }
-                else 
+                else
                 {
                     throw new Exception("Animal ya existe; no fue guardado");
                 }
-
             }
             catch (Exception e)
             {
-
                 throw;
             }
         }
-        public void AltaEmpleado(Empleado e) 
+        public void AltaEmpleado(Empleado e)
         {
             try
             {
@@ -298,10 +302,10 @@ namespace Dominio
         }
         public void AltaPotrero(Potrero p)
         {
-            try 
+            try
             {
                 p.Validar();
-                if(!_potreros.Contains(p))
+                if (!_potreros.Contains(p))
                 {
                     _potreros.Add(p);
                 }
@@ -310,7 +314,7 @@ namespace Dominio
                     throw new Exception("Potrero ya existe; no fue guardado");
                 }
             }
-            catch(Exception e) 
+            catch (Exception e)
             {
                 throw;
             }
@@ -358,27 +362,25 @@ namespace Dominio
             _vacunas.Add(v);
         }
 
-         
         public List<Animal> GetAnimales()
         {
             return _animales;
         }
-        public List<Tarea> GetTareas() 
-        {   
+        public List<Tarea> GetTareas()
+        {
             return _tareas;
         }
-        public List<Potrero> GetPotreros() 
+        public List<Potrero> GetPotreros()
         {
             return _potreros;
         }
-        public List<Empleado> GetEmpleados() 
+        public List<Empleado> GetEmpleados()
         {
             return _empleados;
         }
-        public List<Vacuna> GetVacunas() 
+        public List<Vacuna> GetVacunas()
         {
             return _vacunas;
         }
-
     }
 }

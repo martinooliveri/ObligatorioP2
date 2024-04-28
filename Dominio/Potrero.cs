@@ -15,6 +15,10 @@ namespace Dominio
         public double Hectareas { get; set; }
         public int CapacidadMaxima { get; set; }
         private List<Animal> _animales { get; } = new List<Animal>();
+        public List<Animal> GetAnimales()
+        {
+            return _animales;
+        }
 
         public Potrero()
         {
@@ -77,5 +81,6 @@ namespace Dominio
         {
             throw new NotImplementedException();
         }
+
     }
 }

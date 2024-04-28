@@ -19,7 +19,10 @@ namespace Dominio
         public double PesoActual { get; set; }
         public bool EsHibrido { get; set; }
         private List<Vacunacion> _vacunaciones { get; } = new List<Vacunacion>();
-    
+        public List<Vacunacion> GetVacunaciones()
+        { 
+            return _vacunaciones; 
+        }
         
         public Animal() 
         {
@@ -40,30 +43,44 @@ namespace Dominio
             EsHibrido = esHibrido;
         }
 
-        public abstract double CalcularPrecioVenta();
-
+        public double CalcularPrecioVenta()
+        {
+            return CalcularGananciaEstimada() - CalcularCostoCrianza();
+        }
+        public double CalcularCostoCrianza()
+        {
+            return CostoAdquisicion + CostoAlimentacion + GetVacunaciones().Count * 200;
+        }
+        public abstract double CalcularGananciaEstimada();
         public virtual void Validar() 
         {
-            ValidarNumeroCaravana();
-            ValidarSexo();
-            ValidarRaza();
-            ValidarFechaNacimiento();
-            ValidarCostoAdquisicion();
-            ValidarPesoActual();
+            try
+            {
+                ValidarNumeroCaravana();
+                ValidarSexo();
+                ValidarRaza();
+                ValidarFechaNacimiento();
+                ValidarCostoAdquisicion();
+                ValidarPesoActual();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         private void ValidarNumeroCaravana()
         {
-            if(string.IsNullOrWhiteSpace(NumeroCaravana))
+            if(NumeroCaravana.Length != 8)
             {
-                throw new Exception("Numero de caravana ingresado no es valido");
+                throw new Exception("Numero de caravana no es valido");
             }
         }
         private void ValidarSexo()
         {
             if (Sexo != Sexo.Macho && Sexo != Sexo.Hembra)
             {
-                throw new Exception("Sexo no es valido");
+                throw new Exception("Sexo del animal no es valido");
             }
         }
         private void ValidarRaza()
@@ -82,21 +99,31 @@ namespace Dominio
         }
         private void ValidarCostoAdquisicion()
         {
-            if(CostoAdquisicion < 1)
+            if(CostoAdquisicion <= 0)
             {
                 throw new Exception("Costo de adquisicion no es valido");
             }
         }
         private void ValidarPesoActual()
         {
-            throw new NotImplementedException();
+            if(PesoActual <= 0)
+            {
+                throw new Exception("el Peso no es valido");
+            }
         }
 
         public void VacunarAnimal(Vacuna vacuna)
         {
-            vacuna.Validar();
-            Vacunacion vacunacion = new Vacunacion(vacuna);
-            _vacunaciones.Add(vacunacion);
+            try
+            {
+                vacuna.Validar();
+                Vacunacion vacunacion = new Vacunacion(vacuna);
+                _vacunaciones.Add(vacunacion);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public override bool Equals(object? obj)

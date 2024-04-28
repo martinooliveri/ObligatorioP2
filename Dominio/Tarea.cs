@@ -11,9 +11,9 @@ namespace Dominio
         public int Id { get; set; }
         public static int UltimoId { get; set; } = 1;
         public string Descripcion { get; set; }
-        public DateTime FechaRealizacion { get; set; }
+        public DateTime FechaRealizacion { get; set; } //se asume que esta es la fecha maxima para realizar la tarea
         public bool FueCompletada { get; set; }
-        public DateTime FechaDeCierre{ get; set; }
+        public DateTime FechaDeCierre{ get; set; } //se asume que esta es la fecha en la que se cierre la tarea
         public string Comentario{ get; set; }
 
 
@@ -22,35 +22,30 @@ namespace Dominio
             Id = UltimoId;
             UltimoId++;
         }
-        public Tarea(string descripcion, DateTime fechaRealizacion, bool fueCompletada, DateTime fechaDeCierre, string comentario)
+        public Tarea(string descripcion, DateTime fechaRealizacion)
         {
             Id = UltimoId;
             UltimoId++;
             Descripcion = descripcion;
             FechaRealizacion = fechaRealizacion;
-            FueCompletada = fueCompletada;
-            FechaDeCierre = fechaDeCierre;
-            Comentario = comentario;
         }
 
         public void Validar()
         {
             if (string.IsNullOrEmpty(Descripcion))
             {
-                throw new Exception("La descripcion de la tarea debe existir");
+                throw new Exception("La descripcion de la tarea no puede estar vacia");
             }
-            if(FechaRealizacion > DateTime.Now)
+            if(FechaRealizacion <= DateTime.Now)
             {
-                throw new Exception("La fecha de realizacion tiene que ser anterior a la de ahora");
+                throw new Exception("Fecha de realizacion invalida. Debe ser mayor que fecha actual");
             }
-            /*if(FechaDeCierre < FechaRealizacion)
-            {
-                throw new Exception ("La fecha de cierre no puede ser anterior a la fecha de inicio");
-            }*/
         }
-
-
-
-
+        public void CerrarTarea(string comentario)
+        {
+            FueCompletada = true;
+            Comentario = comentario;
+            FechaDeCierre = DateTime.Now;
+        }
     }
 }

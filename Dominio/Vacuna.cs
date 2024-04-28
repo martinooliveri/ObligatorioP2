@@ -32,9 +32,17 @@ namespace Dominio
 
         public void Validar()
         {
-            ValidarNombre();
-            ValidarDescripcion();
-            ValidarPatogeno();
+            try
+            {
+                ValidarNombre();
+                ValidarDescripcion();
+                ValidarPatogeno();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            
         }
 
         public void ValidarNombre()
@@ -67,6 +75,11 @@ namespace Dominio
                    Id == vacuna.Id &&
                    Nombre == vacuna.Nombre &&
                    PatogenoPrevenido == vacuna.PatogenoPrevenido;
+        }
+
+        public override int GetHashCode()
+        {
+            throw new NotImplementedException();
         }
     }
 }

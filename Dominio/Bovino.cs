@@ -22,9 +22,13 @@ namespace Dominio
             Alimentacion = alimentacion;
         }
 
-        public override double CalcularPrecioVenta()
+        public override double CalcularGananciaEstimada()
         {
-            throw new NotImplementedException();
+            if(Sexo == Sexo.Hembra)
+            {
+                return PrecioKiloBovinoEnPie * PesoActual
+            }
+            return PrecioKiloBovinoEnPie * PesoActual
         }
 
         public override void Validar()

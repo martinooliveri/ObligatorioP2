@@ -11,7 +11,7 @@ namespace Dominio
         public int Id { get; set; }
         public static int UltimoId { get; set; } = 1;
         public Vacuna Vacuna { get; set; }
-        public DateTime FechaVacunacion { get; set; } = DateTime.Now;
+        public DateTime FechaVacunacion { get; set; }
         public DateTime FechaVencimiento { get; set; }
 
 
@@ -25,6 +25,7 @@ namespace Dominio
             Id = UltimoId;
             UltimoId++;
             Vacuna = vacuna;
+            FechaVacunacion = DateTime.Now;
             FechaVencimiento = FechaVacunacion.AddYears(2);
         }
     }

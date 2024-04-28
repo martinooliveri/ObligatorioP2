@@ -34,8 +34,6 @@ namespace Dominio
             {
                 throw new Exception("El nombre debe existir");
             }
-
-            throw new NotImplementedException();
         }
 
     }

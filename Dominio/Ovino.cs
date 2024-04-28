@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace Dominio
 {
@@ -22,14 +24,18 @@ namespace Dominio
             PesoEstimadoLana = pesoEstimadoLana;
         }
 
-        public override double CalcularPrecioVenta()
+        
+        public override double CalcularGananciaEstimada()
         {
-            throw new NotImplementedException();
+            return PesoEstimadoLana * PrecioKiloLana + PesoActual * PrecioKiloOvinoEnPie;
         }
 
         public override void Validar()
         {
-            //todo
+            if(PesoEstimadoLana <= 0)
+            {
+                throw new Exception("El peso de lana no es valido");
+            }
         }
     }
 }
