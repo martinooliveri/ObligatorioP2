@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("IUConsola")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+86713c8374b76058c0628a8206b5bb8d17425176")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+499fb2ee386da82b5c1b5f7f464bf6af23e3de52")]
 [assembly: System.Reflection.AssemblyProductAttribute("IUConsola")]
 [assembly: System.Reflection.AssemblyTitleAttribute("IUConsola")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

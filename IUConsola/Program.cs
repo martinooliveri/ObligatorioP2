@@ -21,7 +21,16 @@ namespace IUConsola
             } 
             if (option == "2")
             {
-                Console.WriteLine();
+                List<Potrero> _potreros = Sistema._potreros;
+
+                // mostrar el display de la lista de potreros con un Console.WriteLine()
+                Console.WriteLine("Lista de Potreros:");
+                foreach (var potrero in _potreros)
+                {
+                    Console.WriteLine("ID: {potrero.Id}, Descripcion: {potrero.Descripcion}, Capacidad: {potrero.CapacidadMaxima}, Hectareas: {potrero.Hectareas");
+                }
+                
+
             }
             if(option == "3")
             {
@@ -46,7 +55,7 @@ namespace IUConsola
                 Console.WriteLine("Escriba el peso del animal.");
                 double peso = double.Parse(Console.ReadLine());
                 Console.WriteLine("Escriba si es hibrido o no S/N.");
-                bool hibrido;
+                bool hibrido = false;
                 if(Console.ReadLine() == "S") 
                 {
                     hibrido = true;
@@ -61,7 +70,7 @@ namespace IUConsola
                 {
                     Console.WriteLine("Alimentacián inválida ingrese Grano o Pastura");
                 }
-                Sistema.AltaAnimal(numeroCaravana, sexo, raza, fechaNacimiento, costoAdq, peso, hibrido);
+                Bovino b16 = new Bovino(numeroCaravana, Sexo.Macho, raza, fechaNacimiento, costoAdq, peso, hibrido, alimentacion);
             };
             
             Console.ReadKey();
