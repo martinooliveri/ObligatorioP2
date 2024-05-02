@@ -88,5 +88,10 @@ namespace Dominio
             return _animales.Count;
         }
 
+        public override string ToString()
+        {
+            return $"{Id}\t{Descripcion}\t\t{"  "}{CapacidadMaxima}\t{Hectareas}";
+        }
+
     }
 }

@@ -30,6 +30,16 @@ namespace Dominio
             return PesoEstimadoLana * PrecioKiloLana + PesoActual * PrecioKiloOvinoEnPie;
         }
 
+        public static void CambiarValorKiloLana(double valor)
+        {
+            Ovino.PrecioKiloLana = valor;
+        }
+
+        public static void CambiarValorKiloOvinoEnPie(double valor)
+        {
+            Ovino.PrecioKiloOvinoEnPie = valor;
+        }
+
         public override void Validar()
         {
             if(PesoEstimadoLana <= 0)

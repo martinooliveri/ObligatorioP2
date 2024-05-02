@@ -135,7 +135,7 @@ namespace Dominio
         public override string ToString()
         {
             string sexo = Sexo == Sexo.Macho ? "Macho" : "Hembra";
-            string resultado = $"{NumeroCaravana}\t{Raza}\t{PesoActual}\t{sexo}";
+            string resultado = $"{NumeroCaravana}\t{Raza}{"  "}\t{PesoActual}\t{sexo}";
             return resultado;
         }
     }

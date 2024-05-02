@@ -529,9 +529,22 @@ namespace Dominio
 
         #endregion
 
+        public void CambiarPrecioKiloLana(double valor)
+        {
+            Ovino.CambiarValorKiloLana(valor);
+        }
+
         public void AddTareaToPeon(Tarea t, Peon p)
         {
-            //todo
+            try
+            {
+                t.Validar();
+                p.GetTareas().Add(t);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         //agrega un animal al potrero si y solo si el animal esta libre y no excede la capacidad maxima del potrero
@@ -711,6 +724,21 @@ namespace Dominio
         {
             return _potreros;
         }
+
+        public List<Potrero> GetPotrerosDeMayorAreaYCapacidad(double hectareas, int capacidad)
+        {
+            List<Potrero> potreros = new List<Potrero>();
+            foreach (Potrero p in GetPotreros())
+            {
+                if (p.Hectareas >= hectareas && p.CapacidadMaxima >= capacidad)
+                {
+                    {
+                        potreros.Add(p);
+                    }
+                }
+            }
+            return potreros;
+        }
         public List<Empleado> GetEmpleados()
         {
             return _empleados;
@@ -743,5 +771,11 @@ namespace Dominio
         {
             return _vacunas;
         }
+
+        public double GetPrecioKiloLana()
+        {
+            return Ovino.PrecioKiloLana;
+        }
     }
 }
+
