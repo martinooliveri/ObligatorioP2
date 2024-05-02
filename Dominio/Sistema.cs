@@ -30,7 +30,10 @@ namespace Dominio
         private void PrecargarDatos()
         {
             PreCargarEmpleados();
-            PreCargarTareas();
+            foreach(Peon p in GetPeones())
+            {
+                PreCargarTareas(p);
+            }
             PreCargarAnimales();
             PreCargarVacunas();
             PreCargarPotreros();
@@ -68,178 +71,25 @@ namespace Dominio
             AltaEmpleado(c1);
             AltaEmpleado(c2);
         }
-        private void PreCargarTareas()
+        private void PreCargarTareas(Peon p)
         {
-            //peon 1
-            Tarea t1 = new Tarea("Barrer el piso",DateTime.Now.AddDays(1));
-            Tarea t2 = new Tarea("Limpiar ventanas", DateTime.Now.AddDays(1));
-            Tarea t3 = new Tarea("Podar arbustos", DateTime.Now.AddDays(1));
-            Tarea t4 = new Tarea("Regar plantas", DateTime.Now.AddDays(1));
-            Tarea t5 = new Tarea("Pintar paredes", DateTime.Now.AddDays(1));
-            Tarea t6 = new Tarea("Reparar techo", DateTime.Now.AddDays(1));
-            Tarea t7 = new Tarea("Cortar césped", DateTime.Now.AddDays(1));
-            Tarea t8 = new Tarea("Arreglar cercas", DateTime.Now.AddDays(1));
-            Tarea t9 = new Tarea("Lavar vehículos", DateTime.Now.AddDays(1));
-            Tarea t10 = new Tarea("Alimentar animales", DateTime.Now.AddDays(1));
-            Tarea t11 = new Tarea("Mantener canales de riego", DateTime.Now.AddDays(1));
-            Tarea t12 = new Tarea("Reparar caminos rurales", DateTime.Now.AddDays(1));
-            Tarea t13 = new Tarea("Cosechar cultivos", DateTime.Now.AddDays(1));
-            Tarea t14 = new Tarea("Construir infraestructura comunitaria", DateTime.Now.AddDays(1));
-            Tarea t15 = new Tarea("Realizar levantamientos topográficos", DateTime.Now.AddDays(1));
 
-            //peon 2
-            Tarea t16 = new Tarea("Barrer el piso", DateTime.Now.AddDays(2));
-            Tarea t17 = new Tarea("Limpiar ventanas", DateTime.Now.AddDays(2));
-            Tarea t18 = new Tarea("Podar arbustos", DateTime.Now.AddDays(2));
-            Tarea t19 = new Tarea("Regar plantas", DateTime.Now.AddDays(2));
-            Tarea t20 = new Tarea("Pintar paredes", DateTime.Now.AddDays(2));
-            Tarea t21 = new Tarea("Reparar techo", DateTime.Now.AddDays(2));
-            Tarea t22 = new Tarea("Cortar césped", DateTime.Now.AddDays(2));
-            Tarea t23 = new Tarea("Arreglar cercas", DateTime.Now.AddDays(2));
-            Tarea t24 = new Tarea("Lavar vehículos", DateTime.Now.AddDays(2));
-            Tarea t25 = new Tarea("Alimentar animales", DateTime.Now.AddDays(2));
-            Tarea t26 = new Tarea("Mantener canales de riego", DateTime.Now.AddDays(2));
-            Tarea t27 = new Tarea("Reparar caminos rurales", DateTime.Now.AddDays(2));
-            Tarea t28 = new Tarea("Cosechar cultivos", DateTime.Now.AddDays(2));
-            Tarea t29 = new Tarea("Construir infraestructura comunitaria", DateTime.Now.AddDays(2));
-            Tarea t30 = new Tarea("Realizar levantamientos topográficos", DateTime.Now.AddDays(2));
-
-            //peon 3
-            Tarea t31 = new Tarea("Barrer el piso", DateTime.Now.AddDays(3));
-            Tarea t32 = new Tarea("Limpiar ventanas", DateTime.Now.AddDays(3));
-            Tarea t33 = new Tarea("Podar arbustos", DateTime.Now.AddDays(3));
-            Tarea t34 = new Tarea("Regar plantas", DateTime.Now.AddDays(3));
-            Tarea t35 = new Tarea("Pintar paredes", DateTime.Now.AddDays(3));
-            Tarea t36 = new Tarea("Reparar techo", DateTime.Now.AddDays(3));
-            Tarea t37 = new Tarea("Cortar césped", DateTime.Now.AddDays(3));
-            Tarea t38 = new Tarea("Arreglar cercas", DateTime.Now.AddDays(3));
-            Tarea t39 = new Tarea("Lavar vehículos", DateTime.Now.AddDays(3));
-            Tarea t40 = new Tarea("Alimentar animales", DateTime.Now.AddDays(3));
-            Tarea t41 = new Tarea("Mantener canales de riego", DateTime.Now.AddDays(3));
-            Tarea t42 = new Tarea("Reparar caminos rurales", DateTime.Now.AddDays(3));
-            Tarea t43 = new Tarea("Cosechar cultivos", DateTime.Now.AddDays(3));
-            Tarea t44 = new Tarea("Construir infraestructura comunitaria", DateTime.Now.AddDays(3));
-            Tarea t45 = new Tarea("Realizar levantamientos topográficos", DateTime.Now.AddDays(3));
-
-            //peon 4
-            Tarea t46 = new Tarea("Barrer el piso", DateTime.Now.AddDays(4));
-            Tarea t47 = new Tarea("Limpiar ventanas", DateTime.Now.AddDays(4));
-            Tarea t48 = new Tarea("Podar arbustos", DateTime.Now.AddDays(4));
-            Tarea t49 = new Tarea("Regar plantas", DateTime.Now.AddDays(4));
-            Tarea t50 = new Tarea("Pintar paredes", DateTime.Now.AddDays(4));
-            Tarea t51 = new Tarea("Reparar techo", DateTime.Now.AddDays(4));
-            Tarea t52 = new Tarea("Cortar césped", DateTime.Now.AddDays(4));
-            Tarea t53 = new Tarea("Arreglar cercas", DateTime.Now.AddDays(4));
-            Tarea t54 = new Tarea("Lavar vehículos", DateTime.Now.AddDays(4));
-            Tarea t55 = new Tarea("Alimentar animales", DateTime.Now.AddDays(4));
-            Tarea t56 = new Tarea("Mantener canales de riego", DateTime.Now.AddDays(4));
-            Tarea t57 = new Tarea("Reparar caminos rurales", DateTime.Now.AddDays(4));
-            Tarea t58 = new Tarea("Cosechar cultivos", DateTime.Now.AddDays(4));
-            Tarea t59 = new Tarea("Construir infraestructura comunitaria", DateTime.Now.AddDays(4));
-            Tarea t60 = new Tarea("Realizar levantamientos topográficos", DateTime.Now.AddDays(4));
-
-            //peon 5
-            Tarea t61 = new Tarea("Barrer el piso", DateTime.Now.AddDays(5));
-            Tarea t62 = new Tarea("Limpiar ventanas", DateTime.Now.AddDays(5));
-            Tarea t63 = new Tarea("Podar arbustos", DateTime.Now.AddDays(5));
-            Tarea t64 = new Tarea("Regar plantas", DateTime.Now.AddDays(5));
-            Tarea t65 = new Tarea("Pintar paredes", DateTime.Now.AddDays(5));
-            Tarea t66 = new Tarea("Reparar techo", DateTime.Now.AddDays(5));
-            Tarea t67 = new Tarea("Cortar césped", DateTime.Now.AddDays(5));
-            Tarea t68 = new Tarea("Arreglar cercas", DateTime.Now.AddDays(5));
-            Tarea t69 = new Tarea("Lavar vehículos", DateTime.Now.AddDays(5));
-            Tarea t70 = new Tarea("Alimentar animales", DateTime.Now.AddDays(5));
-            Tarea t71 = new Tarea("Mantener canales de riego", DateTime.Now.AddDays(5));
-            Tarea t72 = new Tarea("Reparar caminos rurales", DateTime.Now.AddDays(5));
-            Tarea t73 = new Tarea("Cosechar cultivos", DateTime.Now.AddDays(5));
-            Tarea t74 = new Tarea("Construir infraestructura comunitaria", DateTime.Now.AddDays(5));
-            Tarea t75 = new Tarea("Realizar levantamientos topográficos", DateTime.Now.AddDays(5));
-
-            //peon 6
-            Tarea t76 = new Tarea("Barrer el piso", DateTime.Now.AddDays(6));
-            Tarea t77 = new Tarea("Limpiar ventanas", DateTime.Now.AddDays(6));
-            Tarea t78 = new Tarea("Podar arbustos", DateTime.Now.AddDays(6));
-            Tarea t79 = new Tarea("Regar plantas", DateTime.Now.AddDays(6));
-            Tarea t80 = new Tarea("Pintar paredes", DateTime.Now.AddDays(6));
-            Tarea t81 = new Tarea("Reparar techo", DateTime.Now.AddDays(6));
-            Tarea t82 = new Tarea("Cortar césped", DateTime.Now.AddDays(6));
-            Tarea t83 = new Tarea("Arreglar cercas", DateTime.Now.AddDays(6));
-            Tarea t84 = new Tarea("Lavar vehículos", DateTime.Now.AddDays(6));
-            Tarea t85 = new Tarea("Alimentar animales", DateTime.Now.AddDays(6));
-            Tarea t86 = new Tarea("Mantener canales de riego", DateTime.Now.AddDays(6));
-            Tarea t87 = new Tarea("Reparar caminos rurales", DateTime.Now.AddDays(6));
-            Tarea t88 = new Tarea("Cosechar cultivos", DateTime.Now.AddDays(6));
-            Tarea t89 = new Tarea("Construir infraestructura comunitaria", DateTime.Now.AddDays(6));
-            Tarea t90 = new Tarea("Realizar levantamientos topográficos", DateTime.Now.AddDays(6));
-
-            //peon 7
-            Tarea t91 = new Tarea("Barrer el piso", DateTime.Now.AddDays(7));
-            Tarea t92 = new Tarea("Limpiar ventanas", DateTime.Now.AddDays(7));
-            Tarea t93 = new Tarea("Podar arbustos", DateTime.Now.AddDays(7));
-            Tarea t94 = new Tarea("Regar plantas", DateTime.Now.AddDays(7));
-            Tarea t95 = new Tarea("Pintar paredes", DateTime.Now.AddDays(7));
-            Tarea t96 = new Tarea("Reparar techo", DateTime.Now.AddDays(7));
-            Tarea t97 = new Tarea("Cortar césped", DateTime.Now.AddDays(7));
-            Tarea t98 = new Tarea("Arreglar cercas", DateTime.Now.AddDays(7));
-            Tarea t99 = new Tarea("Lavar vehículos", DateTime.Now.AddDays(7));
-            Tarea t100 = new Tarea("Alimentar animales", DateTime.Now.AddDays(7));
-            Tarea t101 = new Tarea("Mantener canales de riego", DateTime.Now.AddDays(7));
-            Tarea t102 = new Tarea("Reparar caminos rurales", DateTime.Now.AddDays(7));
-            Tarea t103 = new Tarea("Cosechar cultivos", DateTime.Now.AddDays(7));
-            Tarea t104 = new Tarea("Construir infraestructura comunitaria", DateTime.Now.AddDays(7));
-            Tarea t105 = new Tarea("Realizar levantamientos topográficos", DateTime.Now.AddDays(7));
-
-            //peon 8
-            Tarea t106 = new Tarea("Barrer el piso", DateTime.Now.AddDays(8));
-            Tarea t107 = new Tarea("Limpiar ventanas", DateTime.Now.AddDays(8));
-            Tarea t108 = new Tarea("Podar arbustos", DateTime.Now.AddDays(8));
-            Tarea t109 = new Tarea("Regar plantas", DateTime.Now.AddDays(8));
-            Tarea t110 = new Tarea("Pintar paredes", DateTime.Now.AddDays(8));
-            Tarea t111 = new Tarea("Reparar techo", DateTime.Now.AddDays(8));
-            Tarea t112 = new Tarea("Cortar césped", DateTime.Now.AddDays(8));
-            Tarea t113 = new Tarea("Arreglar cercas", DateTime.Now.AddDays(8));
-            Tarea t114 = new Tarea("Lavar vehículos", DateTime.Now.AddDays(8));
-            Tarea t115 = new Tarea("Alimentar animales", DateTime.Now.AddDays(8));
-            Tarea t116 = new Tarea("Mantener canales de riego", DateTime.Now.AddDays(8));
-            Tarea t117 = new Tarea("Reparar caminos rurales", DateTime.Now.AddDays(8));
-            Tarea t118 = new Tarea("Cosechar cultivos", DateTime.Now.AddDays(8));
-            Tarea t119 = new Tarea("Construir infraestructura comunitaria", DateTime.Now.AddDays(8));
-            Tarea t120 = new Tarea("Realizar levantamientos topográficos", DateTime.Now.AddDays(8));
-
-            //peon 9
-            Tarea t121 = new Tarea("Barrer el piso", DateTime.Now.AddDays(9));
-            Tarea t122 = new Tarea("Limpiar ventanas", DateTime.Now.AddDays(9));
-            Tarea t123 = new Tarea("Podar arbustos", DateTime.Now.AddDays(9));
-            Tarea t124 = new Tarea("Regar plantas", DateTime.Now.AddDays(9));
-            Tarea t125 = new Tarea("Pintar paredes", DateTime.Now.AddDays(9));
-            Tarea t126 = new Tarea("Reparar techo", DateTime.Now.AddDays(9));
-            Tarea t127 = new Tarea("Cortar césped", DateTime.Now.AddDays(9));
-            Tarea t128 = new Tarea("Arreglar cercas", DateTime.Now.AddDays(9));
-            Tarea t129 = new Tarea("Lavar vehículos", DateTime.Now.AddDays(9));
-            Tarea t130 = new Tarea("Alimentar animales", DateTime.Now.AddDays(9));
-            Tarea t131 = new Tarea("Mantener canales de riego", DateTime.Now.AddDays(9));
-            Tarea t132 = new Tarea("Reparar caminos rurales", DateTime.Now.AddDays(9));
-            Tarea t133 = new Tarea("Cosechar cultivos", DateTime.Now.AddDays(9));
-            Tarea t134 = new Tarea("Construir infraestructura comunitaria", DateTime.Now.AddDays(9));
-            Tarea t135 = new Tarea("Realizar levantamientos topográficos", DateTime.Now.AddDays(9));
-
-            //peon 10
-            Tarea t136 = new Tarea("Barrer el piso", DateTime.Now.AddDays(10));
-            Tarea t137 = new Tarea("Limpiar ventanas", DateTime.Now.AddDays(10));
-            Tarea t138 = new Tarea("Podar arbustos", DateTime.Now.AddDays(10));
-            Tarea t139 = new Tarea("Regar plantas", DateTime.Now.AddDays(10));
-            Tarea t140 = new Tarea("Pintar paredes", DateTime.Now.AddDays(10));
-            Tarea t141 = new Tarea("Reparar techo", DateTime.Now.AddDays(10));
-            Tarea t142 = new Tarea("Cortar césped", DateTime.Now.AddDays(10));
-            Tarea t143 = new Tarea("Arreglar cercas", DateTime.Now.AddDays(10));
-            Tarea t144 = new Tarea("Lavar vehículos", DateTime.Now.AddDays(10));
-            Tarea t145 = new Tarea("Alimentar animales", DateTime.Now.AddDays(10));
-            Tarea t146 = new Tarea("Mantener canales de riego", DateTime.Now.AddDays(10));
-            Tarea t147 = new Tarea("Reparar caminos rurales", DateTime.Now.AddDays(10));
-            Tarea t148 = new Tarea("Cosechar cultivos", DateTime.Now.AddDays(10));
-            Tarea t149 = new Tarea("Construir infraestructura comunitaria", DateTime.Now.AddDays(10));
-            Tarea t150 = new Tarea("Realizar levantamientos topográficos", DateTime.Now.AddDays(10));
-
+            //se utiliza el ID del peon para ir corriendo los dias, garantizando tareas distintas
+            Tarea t1 = new Tarea("Barrer el piso",DateTime.Now.AddDays(p.Id));
+            Tarea t2 = new Tarea("Limpiar ventanas", DateTime.Now.AddDays(p.Id));
+            Tarea t3 = new Tarea("Podar arbustos", DateTime.Now.AddDays(p.Id));
+            Tarea t4 = new Tarea("Regar plantas", DateTime.Now.AddDays(p.Id));
+            Tarea t5 = new Tarea("Pintar paredes", DateTime.Now.AddDays(p.Id));
+            Tarea t6 = new Tarea("Reparar techo", DateTime.Now.AddDays(p.Id));
+            Tarea t7 = new Tarea("Cortar césped", DateTime.Now.AddDays(p.Id));
+            Tarea t8 = new Tarea("Arreglar cercas", DateTime.Now.AddDays(p.Id));
+            Tarea t9 = new Tarea("Lavar vehículos", DateTime.Now.AddDays(p.Id));
+            Tarea t10 = new Tarea("Alimentar animales", DateTime.Now.AddDays(p.Id));
+            Tarea t11 = new Tarea("Mantener canales de riego", DateTime.Now.AddDays(p.Id));
+            Tarea t12 = new Tarea("Reparar caminos rurales", DateTime.Now.AddDays(p.Id));
+            Tarea t13 = new Tarea("Cosechar cultivos", DateTime.Now.AddDays(p.Id));
+            Tarea t14 = new Tarea("Construir infraestructura comunitaria", DateTime.Now.AddDays(p.Id));
+            Tarea t15 = new Tarea("Realizar levantamientos topográficos", DateTime.Now.AddDays(p.Id));
 
             AltaTarea(t1);
             AltaTarea(t2);
@@ -256,145 +106,22 @@ namespace Dominio
             AltaTarea(t13);
             AltaTarea(t14);
             AltaTarea(t15);
-            AltaTarea(t16);
-            AltaTarea(t17);
-            AltaTarea(t18);
-            AltaTarea(t19);
-            AltaTarea(t20);
-            AltaTarea(t21);
-            AltaTarea(t22);
-            AltaTarea(t23);
-            AltaTarea(t24);
-            AltaTarea(t25);
-            AltaTarea(t26);
-            AltaTarea(t27);
-            AltaTarea(t28);
-            AltaTarea(t29);
-            AltaTarea(t30);
-            AltaTarea(t31);
-            AltaTarea(t32);
-            AltaTarea(t33);
-            AltaTarea(t34);
-            AltaTarea(t35);
-            AltaTarea(t36);
-            AltaTarea(t37);
-            AltaTarea(t38);
-            AltaTarea(t39);
-            AltaTarea(t40);
-            AltaTarea(t41);
-            AltaTarea(t42);
-            AltaTarea(t43);
-            AltaTarea(t44);
-            AltaTarea(t45);
-            AltaTarea(t46);
-            AltaTarea(t47);
-            AltaTarea(t48);
-            AltaTarea(t49);
-            AltaTarea(t50);
-            AltaTarea(t51);
-            AltaTarea(t52);
-            AltaTarea(t53);
-            AltaTarea(t54);
-            AltaTarea(t55);
-            AltaTarea(t56);
-            AltaTarea(t57);
-            AltaTarea(t58);
-            AltaTarea(t59);
-            AltaTarea(t60);
-            AltaTarea(t61);
-            AltaTarea(t62);
-            AltaTarea(t63);
-            AltaTarea(t64);
-            AltaTarea(t65);
-            AltaTarea(t66);
-            AltaTarea(t67);
-            AltaTarea(t68);
-            AltaTarea(t69);
-            AltaTarea(t70);
-            AltaTarea(t71);
-            AltaTarea(t72);
-            AltaTarea(t73);
-            AltaTarea(t74);
-            AltaTarea(t75);
-            AltaTarea(t76);
-            AltaTarea(t77);
-            AltaTarea(t78);
-            AltaTarea(t79);
-            AltaTarea(t80);
-            AltaTarea(t81);
-            AltaTarea(t82);
-            AltaTarea(t83);
-            AltaTarea(t84);
-            AltaTarea(t85);
-            AltaTarea(t86);
-            AltaTarea(t87);
-            AltaTarea(t88);
-            AltaTarea(t89);
-            AltaTarea(t90);
-            AltaTarea(t91);
-            AltaTarea(t92);
-            AltaTarea(t93);
-            AltaTarea(t94);
-            AltaTarea(t95);
-            AltaTarea(t96);
-            AltaTarea(t97);
-            AltaTarea(t98);
-            AltaTarea(t99);
-            AltaTarea(t100);
-            AltaTarea(t101);
-            AltaTarea(t102);
-            AltaTarea(t103);
-            AltaTarea(t104);
-            AltaTarea(t105);
-            AltaTarea(t106);
-            AltaTarea(t107);
-            AltaTarea(t108);
-            AltaTarea(t109);
-            AltaTarea(t110);
-            AltaTarea(t111);
-            AltaTarea(t112);
-            AltaTarea(t113);
-            AltaTarea(t114);
-            AltaTarea(t115);
-            AltaTarea(t116);
-            AltaTarea(t117);
-            AltaTarea(t118);
-            AltaTarea(t119);
-            AltaTarea(t120);
-            AltaTarea(t121);
-            AltaTarea(t122);
-            AltaTarea(t123);
-            AltaTarea(t124);
-            AltaTarea(t125);
-            AltaTarea(t126);
-            AltaTarea(t127);
-            AltaTarea(t128);
-            AltaTarea(t129);
-            AltaTarea(t130);
-            AltaTarea(t131);
-            AltaTarea(t132);
-            AltaTarea(t133);
-            AltaTarea(t134);
-            AltaTarea(t135);
-            AltaTarea(t136);
-            AltaTarea(t137);
-            AltaTarea(t138);
-            AltaTarea(t139);
-            AltaTarea(t140);
-            AltaTarea(t141);
-            AltaTarea(t142);
-            AltaTarea(t143);
-            AltaTarea(t144);
-            AltaTarea(t145);
-            AltaTarea(t146);
-            AltaTarea(t147);
-            AltaTarea(t148);
-            AltaTarea(t149);
-            AltaTarea(t150);
 
-
-            
-
+            AddTareaToPeon(t1, p);
+            AddTareaToPeon(t2, p);
+            AddTareaToPeon(t3, p);
+            AddTareaToPeon(t4, p);
+            AddTareaToPeon(t5, p);
+            AddTareaToPeon(t6, p);
+            AddTareaToPeon(t7, p);
+            AddTareaToPeon(t8, p);
+            AddTareaToPeon(t9, p);
+            AddTareaToPeon(t10, p);
+            AddTareaToPeon(t11, p);
+            AddTareaToPeon(t12, p);
+            AddTareaToPeon(t13, p);
+            AddTareaToPeon(t14, p);
+            AddTareaToPeon(t15, p);
         }
         private void PreCargarAnimales()
         {
@@ -532,6 +259,11 @@ namespace Dominio
         public void CambiarPrecioKiloLana(double valor)
         {
             Ovino.CambiarValorKiloLana(valor);
+        }
+
+        public double GetPrecioKiloLana()
+        {
+            return Ovino.PrecioKiloLana;
         }
 
         public void AddTareaToPeon(Tarea t, Peon p)
@@ -772,10 +504,6 @@ namespace Dominio
             return _vacunas;
         }
 
-        public double GetPrecioKiloLana()
-        {
-            return Ovino.PrecioKiloLana;
-        }
     }
 }
 

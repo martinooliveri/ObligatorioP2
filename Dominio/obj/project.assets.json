@@ -8,27 +8,26 @@
     "net8.0": []
   },
   "packageFolders": {
-    "C:\\Users\\guada\\.nuget\\packages\\": {}
+    "C:\\Users\\moliveri\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\guada\\Source\\Repos\\ObligatorioP2\\Dominio\\Dominio.csproj",
+      "projectUniqueName": "C:\\Users\\moliveri\\Source\\Repos\\ObligatorioP2\\Dominio\\Dominio.csproj",
       "projectName": "Dominio",
-      "projectPath": "C:\\Users\\guada\\Source\\Repos\\ObligatorioP2\\Dominio\\Dominio.csproj",
-      "packagesPath": "C:\\Users\\guada\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\guada\\Source\\Repos\\ObligatorioP2\\Dominio\\obj\\",
+      "projectPath": "C:\\Users\\moliveri\\Source\\Repos\\ObligatorioP2\\Dominio\\Dominio.csproj",
+      "packagesPath": "C:\\Users\\moliveri\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\moliveri\\Source\\Repos\\ObligatorioP2\\Dominio\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\guada\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\moliveri\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {}
       },
       "frameworks": {
         "net8.0": {
@@ -66,7 +65,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

@@ -69,17 +69,33 @@ namespace IUConsola
             Console.Clear();
 
             Console.WriteLine("LISTADO DE ANIMALES COMPLETO\n\n");
-            Console.WriteLine("****ANIMALES OVINOS****\n");
-            Console.WriteLine("NRO CARAVANA\tRAZA\tPESO(KG)\t SEXO");
-            foreach (Ovino o in s.GetOvinos())
+            if(s.GetOvinos().Count > 0)
             {
-                Console.WriteLine(o.ToString());
+                Console.WriteLine("****ANIMALES OVINOS****\n");
+                Console.WriteLine("NRO CARAVANA\tRAZA\tPESO(KG)\t SEXO");
+                foreach (Ovino o in s.GetOvinos())
+                {
+                    Console.WriteLine(o.ToString());
+                }
+
             }
-            Console.WriteLine("\n\n****ANIMALES BOVINOS****\n");
-            Console.WriteLine("NRO CARAVANA\tRAZA\tPESO(KG)\t SEXO");
-            foreach (Bovino b in s.GetBovinos())
+            else
             {
-                Console.WriteLine(b.ToString());
+                Console.WriteLine("No se encontraron Ovinos");
+            }
+            if(s.GetBovinos().Count > 0)
+            {
+
+                Console.WriteLine("\n\n****ANIMALES BOVINOS****\n");
+                Console.WriteLine("NRO CARAVANA\tRAZA\tPESO(KG)\t SEXO");
+                foreach (Bovino b in s.GetBovinos())
+                {
+                    Console.WriteLine(b.ToString());
+                }
+            }
+            else
+            {
+                Console.WriteLine("No se encontraron Bovinos");
             }
         }
 
