@@ -503,7 +503,13 @@ namespace Dominio
         {
             return _vacunas;
         }
-
+        //Es necesario implementar la interfaz IComparable para usar Sort()
+        public List<Peon> GetPeonesOrdenadosPorNombre()
+        {
+            List<Peon> peones = GetPeones();
+            peones.Sort();
+            return peones;
+        }
     }
 }
 
