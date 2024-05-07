@@ -65,5 +65,13 @@ namespace Dominio
                 throw new Exception("La contraseña debe existir");
             }
         }
+        // el CompareTo se depreca con bases de datos pudiendo ordenar por si mismas las listas,
+        // pero con precarga de datos es util (se requiere implementar interfaz de comparacion)
+        public int CompareTo(Peon? other)
+        {
+            return -Nombre.CompareTo(other.Nombre);
+        }
     }
+    
+       
 }
