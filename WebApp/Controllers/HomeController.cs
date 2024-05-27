@@ -14,9 +14,13 @@ namespace WebApp.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Login()
         {
-            List<Ovino> bovinos = s.GetOvinos();
+            return View();
+        }
+
+        public IActionResult Registro()
+        {
             return View();
         }
 
