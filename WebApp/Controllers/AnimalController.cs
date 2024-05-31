@@ -9,7 +9,12 @@ namespace WebApp.Controllers
 
         public IActionResult Listado()
         {
-            return View(s.GetAnimales());
+            List<Animal> a = s.GetAnimales();
+            if(a.Count > 0) 
+            {
+                return View(a);
+            }
+            return View();
         }
     }
 }

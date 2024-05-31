@@ -1,0 +1,46 @@
+﻿@using Dominio
+@model List<Peon>
+
+<h1 class="h1">Listado de Peones</h1>
+<h3><img height="30" src="/img/warning.webp" /> Solo personal autorizado <img height="30" src="/img/warning.webp" /></h3>
+
+@if(Model == null)
+{
+    <p>No se encontraron empleados en el sistema</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <td>Id</td>
+                <td>Nombre Completo</td>
+                <td>Fecha de Ingreso</td>
+                <td>Direccion Email</td>
+                <td>Residente</td>
+                <td>Tareas</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Peon p in Model)
+            {
+                <tr>
+                    <td>@p.Id</td>
+                    <td>@p.Nombre</td>
+                    <td>@p.FechaIngreso.ToString("d")</td>
+                    <td>@p.Email</td>
+                    <td>@(p.EsResidente ? "Residente" : "No residente")</td>
+                    <td>
+                    @if(p.GetTareas().Count > 0)
+                    {
+                        <a href="Tareas/@p.Id">Ver tareas</a></td>
+                    }
+                    else
+                    {
+                        <td>Sin tareas - <a href="/AsignarTarea">Asignar tarea</a>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+}
