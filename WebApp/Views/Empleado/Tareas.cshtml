@@ -1,0 +1,30 @@
+﻿@using Dominio
+@model List<Tarea>
+
+<h1>Listado de tareas del peon @ViewBag.NombrePeon</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <td>ID Tarea</td>
+            <td>Descripcion</td>
+            <td>Fecha maxima de realizacion</td>
+            <td>Tarea cerrada</td>
+            <td>Fecha de cierre</td>
+            <td>Comentario</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Tarea t in Model)
+        {
+            <tr>
+                <td>@t.Id</td>
+                <td>@t.Descripcion</td>
+                <td>@t.FechaRealizacion.ToString("d")</td>
+                <td>@(t.FueCompletada ? "Si" : "No")</td>
+                <td>@(t.FueCompletada ? t.FechaDeCierre.ToString("d") : "N/A")</td>
+                <td>@(t.FueCompletada ? t.Comentario:"N/A")</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -14,6 +14,7 @@ namespace Dominio
         public string Contrasenia { get; set; } = "HOLA123";
         public string Nombre { get; set; }
         public DateTime FechaIngreso { get; set; }
+        public bool Activo { get; set; } = true;
 
         public Empleado() 
         {

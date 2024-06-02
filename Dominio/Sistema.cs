@@ -349,14 +349,11 @@ namespace Dominio
                 {
                     throw new Exception("Empleado ya existe; no fue guardado");
                 }
-
             }
             catch (Exception)
             {
-
                 throw;
             }
-            _empleados.Add(e);
         }
         public void AltaPotrero(Potrero p)
         {
@@ -390,14 +387,11 @@ namespace Dominio
                 {
                     throw new Exception("Tarea ya existe; no fue guardada");
                 }
-
             }
             catch (Exception)
             {
-
                 throw;
             }
-            _tareas.Add(t);
         }
         public void AltaVacuna(Vacuna v)
         {
@@ -417,7 +411,6 @@ namespace Dominio
             {
                 throw;
             }
-            _vacunas.Add(v);
         }
 
         public List<Animal> GetAnimales()
@@ -509,6 +502,20 @@ namespace Dominio
             List<Peon> peones = GetPeones();
             peones.Sort();
             return peones;
+        }
+
+        public Peon? GetPeon(int id)
+        {
+            Peon? peon = null;
+            foreach(Peon p in GetPeones())
+            {
+                if (p.Id == id)
+                {
+                    peon = p;
+                    break;
+                }
+            }
+            return peon;
         }
     }
 }
