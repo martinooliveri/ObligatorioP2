@@ -1,0 +1,63 @@
+﻿@using Dominio
+@model Dominio.Bovino
+
+<form method="post" class="needs-validation" novalidate>
+    <div class="form-group">
+        <label asp-for="NumeroCaravana" class="form-label">NUMERO DE CARAVANA:</label>
+        <input class="form-control" type="text" asp-for="NumeroCaravana" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Raza" class="form-label">RAZA:</label>
+        <input class="form-control" type="text" asp-for="Raza" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CostoAdquisicion" class="form-label">COSTO ADQUISICION:</label>
+        <input class="form-control" type="text" asp-for="CostoAdquisicion" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Alimentacion" class="form-label">TIPO DE ALIMENTACION:</label>
+        <select asp-for="Alimentacion" class="form-control">
+            <option value="VACIO">Seleccione una opción...</option>
+            <option value="Grano">GRANO</option>
+            <option value="Pastura">PASTURA</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CostoAlimentacion" class="form-label">COSTO ALIMENTACION:</label>
+        <input class="form-control" type="text" asp-for="CostoAlimentacion" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PesoActual" class="form-label">PESO ACTUAL:</label>
+        <input class="form-control" type="text" asp-for="PesoActual" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Sexo" class="form-label">SEXO DEL ANIMAL:</label>
+        <select asp-for="Sexo" class="form-control">
+            <option value="VACIO">Seleccione una opción...</option>
+            <option value="Macho">MACHO</option>
+            <option value="Hembra">HEMBRA</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="FechaNacimiento" class="form-label">FECHA DE NACIMIENTO:</label>
+        <input class="form-control" type="date" asp-for="FechaNacimiento" />
+    </div>
+
+    <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input" asp-for="EsHibrido" />
+        <label asp-for="EsHibrido" class="form-check-label">ES HIBRIDO?</label>
+    </div>
+
+    <br />
+
+    <button type="submit" class="btn btn-primary">AltaBovino</button>
+</form>
+
+<p>@ViewBag.Message</p>
