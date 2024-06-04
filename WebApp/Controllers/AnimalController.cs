@@ -9,6 +9,7 @@ namespace WebApp.Controllers
 
         private Sistema s = Sistema.GetInstancia();
 
+        // GET: Animal/LibresListado/
         [HttpGet]
         public IActionResult LibresListado()
         {
@@ -20,22 +21,14 @@ namespace WebApp.Controllers
             return View();
         }
 
-        // GET: Animal
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-
-
-        // GET: Animal/AltaBovino
+        // GET: Animal/AltaBovino/
         [HttpGet]
         public ActionResult AltaBovino()
         {
             return View();
         }
 
-        // POST: Animal/AltaBovino
+        // POST: Animal/AltaBovino/
         [HttpPost]
         public ActionResult AltaBovino(Bovino b)
         {
@@ -51,25 +44,36 @@ namespace WebApp.Controllers
             return View();
         }
 
-        // GET: Animal/Edit/5
-        public ActionResult Edit(int id)
+        // GET: Animal/Vacunar/
+        [HttpGet]
+        public ActionResult Vacunar()
         {
-            return View();
+            List<Vacuna> vacunas = s.GetVacunas();
+            return View(vacunas);
         }
 
-        // POST: Animal/Edit/5
+        // POST: Animal/Vacunar/
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Vacunar(string idCaravana, int idVacuna)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                Animal? a = s.GetAnimal(idCaravana);
+                if (a == null) throw new Exception("No se encontro el animal. ");
+
+                Vacuna? v = s.GetVacuna(idVacuna);
+                if (v == null) throw new Exception("No se encontro la vacuna. ");
+
+
+                a.VacunarAnimal(v);
+                ViewBag.Message = "Vacunacion registrada exitosamente. ";
             }
-            catch
+            catch(Exception e)
             {
-                return View();
+                ViewBag.Message = e.Message + "Revise los datos e intentelo nuevamente. ";
             }
+            List<Vacuna> vacunas = s.GetVacunas();
+            return View(vacunas);
         }
 
         // GET: Animal/Delete/5

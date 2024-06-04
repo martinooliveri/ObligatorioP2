@@ -16,7 +16,7 @@ namespace Dominio
 
         public Ovino(){}
 
-        public Ovino(string numeroCaravana, Sexo sexo, string raza, DateTime fechaNacimiento, double costoAdquisicion, double peso, bool esHibrido, double pesoEstimadoLana) : base(numeroCaravana, sexo, raza, fechaNacimiento, costoAdquisicion, peso, esHibrido)
+        public Ovino(string numeroCaravana, Sexo sexo, string raza, DateTime fechaNacimiento, double costoAdquisicion, double costoAlimentacion, double peso, bool esHibrido, double pesoEstimadoLana) : base(numeroCaravana, sexo, raza, fechaNacimiento, costoAdquisicion, costoAlimentacion, peso, esHibrido)
         {
             PesoEstimadoLana = pesoEstimadoLana;
         }

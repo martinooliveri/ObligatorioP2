@@ -1,0 +1,50 @@
+﻿@using Dominio
+@model List<Vacuna>
+
+<h1>
+    <img height="30" src="/img/cow.webp" />
+    Registro de Vacunacion
+    <img height="30" src="/img/sheep.webp" />
+</h1>
+
+@if (Model == null)
+{
+    <h2>
+        <img height="50" src="/img/warning.webp" />
+         No se encontraron vacunas en el sistema
+        <img height="50" src="/img/warning.webp" />
+    </h2>
+    <p>Intentelo nuevamente mas tarde</p>
+}
+else
+{
+    @if (@ViewBag.Message != null)
+    {
+        <h3>
+            <img height="30" src="/img/warning.webp" />
+            @ViewBag.Message
+            <img height="30" src="/img/warning.webp" />
+        </h3>
+
+    }
+    <form method="post" class="needs-validation" novalidate>
+        <div class="form-group">
+            <label for="txtIdCaravana" class="form-control">Ingrese los datos de caravana de la unidad ganadera</label>
+            <input id="txtIdCaravana" name="idCaravana" type="text" placeholder="ID CARAVANA...">
+            <br />
+        </div>
+        <div class="form-group">
+            <label for="slcVacuna" class="form-control">Seleccione una vacuna de las disponibles</label>
+            <select id="slcVacuna" name="idVacuna" class="form-select-lgs">
+                <option value="-1">Seleccione una opcion...</option>
+
+                @foreach (Vacuna v in Model)
+                {
+                    <option value="@v.Id">@v.Nombre</option>
+                }
+            </select>
+            <br />
+        </div>
+        <button type="submit" class="btn btn-primary"> Ingresar </button>
+    </form>
+}

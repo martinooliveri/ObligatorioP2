@@ -11,7 +11,7 @@
 
 }
 else
-    {
+{
     
     <h1>Listado de Animales Libres</h1>
 
@@ -31,13 +31,13 @@ else
             @foreach(Animal a in Model)
             {
                 <tr>
-                    <td>@a.Id</td>
+                    <td>@a.NumeroCaravana</td>
                     <td>@a.Raza</td>
                     <td>@a.Sexo</td>
                     <td>@a.FechaNacimiento.ToString("d")</td>
                     <td>@a.PesoActual</td>
                     <td>@(a.EsHibrido ? "Es Hibrido" : "No Hibrido")</td>
-                    <td><a href="/AsignarPotrero/@a.Id">Asignar Potrero</a></td>
+                    <td><a href="/AsignarPotrero/@a.Id">Asignar Potrero</a> </td>
                 </tr>
             }
         </tbody>

@@ -30,7 +30,7 @@ namespace Dominio
             UltimoId++;
         }
 
-        public Animal(string numeroCaravana, Sexo sexo, string raza, DateTime fechaNacimiento, double costoAdquisicion, double peso, bool esHibrido)
+        public Animal(string numeroCaravana, Sexo sexo, string raza, DateTime fechaNacimiento, double costoAdquisicion, double costoAlimentacion, double peso, bool esHibrido)
         {
             Id = UltimoId;
             UltimoId++;
@@ -39,6 +39,7 @@ namespace Dominio
             Raza = raza;
             FechaNacimiento = fechaNacimiento;
             CostoAdquisicion = costoAdquisicion;
+            CostoAlimentacion = costoAlimentacion;
             PesoActual = peso;
             EsHibrido = esHibrido;
         }
@@ -74,7 +75,7 @@ namespace Dominio
         {
             if(CostoAlimentacion <= 0)
             {
-                throw new Exception("Costo de adquisicion no es valido");
+                throw new Exception("Costo de Alimentacion no es valido");
             }
         }
 
