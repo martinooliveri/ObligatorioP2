@@ -10,9 +10,9 @@ namespace WebApp.Controllers
         private Sistema s = Sistema.GetInstancia();
 
         [HttpGet]
-        public IActionResult Listado()
+        public IActionResult LibresListado()
         {
-            List<Animal> a = s.GetAnimales();
+            List<Animal> a = s.GetAnimalesLibres();
             if(a.Count > 0) 
             {
                 return View(a);

@@ -11,10 +11,7 @@ namespace Dominio
         public Alimentacion Alimentacion { get; set; }
         public static double PrecioKiloBovinoEnPie { get; set; } = 1;
 
-        public Bovino()
-        {
-
-        }
+        public Bovino(){}
 
         public Bovino(string numeroCaravana, Sexo sexo, string raza, DateTime fechaNacimiento, double costoAdquisicion, double peso, bool esHibrido, Alimentacion alimentacion) : base(numeroCaravana, sexo, raza, fechaNacimiento, costoAdquisicion, peso, esHibrido)
         {
@@ -36,9 +33,22 @@ namespace Dominio
 
         public override void Validar()
         {
-            if(Alimentacion != Alimentacion.Pastura && Alimentacion != Alimentacion.Grano)
+            try
             {
-                throw new Exception("Alimentacion ingresada no es valida");
+                base.Validar();
+                ValidarAlimentacion();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        private void ValidarAlimentacion()
+        {
+            if (Alimentacion != Alimentacion.Pastura && Alimentacion != Alimentacion.Grano)
+            {
+                throw new Exception("Tipo de alimentacion ingresada no es valida");
             }
         }
     }

@@ -1,0 +1,45 @@
+﻿@using Dominio
+@model List<Animal>
+
+
+@if(Model == null)
+{
+    <h1><img height="30" src="/img/warning.webp" /> 
+        Todos los animales fueron ingresados en un potrero 
+        <img height="30" src="/img/warning.webp" />
+    </h1>
+
+}
+else
+    {
+    
+    <h1>Listado de Animales Libres</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <td>ID CARAVANA</td>
+                <td>RAZA</td>
+                <td>SEXO</td>
+                <td>FECHA NACIMIENTO</td>
+                <td>PESO ACTUAL</td>
+                <td>CRUZA HIBRIDO</td>
+                <td>ACCIONES</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(Animal a in Model)
+            {
+                <tr>
+                    <td>@a.Id</td>
+                    <td>@a.Raza</td>
+                    <td>@a.Sexo</td>
+                    <td>@a.FechaNacimiento.ToString("d")</td>
+                    <td>@a.PesoActual</td>
+                    <td>@(a.EsHibrido ? "Es Hibrido" : "No Hibrido")</td>
+                    <td><a href="/AsignarPotrero/@a.Id">Asignar Potrero</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

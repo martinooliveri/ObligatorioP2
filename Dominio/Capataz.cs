@@ -11,30 +11,32 @@ namespace Dominio
         public int NumeroSupervisados { get; set; }
         private List<Peon> _peones { get; } = new List<Peon>();
 
-        public Capataz()
-        {
-        }
+        public Capataz(){}
         
-            public Capataz(string email, string nombre, DateTime fechaIngreso, int numeroSupervisados) : base(email, nombre, fechaIngreso)
+        public Capataz(string email, string nombre, DateTime fechaIngreso, int numeroSupervisados) : base(email, nombre, fechaIngreso)
         {
             NumeroSupervisados = numeroSupervisados;
         }
 
         public override void Validar()
         {
-            if (string.IsNullOrEmpty(Email))
+            try
             {
-                throw new Exception("El mail tiene que existir");
+                base.Validar();
+                ValidarNumeroSupervisados();
             }
-            if(string.IsNullOrEmpty(Contrasenia))
+            catch (Exception)
             {
-                throw new Exception("La contraseña debe existir");
-            }
-            if(string.IsNullOrEmpty(Nombre))
-            {
-                throw new Exception("El nombre debe existir");
+                throw;
             }
         }
 
+        private void ValidarNumeroSupervisados()
+        {
+            if (NumeroSupervisados < 0)
+            {
+                throw new Exception("Numero de supervisados no es valido");
+            }
+        }
     }
 }

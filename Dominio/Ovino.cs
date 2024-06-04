@@ -14,10 +14,7 @@ namespace Dominio
         public static double PrecioKiloLana { get; set; } = 1;
         public static double PrecioKiloOvinoEnPie { get; set; } = 1;
 
-        public Ovino()
-        {
-
-        }
+        public Ovino(){}
 
         public Ovino(string numeroCaravana, Sexo sexo, string raza, DateTime fechaNacimiento, double costoAdquisicion, double peso, bool esHibrido, double pesoEstimadoLana) : base(numeroCaravana, sexo, raza, fechaNacimiento, costoAdquisicion, peso, esHibrido)
         {
@@ -42,7 +39,20 @@ namespace Dominio
 
         public override void Validar()
         {
-            if(PesoEstimadoLana <= 0)
+            try
+            {
+                base.Validar();
+                ValidarPesoLana();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        private void ValidarPesoLana()
+        {
+            if (PesoEstimadoLana <= 0)
             {
                 throw new Exception("El peso de lana no es valido");
             }

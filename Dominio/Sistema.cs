@@ -315,6 +315,19 @@ namespace Dominio
             }
             return estaLibre;
         }
+
+        public List<Animal> GetAnimalesLibres()
+        {
+            List<Animal> resultado = new List<Animal>();
+            foreach (Animal a in _animales)
+            {
+                if(AnimalEstaLibre(a))
+                {
+                    resultado.Add(a);
+                }
+            }
+            return resultado;
+        }
         
 
         public void AltaAnimal(Animal a)

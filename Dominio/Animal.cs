@@ -57,11 +57,12 @@ namespace Dominio
             try
             {
                 ValidarNumeroCaravana();
-                ValidarSexo();
                 ValidarRaza();
-                ValidarFechaNacimiento();
                 ValidarCostoAdquisicion();
                 ValidarPesoActual();
+                ValidarSexo();
+                ValidarFechaNacimiento();
+                ValidarCostoAlimentacion(); 
             }
             catch (Exception)
             {
@@ -69,9 +70,17 @@ namespace Dominio
             }
         }
 
+        private void ValidarCostoAlimentacion()
+        {
+            if(CostoAlimentacion <= 0)
+            {
+                throw new Exception("Costo de adquisicion no es valido");
+            }
+        }
+
         private void ValidarNumeroCaravana()
         {
-            if(NumeroCaravana.Length != 8)
+            if(NumeroCaravana == null || NumeroCaravana.Length != 8)
             {
                 throw new Exception("Numero de caravana no es valido");
             }
@@ -85,14 +94,14 @@ namespace Dominio
         }
         private void ValidarRaza()
         {
-            if (string.IsNullOrWhiteSpace(Raza))
+            if (Raza == null || string.IsNullOrWhiteSpace(Raza))
             {
                 throw new Exception("Raza ingresada no es valida");
             }
         }
         private void ValidarFechaNacimiento()
         {
-            if (FechaNacimiento < new DateTime(2000,01,01))
+            if (FechaNacimiento == DateTime.MinValue || FechaNacimiento.Year < 1980 || FechaNacimiento.Month > 12 || FechaNacimiento.Month < 0 || FechaNacimiento.Day > 31 || FechaNacimiento.Day < 1)
             {
                 throw new Exception("Fecha ingresada no es valida");
             }
@@ -101,14 +110,14 @@ namespace Dominio
         {
             if(CostoAdquisicion <= 0)
             {
-                throw new Exception("Costo de adquisicion no es valido");
+                throw new Exception("Costo de adquisicion ingresado no es valido");
             }
         }
         private void ValidarPesoActual()
         {
             if(PesoActual <= 0)
             {
-                throw new Exception("el Peso no es valido");
+                throw new Exception("Peso ingresado no es valido");
             }
         }
 
