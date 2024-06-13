@@ -555,6 +555,39 @@ namespace Dominio
             }
             return null;
         }
+
+        public Empleado? GetEmpleadoPorEmail(string email)
+        {
+            Empleado? empleado = null;
+            foreach(Empleado e in _empleados)
+            {
+                if(String.Equals(e.Email, email))
+                {
+                    empleado = e; 
+                    break; 
+                }
+            }
+            return empleado;
+        }
+
+        public Empleado? GetEmpleadoPorId(int id)
+        {
+            Empleado? empleado = null;
+            foreach (Empleado e in _empleados)
+            {
+                if (e.Id == id)
+                {
+                    empleado = e;
+                    break;
+                }
+            }
+            return empleado;
+        }
+
+        public bool LoginValido(Empleado e, string email, string contrasenia)
+        {
+            return e.EmailCorrecto(email) && e.ContraseniaCorrecta(contrasenia); 
+        }
     }
 }
 

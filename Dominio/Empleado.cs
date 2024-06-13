@@ -34,10 +34,17 @@ namespace Dominio
 
         public virtual void Validar()
         {
-            ValidarNombre();
-            ValidarEmail();
-            ValidarContrasenia();
-            ValidarFechaIngreso();
+            try
+            {
+                ValidarNombre();
+                ValidarEmail();
+                ValidarContrasenia();
+                ValidarFechaIngreso();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         private void ValidarNombre()
@@ -109,5 +116,17 @@ namespace Dominio
                    Id == empleado.Id &&
                    Nombre == empleado.Nombre;
         }
+
+        public bool ContraseniaCorrecta(string contrasenia)
+        {
+            return Contrasenia == contrasenia;
+        }
+
+        public bool EmailCorrecto(string email)
+        {
+            return Email == email;
+        }
+
+        public abstract string GetTipo();
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    public class Peon : Empleado
+    public class Peon : Empleado, IValidable
     {
         public bool EsResidente { get; set; }
         private List<Tarea> _tareas { get; } = new List<Tarea>();
@@ -33,6 +33,13 @@ namespace Dominio
             {
                 throw;
             }
+        }
+
+        
+
+        public override string GetTipo()
+        {
+            return "Peon";
         }
 
         // el CompareTo se depreca con bases de datos pudiendo ordenar por si mismas las listas,

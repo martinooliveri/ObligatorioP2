@@ -38,5 +38,10 @@ namespace Dominio
                 throw new Exception("Numero de supervisados no es valido");
             }
         }
+
+        public override string GetTipo()
+        {
+            return "Capataz";
+        }
     }
 }

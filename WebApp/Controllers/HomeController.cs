@@ -14,9 +14,34 @@ namespace WebApp.Controllers
             _logger = logger;
         }
 
+        [HttpGet]
         public IActionResult Login()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Login(string email, string contrasenia) 
+        {
+            Empleado? e = s.GetEmpleadoPorEmail(email);
+            if (e != null && s.LoginValido(e, email, contrasenia))
+            {
+                HttpContext.Session.SetString("loggedUserEmail", email);
+                HttpContext.Session.SetString("loggedUserPass", contrasenia);
+                return RedirectToAction("Perfil", new { id = e.Id });
+            }
+            else
+            {
+                ViewBag.Message = "Ocurrio un error, revise los datos e intente nuevamente.";
+                return View();
+            }
+        }
+
+        [HttpGet]
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Login");
         }
 
         public IActionResult Registro()
@@ -24,9 +49,14 @@ namespace WebApp.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Perfil(int id)
         {
-            return View();
+            if(HttpContext.Session.GetString("loggedUserEmail") == null)
+            {
+                return RedirectToAction("Login");
+            }
+            Empleado? e = s.GetEmpleadoPorId(id);
+            return View(e);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
