@@ -51,5 +51,10 @@ namespace Dominio
                 throw new Exception("Tipo de alimentacion ingresada no es valida");
             }
         }
+
+        public override string GetTipo()
+        {
+            return "Bovino";
+        }
     }
 }

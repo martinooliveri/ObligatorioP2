@@ -1,0 +1,54 @@
+﻿@using Dominio
+@model IEnumerable<Animal>
+
+
+@if (Model == null || !Model.Any())
+{
+    <form method="post" class="needs-validation" novalidate>
+        <div class="form-group">
+            <label for="pesoAnimal" class="form-label">Peso Minimo:</label>
+            <input class="form-control" type="text" name="pesoAnimal" id="pesoAnimal" />
+        </div>
+        <div class="form-group">
+            <label for="slcTipoAnimal" class="form-label">Seleccione un tipo:</label>
+            <select id="slcTipoAnimal" name="tipoAnimal" class="form-select-lgs">
+                <option value="-1">Seleccione una opcion...</option>
+                <option value="Ovino">Ovino</option>
+                <option value="Bovino">Bovino</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Buscar</button>
+    </form>
+    <p>@ViewBag.Message</p>
+}
+else
+{
+    <h3>Listado de Ganado @ViewBag.TipoAnimal</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <td>ID CARAVANA</td>
+                <td>RAZA</td>
+                <td>SEXO</td>
+                <td>FECHA NACIMIENTO</td>
+                <td>PESO ACTUAL</td>
+                <td>POTENCIAL GANANCIA</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Animal a in Model)
+            {
+                <tr>
+                    <td>@a.NumeroCaravana</td>
+                    <td>@a.Raza</td>
+                    <td>@a.Sexo</td>
+                    <td>@a.FechaNacimiento.ToString("d")</td>
+                    <td>@a.PesoActual</td>
+                    <td>@(a.CalcularPrecioVenta())</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a href="/Animal/ListadoFiltrado">Volver a buscar</a>
+}

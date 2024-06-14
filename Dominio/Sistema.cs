@@ -588,6 +588,17 @@ namespace Dominio
         {
             return e.EmailCorrecto(email) && e.ContraseniaCorrecta(contrasenia); 
         }
+
+        public List<Animal> GetAnimalesPorTipoYPesoOrdenados(string tipoAnimal, double pesoAnimal)
+        {
+            List<Animal> animales = new List<Animal>();
+            foreach(Animal a in _animales)
+            {
+                if(a.GetTipo() == tipoAnimal && a.PesoActual > pesoAnimal)
+                {  animales.Add(a); }
+            }
+            return animales;
+        }
     }
 }
 

@@ -46,6 +46,7 @@ namespace WebApp.Controllers
 
         // GET: Animal/Vacunar/
         [HttpGet]
+        [HttpGet]
         public ActionResult Vacunar()
         {
             List<Vacuna> vacunas = s.GetVacunas();
@@ -75,6 +76,38 @@ namespace WebApp.Controllers
             List<Vacuna> vacunas = s.GetVacunas();
             return View(vacunas);
         }
+
+
+        [HttpGet]
+        public IActionResult ListadoFiltrado()
+        { 
+            return View(); 
+        }
+        [HttpPost]
+        public IActionResult ListadoFiltrado(string tipoAnimal, double pesoAnimal)
+        {
+            if ((tipoAnimal != "Bovino" && tipoAnimal != "Ovino") || pesoAnimal <= 0)
+            {
+                ViewBag.Message = "Revise los datos ingresados.";
+                return View();
+            }
+            else
+            {
+                IEnumerable<Animal> animales = s.GetAnimalesPorTipoYPesoOrdenados(tipoAnimal, pesoAnimal);
+                if(!animales.Any())
+                {
+                    ViewBag.Message = "No se encontraron animales con estos parametros.";
+                    return View();
+                }
+                else
+                {
+                    ViewBag.TipoAnimal = tipoAnimal;
+                    return View(animales);
+                }
+            }
+            
+        }
+
 
         // GET: Animal/Delete/5
         public ActionResult Delete(int id)

@@ -37,7 +37,7 @@ namespace Dominio
             try
             {
                 ValidarNombre();
-                ValidarEmail();
+                ValidarEmail(); //validar que no se repita
                 ValidarContrasenia();
                 ValidarFechaIngreso();
             }

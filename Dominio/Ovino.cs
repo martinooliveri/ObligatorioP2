@@ -11,8 +11,8 @@ namespace Dominio
     public class Ovino : Animal
     {
         public double PesoEstimadoLana { get; set; }
-        public static double PrecioKiloLana { get; set; } = 1;
-        public static double PrecioKiloOvinoEnPie { get; set; } = 1;
+        public static double PrecioKiloLana { get; set; } = 10;
+        public static double PrecioKiloOvinoEnPie { get; set; } = 10;
 
         public Ovino(){}
 
@@ -56,6 +56,11 @@ namespace Dominio
             {
                 throw new Exception("El peso de lana no es valido");
             }
+        }
+
+        public override string GetTipo()
+        {
+            return "Ovino";
         }
     }
 }

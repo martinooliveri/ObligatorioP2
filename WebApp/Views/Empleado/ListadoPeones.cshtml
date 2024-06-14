@@ -18,7 +18,7 @@ else
                 <td>Fecha de Ingreso</td>
                 <td>Direccion Email</td>
                 <td>Residente</td>
-                <td>Tareas</td>
+                <td>Acciones</td>
             </tr>
         </thead>
         <tbody>
@@ -34,6 +34,8 @@ else
                         @if(p.GetTareas().Count > 0)
                         {
                             <a href="Tareas/@p.Id">Ver tareas</a>
+                            <b>//</b>
+                            <a href=""> Asignar tarea</a>
                         }
                         else
                         {

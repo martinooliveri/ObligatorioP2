@@ -1,8 +1,8 @@
 ﻿@using Dominio
-@model List<Animal>
+@model IEnumerable<Animal>
 
 
-@if(Model == null)
+@if (Model == null || !Model.Any())
 {
     <h1><img height="30" src="/img/warning.webp" /> 
         Todos los animales fueron ingresados en un potrero 

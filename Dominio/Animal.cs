@@ -148,5 +148,7 @@ namespace Dominio
             string resultado = $"{NumeroCaravana}\t{Raza}{"  "}\t{PesoActual}\t{sexo}";
             return resultado;
         }
+
+        public abstract string GetTipo();
     }
 }

@@ -28,6 +28,7 @@ namespace WebApp.Controllers
             {
                 HttpContext.Session.SetString("loggedUserEmail", email);
                 HttpContext.Session.SetString("loggedUserPass", contrasenia);
+                HttpContext.Session.SetString("loggedUserRole", e.GetTipo());
                 return RedirectToAction("Perfil", new { id = e.Id });
             }
             else
