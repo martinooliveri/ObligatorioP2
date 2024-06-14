@@ -589,7 +589,7 @@ namespace Dominio
             return e.EmailCorrecto(email) && e.ContraseniaCorrecta(contrasenia); 
         }
 
-        public List<Animal> GetAnimalesPorTipoYPesoOrdenados(string tipoAnimal, double pesoAnimal)
+        public List<Animal> GetAnimalesPorTipoYPeso(string tipoAnimal, double pesoAnimal)
         {
             List<Animal> animales = new List<Animal>();
             foreach(Animal a in _animales)

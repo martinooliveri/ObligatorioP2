@@ -93,7 +93,7 @@ namespace WebApp.Controllers
             }
             else
             {
-                IEnumerable<Animal> animales = s.GetAnimalesPorTipoYPesoOrdenados(tipoAnimal, pesoAnimal);
+                IEnumerable<Animal> animales = s.GetAnimalesPorTipoYPeso(tipoAnimal, pesoAnimal);
                 if(!animales.Any())
                 {
                     ViewBag.Message = "No se encontraron animales con estos parametros.";
