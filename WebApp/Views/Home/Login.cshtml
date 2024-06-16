@@ -17,7 +17,10 @@
                     <input type="password" id="contrasenia" name="contrasenia" class="form-control" placeholder="Ingrese contraseña">
                 </div>
                 <div>
-                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Registro">Registro</a>
+                    <a asp-controller="Home" asp-action="Registro">Registrarse</a>
+                    <br>
+                    <br>
+
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">Login</button>
             </form>
@@ -26,4 +29,4 @@
     </div>
 </div>
 
-<p class="p-0">@ViewBag.Message</p>
+<p class="text-center">@ViewBag.Message</p>

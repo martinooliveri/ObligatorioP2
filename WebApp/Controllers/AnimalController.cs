@@ -14,11 +14,7 @@ namespace WebApp.Controllers
         public IActionResult LibresListado()
         {
             List<Animal> a = s.GetAnimalesLibres();
-            if(a.Count > 0) 
-            {
-                return View(a);
-            }
-            return View();
+            return View(a);
         }
 
         // GET: Animal/AltaBovino/
@@ -46,7 +42,6 @@ namespace WebApp.Controllers
 
         // GET: Animal/Vacunar/
         [HttpGet]
-        [HttpGet]
         public ActionResult Vacunar()
         {
             List<Vacuna> vacunas = s.GetVacunas();
@@ -60,12 +55,9 @@ namespace WebApp.Controllers
             try
             {
                 Animal? a = s.GetAnimal(idCaravana);
-                if (a == null) throw new Exception("No se encontro el animal. ");
-
                 Vacuna? v = s.GetVacuna(idVacuna);
+                if (a == null) throw new Exception("No se encontro el animal. ");
                 if (v == null) throw new Exception("No se encontro la vacuna. ");
-
-
                 a.VacunarAnimal(v);
                 ViewBag.Message = "Vacunacion registrada exitosamente. ";
             }
@@ -76,7 +68,6 @@ namespace WebApp.Controllers
             List<Vacuna> vacunas = s.GetVacunas();
             return View(vacunas);
         }
-
 
         [HttpGet]
         public IActionResult ListadoFiltrado()
@@ -105,7 +96,6 @@ namespace WebApp.Controllers
                     return View(animales);
                 }
             }
-            
         }
 
 

@@ -7,8 +7,9 @@ namespace WebApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
         Sistema s = Sistema.GetInstancia();
+
+        private readonly ILogger<HomeController> _logger;
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
@@ -21,7 +22,7 @@ namespace WebApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(string email, string contrasenia) 
+        public IActionResult Login(string email, string contrasenia)
         {
             Empleado? e = s.GetEmpleadoPorEmail(email);
             if (e != null && s.LoginValido(e, email, contrasenia))
@@ -29,7 +30,8 @@ namespace WebApp.Controllers
                 HttpContext.Session.SetString("loggedUserEmail", email);
                 HttpContext.Session.SetString("loggedUserPass", contrasenia);
                 HttpContext.Session.SetString("loggedUserRole", e.GetTipo());
-                return RedirectToAction("Perfil", new { id = e.Id });
+                HttpContext.Session.SetString("loggedUserID", value: e.Id.ToString());
+                return RedirectToAction("Perfil", "Empleado", new { id = e.Id });
             }
             else
             {
@@ -45,19 +47,26 @@ namespace WebApp.Controllers
             return RedirectToAction("Login");
         }
 
+        [HttpGet]
         public IActionResult Registro()
         {
             return View();
         }
 
-        public IActionResult Perfil(int id)
+        [HttpPost]
+        public IActionResult Registro(Peon p)
         {
-            if(HttpContext.Session.GetString("loggedUserEmail") == null)
+            try
             {
-                return RedirectToAction("Login");
+                s.ValidarEmail(p.Email);
+                s.AltaEmpleado(p);
+                ViewBag.MessageSuccess = "Registro exitoso, ya puede ingresar al sistema";
             }
-            Empleado? e = s.GetEmpleadoPorId(id);
-            return View(e);
+            catch (Exception e)
+            {
+                ViewBag.MessageError = e.Message;
+            }
+            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -360,7 +360,7 @@ namespace Dominio
                 }
                 else
                 {
-                    throw new Exception("Empleado ya existe; no fue guardado");
+                    throw new Exception("Error de registro");
                 }
             }
             catch (Exception)
@@ -592,12 +592,28 @@ namespace Dominio
         public List<Animal> GetAnimalesPorTipoYPeso(string tipoAnimal, double pesoAnimal)
         {
             List<Animal> animales = new List<Animal>();
+            if((tipoAnimal != "Bovino" && tipoAnimal != "Ovino") || pesoAnimal <= 0) return animales;
             foreach(Animal a in _animales)
             {
                 if(a.GetTipo() == tipoAnimal && a.PesoActual > pesoAnimal)
                 {  animales.Add(a); }
             }
             return animales;
+        }
+
+        public void ValidarEmail(string email)
+        {
+            bool esValido = true;
+            foreach(Empleado e in _empleados)
+            {
+                if(e.Email == email)
+                {
+                    esValido = false;
+                    break;
+                }
+            }
+            if(!esValido) throw new Exception("Direccion de correo ingresada ya esta asociado a una cuenta");
+            return;
         }
     }
 }
