@@ -184,9 +184,12 @@ namespace IUConsola
 
                 Console.WriteLine("Ingrese la fecha de nacimiento (DDMMAAAA)");
                 DateTime.TryParseExact(Console.ReadLine(), "ddMMyyyy", null, System.Globalization.DateTimeStyles.None, out DateTime fechaNacimiento);
-                
+
                 Console.WriteLine("Ingrese el costo de adquisicion ($).");
                 double costoAdq = Double.Parse(Console.ReadLine());
+
+                Console.WriteLine("Ingrese el costo de alimentacion ($).");
+                double costoAlimentacion = Double.Parse(Console.ReadLine());
 
                 Console.WriteLine("Ingrese el peso actual del animal (KG).");
                 double peso = Double.Parse(Console.ReadLine());
@@ -208,7 +211,7 @@ namespace IUConsola
                 {
                     Alimentacion alimentacion = alimentacionGrano == "S" ? Alimentacion.Grano : Alimentacion.Pastura;
                     Sexo sexo = esMacho == "S" ? Sexo.Macho : Sexo.Hembra;
-                    Bovino bovino = new Bovino(numeroCaravana, sexo, raza, fechaNacimiento, costoAdq, peso, esHibrido == "S", alimentacion );
+                    Bovino bovino = new Bovino(numeroCaravana, sexo, raza, fechaNacimiento, costoAdq, costoAlimentacion, peso, esHibrido == "S", alimentacion);
                     s.AltaAnimal(bovino);
                     Console.WriteLine("\nBovino ingresado al sistema con exito!\n");
                 }

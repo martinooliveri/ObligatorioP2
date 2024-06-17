@@ -227,8 +227,8 @@ namespace Dominio
         private void PreCargarPotreros()
         {
             Potrero p1 = new Potrero("Pastizal en la entrada norte", 150.5, 2850);
-            Potrero p2 = new Potrero("Zona de pastoreo cerca del riachuelo", 120.0, 2000);
-            Potrero p3 = new Potrero("Área de pasto detrás del granero", 180.2, 3200);
+            Potrero p2 = new Potrero("Zona de pastoreo cerca del riachuelo", 120.0, 2850);
+            Potrero p3 = new Potrero("Área de pasto detrás del granero", 180.2, 2850);
             Potrero p4 = new Potrero("Pastizales en la ladera este", 135.8, 2500);
             Potrero p5 = new Potrero("Terreno de pastoreo junto al bosque", 165.3, 3000);
             Potrero p6 = new Potrero("Área de pasto al sur del corral", 140.7, 2700);

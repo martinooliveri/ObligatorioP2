@@ -93,25 +93,27 @@ namespace Dominio
             return $"{Id}\t{Descripcion}\t\t{"  "}{CapacidadMaxima}\t{Hectareas}";
         }
 
-        public int CompareTo(Potrero? obj)
+        public int CompareTo(object? obj)
         {
-            if(CapacidadMaxima.CompareTo(obj.CapacidadMaxima) > 1)
-            {
-                return 1;
-            }
-            else if(CapacidadMaxima.CompareTo(obj.CapacidadMaxima) < 1)
+            Potrero? p = obj as Potrero;
+            if(CapacidadMaxima.CompareTo(p.CapacidadMaxima) > 1)
             {
                 return -1;
             }
-            else if(GetCantidadAnimales() < obj.GetCantidadAnimales()) //segundo criterio de ordenamiento
+            else if(CapacidadMaxima.CompareTo(p.CapacidadMaxima) < 1)
             {
                 return 1;
             }
-            else if(GetCantidadAnimales() > obj.GetCantidadAnimales())
+            else if(GetCantidadAnimales() < p.GetCantidadAnimales()) //segundo criterio de ordenamiento
+            {
+                return 1;
+            }
+            else if(GetCantidadAnimales() > p.GetCantidadAnimales())
             {
                 return -1;
             }
             else return 0;
         }
+
     }
 }
