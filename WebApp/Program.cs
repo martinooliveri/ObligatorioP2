@@ -1,3 +1,5 @@
+using Microsoft.Extensions.Logging;
+
 namespace WebApp
 {
     public class Program
@@ -20,17 +22,10 @@ namespace WebApp
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
-
             app.UseAuthorization();
-
-            app.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Home}/{action=Login}/{id?}");
-            
+            app.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Login}/{id?}");
             app.UseSession();
-
             app.Run();
         }
     }

@@ -13,7 +13,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Login">WebApp</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Login">Inicio</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -21,31 +21,50 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
 
-                        @if (Context.Session.GetString("loggedUserEmail") != null)
+                        @if (Context.Session.GetString("loggedUserEmail") != null 
+                            && Context.Session.GetString("loggedUserRole") == "Peon")
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Animal" asp-action="LibresListado">Animales Libres</a>
+                                <a class="nav-link text-dark" asp-controller="Empleado" asp-action="Perfil" asp-route-id="@Context.Session.GetString("loggedUserID")">
+                                    Perfil</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Empleado" asp-action="ListadoPeones">Listado de Peones</a>
+                                <a class="nav-link text-dark" asp-controller="Animal" asp-action="Vacunar">
+                                    Vacunar Animal</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Animal" asp-action="AltaBovino">Alta Bovino</a>
+                                <a class="nav-link text-dark" asp-controller="Home" asp-action="Logout">
+                                    Cerrar Sesion
+                                </a>
+                            </li>
+                        }
+                        else if (Context.Session.GetString("loggedUserEmail") != null 
+                                && Context.Session.GetString("loggedUserRole") == "Capataz")
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Empleado" asp-action="ListadoPeones">
+                                    Listado de Peones</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Animal" asp-action="Vacunar">Registrar Vacunacion</a>
+                                <a class="nav-link text-dark" asp-controller="Animal" asp-action="AltaBovino">
+                                    Alta Bovino</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Logout">Cerrar Sesion</a>
+                                <a class="nav-link text-dark" asp-controller="Animal" asp-action="LibresListado">
+                                    Animales Libres</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Animal" asp-action="ListadoFiltrado">Listado Filtrado</a>
+                                <a class="nav-link text-dark" asp-controller="Animal" asp-action="ListadoFiltrado">
+                                    Listado Filtrado</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Home" asp-action="Logout">
+                                    Cerrar Sesion</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Animal" asp-action="ListadoFiltrado">Listado Filtrado</a>
                             </li>
                         }
-                        
                     </ul>
                 </div>
             </div>
@@ -59,7 +78,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2024 - WebApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2024 - WebApp - <a asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

@@ -1,33 +1,72 @@
-﻿@{
+﻿@using Dominio
+@model Peon
+@{
     ViewData["Title"] = "Registro";
 }
 
+
 <div class="container">
     <div class="row justify-content-center mt-5">
-    <h2 class="text-center">Registro de Peón</h2>
+        <h2 class="text-center">Registro de Peón</h2>
+        <h4 class="text-center">Ingrese sus datos</h4>
+
+        @if(ViewBag.MessageSuccess != null)
+        {
+            <h3>
+                <img height="30" src="/img/approved.webp" />
+                @ViewBag.MessageSuccess
+                <img height="30" src="/img/approved.webp" />
+            </h3>
+        }
     </div>
     <div class="card-body">
-        <div class="form-group">
-            <label for="email">Correo Electrónico:</label>
-            <input type="email" id="email" name="email" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label for="password">Contraseña:</label>
-            <input type="password" id="password" name="password" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label for="residente">¿Es Residente?</label>
-            <select id="residente" name="residente" class="form-control" required>
-                <option value="si">Sí</option>
-                <option value="no">No</option>
-            </select>
-        </div>
-        <div class="text-center">
+        <form method="post" class="needs-validation" novalidate>
+            <div class="form-group">
+                <label asp-for="Nombre" class="form-label">Nombre Completo</label>
+                <input class="form-control" type="text" asp-for="Nombre" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Email" class="form-label">Direccion de correo electronico</label>
+                <input class="form-control" type="text" asp-for="Email" />
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="Contrasenia" class="form-label">Contraseña:</label>
+                <input class="form-control" type="password" asp-for="Contrasenia" />
+            </div>
+
+            <div class="form-group">
+                <label for="RepeticionContrasenia" class="form-label">Repita la contraseña:</label>
+                <input class="form-control" type="password" name="RepeticionContrasenia" />
+            </div>
+
+            <div class="form-group form-check">
+                <label asp-for="EsResidente" class="form-check-label">Es residente de la estancia?</label>
+                <input type="checkbox" class="form-check-input" asp-for="EsResidente" />
+                <br>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="FechaIngreso" class="form-label">Fecha de ingreso:</label>
+                <input class="form-control" type="date" asp-for="FechaIngreso" value="@ViewBag.FechaHoy" />
+            </div>
+            <br />
+
+            @if (ViewBag.MessageError != null)
+            {
+                <h3>
+                    <img height="30" src="/img/error.webp" />
+                    @ViewBag.MessageError
+                    <img height="30" src="/img/error.webp" />
+                </h3>
+            }
+            <br />
+
             <button type="submit" class="btn btn-primary">Registrarse</button>
-        </div>
+        </form>
+
     </div>
+
+    <p> <a href="/Home/Login">Ir al Login.</a> @ViewBag.Message</p>
 </div>
