@@ -1,0 +1,46 @@
+﻿@using Dominio
+@model IEnumerable<Potrero>
+
+
+@if (Model == null || !Model.Any())
+{
+    <h1>
+        <img height="30" src="/img/warning.webp" />
+        No se encontraron potreros en el sistema
+        <img height="30" src="/img/warning.webp" />
+    </h1>
+
+}
+else
+{
+
+    <h1>
+        <img height="30" src="/img/cow.webp" />
+        Listado de Potreros
+        <img height="30" src="/img/sheep.webp" />
+    </h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <td>ID POTRERO</td>
+                <td>DESCRIPCION</td>
+                <td>CANTIDAD ANIMALES</td>
+                <td>CAPACIDAD MAXIMA</td>
+                <td>PRECIO POTENCIAL VENTA</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Potrero p in Model)
+            {
+                <tr>
+                    <td>@p.Id</td>
+                    <td>@p.Descripcion</td>
+                    <td>@p.GetCantidadAnimales()</td>
+                    <td>@p.CapacidadMaxima</td>
+                    <td>U$S @p.CalcularPrecioVenta()</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

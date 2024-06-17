@@ -7,7 +7,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Dominio
 {
-    public class Potrero : IValidable
+    public class Potrero : IValidable, IComparable
     {
         public int Id { get; set; }
         public static int UltimoId { get; set; } = 1;
@@ -93,5 +93,25 @@ namespace Dominio
             return $"{Id}\t{Descripcion}\t\t{"  "}{CapacidadMaxima}\t{Hectareas}";
         }
 
+        public int CompareTo(Potrero? obj)
+        {
+            if(CapacidadMaxima.CompareTo(obj.CapacidadMaxima) > 1)
+            {
+                return 1;
+            }
+            else if(CapacidadMaxima.CompareTo(obj.CapacidadMaxima) < 1)
+            {
+                return -1;
+            }
+            else if(GetCantidadAnimales() < obj.GetCantidadAnimales()) //segundo criterio de ordenamiento
+            {
+                return 1;
+            }
+            else if(GetCantidadAnimales() > obj.GetCantidadAnimales())
+            {
+                return -1;
+            }
+            else return 0;
+        }
     }
 }

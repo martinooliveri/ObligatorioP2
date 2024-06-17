@@ -599,6 +599,13 @@ namespace Dominio
             }
             return animales;
         }
+
+        public List<Potrero> GetPotrerosOrdenadosPorCapacidadYCantidad()
+        {
+            List<Potrero> resultado = GetPotreros();
+            resultado.Sort();
+            return resultado;
+        }
     }
 }
 
