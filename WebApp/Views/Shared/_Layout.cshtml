@@ -37,11 +37,6 @@
                                     Cerrar Sesion
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Potrero" asp-action="Index">
-                                    Ver Potreros
-                                </a>
-                            </li>
                         }
                         else if (Context.Session.GetString("loggedUserEmail") != null 
                                 && Context.Session.GetString("loggedUserRole") == "Capataz")
@@ -63,12 +58,12 @@
                                     Listado Filtrado</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Home" asp-action="Logout">
-                                    Cerrar Sesion</a>
-                            </li>
-                            <li class="nav-item">
                                 <a class="nav-link text-dark" asp-controller="Potrero" asp-action="Index">
                                     Ver Potreros</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Home" asp-action="Logout">
+                                    Cerrar Sesion</a>
                             </li>
                         }
                     </ul>

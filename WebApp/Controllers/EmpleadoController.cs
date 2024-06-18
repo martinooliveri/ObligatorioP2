@@ -41,7 +41,8 @@ namespace WebApp.Controllers
         public ActionResult Tareas(int id)
         {
             if (HttpContext.Session.GetString("loggedUserEmail") == null ||
-                HttpContext.Session.GetString("loggedUserID") != id.ToString())
+                HttpContext.Session.GetString("loggedUserID") != id.ToString() || 
+                HttpContext.Session.GetString("loggedUserRole") != "Capataz")
             {
                 return RedirectToAction("Logout", "Home");
             }
