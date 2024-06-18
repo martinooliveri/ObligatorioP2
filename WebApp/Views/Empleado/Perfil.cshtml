@@ -7,6 +7,7 @@
     <h1>
         <img height="30" src="/img/warning.webp" />
         Si ves esto, se rompio todo
+        <a href="/Home/Index">Volver al inicio</a>
         <img height="30" src="/img/warning.webp" />
     </h1>
 }
@@ -42,6 +43,15 @@ else
                 }
             </tbody>
         </table>
-        
+
+    }
+    else if(Model is Capataz c)
+    {
+        <h3>Años en la estancia: @Model.VueltasAlSolDesdeQueTrabajaEnLaEstancia()</h3>
+        <h4>Lista de opciones:</h4>
+        <a href="/Animal/AltaBovino">Dar de alta un animal bovino</a>
+        <a href="/Potrero/Index">Ver listado de potreros</a>
+        <a href="/Animal/Index">Ver listado de animales libres</a>
+        <a href="/Empleado/Index">Ver listado de empleados</a>
     }
 }

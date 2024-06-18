@@ -123,79 +123,79 @@ namespace Dominio
             AddTareaToPeon(t14, p);
             AddTareaToPeon(t15, p);
         }
+
+        //Cortesia de ChatGPT para automatizar la generacion de ID de caravana
+        public static string GenerateRandomString(int length)
+        {
+            char[] chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789".ToCharArray();
+            var stringBuilder = new StringBuilder();
+            var random = new Random();
+
+            for (int i = 0; i < length; i++)
+            {
+                int index = random.Next(chars.Length);
+                stringBuilder.Append(chars[index]);
+            }
+            return stringBuilder.ToString();
+        }
         private void PreCargarAnimales()
         {
-            Ovino o1 = new Ovino("1A2B3C4D", Sexo.Macho, "Merino", new DateTime(2023, 4, 15), 100.0, 100.0, 50.0, true, 50.0);
-            Ovino o2 = new Ovino("5E6F7G8H", Sexo.Hembra, "Suffolk", new DateTime(2023, 5, 20), 110.0, 100.0, 55.0, false, 52.0);
-            Ovino o3 = new Ovino("9I1J2K3L", Sexo.Macho, "Dorper", new DateTime(2023, 6, 10), 120.0, 100.0, 52.0, true, 55.0);
-            Ovino o4 = new Ovino("4M5N6O7P", Sexo.Hembra, "Cheviot", new DateTime(2023, 7, 5), 105.0, 100.0, 48.0, false, 48.0);
-            Ovino o5 = new Ovino("8Q9R1S2T", Sexo.Macho, "Lincoln", new DateTime(2023, 8, 12), 115.0, 100.0, 53.0, true, 58.0);
-            Ovino o6 = new Ovino("3U4V5W6X", Sexo.Hembra, "Cotswold", new DateTime(2023, 9, 18), 125.0, 100.0, 57.0, false, 60.0);
-            Ovino o7 = new Ovino("7Y8Z9A1B", Sexo.Macho, "Romney", new DateTime(2023, 10, 25), 130.0, 100.0, 60.0, true, 62.0);
-            Ovino o8 = new Ovino("C3D4E5F6", Sexo.Hembra, "Corriedale", new DateTime(2023, 11, 8), 95.0, 100.0, 45.0, false, 45.0);
-            Ovino o9 = new Ovino("G7H8I9J1", Sexo.Macho, "Border Leicester", new DateTime(2023, 12, 14), 105.0, 100.0, 48.0, true, 48.0);
-            Ovino o10 = new Ovino("K2L3M4N5", Sexo.Hembra, "Dorset Horn", new DateTime(2024, 1, 7), 110.0, 100.0, 50.0, false, 50.0);
-            Ovino o11 = new Ovino("O6P7Q8R9", Sexo.Macho, "Hampshire", new DateTime(2024, 2, 22), 120.0, 100.0, 55.0, true, 55.0);
-            Ovino o12 = new Ovino("S1T2U3V4", Sexo.Hembra, "Oxford Down", new DateTime(2024, 3, 11), 125.0, 100.0, 57.0, false, 57.0);
-            Ovino o13 = new Ovino("W5X6Y7Z8", Sexo.Macho, "Shetland", new DateTime(2024, 4, 3), 100.0, 100.0, 48.0, true, 48.0);
-            Ovino o14 = new Ovino("A1B2C3D4", Sexo.Hembra, "Southdown", new DateTime(2024, 5, 29), 115.0, 100.0, 53.0, false, 53.0);
-            Ovino o15 = new Ovino("E5F6G7H8", Sexo.Macho, "Targhee", new DateTime(2024, 6, 20), 105.0, 100.0, 49.0, true, 49.0);
-            Bovino b1 = new Bovino("1A2B3C44", Sexo.Macho, "Angus", new DateTime(2023, 4, 15), 200.0, 100.0, 40.0, false, Alimentacion.Grano);
-            Bovino b2 = new Bovino("5E6F7G84", Sexo.Hembra, "Hereford", new DateTime(2023, 5, 20), 210.0, 100.0, 45.0, true, Alimentacion.Pastura);
-            Bovino b3 = new Bovino("9I1J2K4L", Sexo.Macho, "Limousin", new DateTime(2023, 6, 10), 220.0, 100.0, 42.0, false, Alimentacion.Grano);
-            Bovino b4 = new Bovino("4M5N6O4P", Sexo.Hembra, "Charolais", new DateTime(2023, 7, 5), 205.0, 100.0, 38.0, true, Alimentacion.Pastura);
-            Bovino b5 = new Bovino("8Q9R1S4T", Sexo.Macho, "Simmental", new DateTime(2023, 8, 12), 215.0, 100.0, 43.0, false, Alimentacion.Grano);
-            Bovino b6 = new Bovino("3U4V5W4X", Sexo.Hembra, "Gelbvieh", new DateTime(2023, 9, 18), 230.0, 100.0, 47.0, true, Alimentacion.Pastura);
-            Bovino b7 = new Bovino("7Y8Z9A4B", Sexo.Macho, "Brangus", new DateTime(2023, 10, 25), 225.0, 100.0, 44.0, false, Alimentacion.Grano);
-            Bovino b8 = new Bovino("C3D4E546", Sexo.Hembra, "Santa Gertrudis", new DateTime(2023, 11, 8), 210.0, 100.0, 40.0, true, Alimentacion.Pastura);
-            Bovino b9 = new Bovino("G7H8I441", Sexo.Macho, "Brahman", new DateTime(2023, 12, 14), 240.0, 100.0, 48.0, false, Alimentacion.Grano);
-            Bovino b10 = new Bovino("K2L344N5", Sexo.Hembra, "Angus", new DateTime(2024, 1, 7), 250.0, 100.0, 50.0, true, Alimentacion.Pastura);
-            Bovino b11 = new Bovino("O6P748R9", Sexo.Macho, "Hereford", new DateTime(2024, 2, 22), 260.0, 100.0, 55.0, false, Alimentacion.Grano);
-            Bovino b12 = new Bovino("S1T243V4", Sexo.Hembra, "Limousin", new DateTime(2024, 3, 11), 270.0, 100.0, 58.0, true, Alimentacion.Pastura);
-            Bovino b13 = new Bovino("W5X647Z8", Sexo.Macho, "Charolais", new DateTime(2024, 4, 3), 280.0, 100.0, 60.0, false, Alimentacion.Grano);
-            Bovino b14 = new Bovino("A1B243D4", Sexo.Hembra, "Simmental", new DateTime(2024, 5, 29), 290.0, 100.0, 65.0, true, Alimentacion.Pastura);
-            Bovino b15 = new Bovino("E5F647H8", Sexo.Macho, "Gelbvieh", new DateTime(2024, 6, 20), 300.0, 100.0, 70.0, false, Alimentacion.Grano);
-            AltaAnimal(o1);
-            AltaAnimal(o2);
-            AltaAnimal(o3);
-            AltaAnimal(o4);
-            AltaAnimal(o5);
-            AltaAnimal(o6);
-            AltaAnimal(o7);
-            AltaAnimal(o8);
-            AltaAnimal(o9);
-            AltaAnimal(o10);
-            AltaAnimal(o11);
-            AltaAnimal(o12);
-            AltaAnimal(o13);
-            AltaAnimal(o14);
-            AltaAnimal(o15);
-            AltaAnimal(b1);
-            AltaAnimal(b2);
-            AltaAnimal(b3);
-            AltaAnimal(b4);
-            AltaAnimal(b5);
-            AltaAnimal(b6);
-            AltaAnimal(b7);
-            AltaAnimal(b8);
-            AltaAnimal(b9);
-            AltaAnimal(b10);
-            AltaAnimal(b11);
-            AltaAnimal(b12);
-            AltaAnimal(b13);
-            AltaAnimal(b14);
-            AltaAnimal(b15);
+            PreCargarOvinos();
+            PreCargarBovinos();
 
-            Vacuna v1 = new Vacuna("Rabia", "Vacuna contra la rabia en animales", "Virus de la rabia");
-            Vacuna v2 = new Vacuna("Moquillo", "Vacuna para prevenir el moquillo en perros", "Virus del moquillo canino");
-            Vacuna v3 = new Vacuna("Parvovirus", "Vacuna contra el parvovirus en cachorros", "Parvovirus canino");
+           
 
-            o1.VacunarAnimal(v1);
-            o2.VacunarAnimal(v2);
-            b1.VacunarAnimal(v3);
 
-            Bovino.PrecioKiloBovinoEnPie = 20;
+            Ovino.PrecioKiloLana = 3.5;
+            Ovino.PrecioKiloOvinoEnPie = 2.0;
+            Bovino.PrecioKiloBovinoEnPie = 1.7; 
 
+        }
+        public void PreCargarOvinos()
+        {
+            for (int i = 0; i < 150; i++)
+            {
+                string idCaravana = GenerateRandomString(8);
+                Sexo sexo = (i % 2 == 0) ? Sexo.Macho : Sexo.Hembra;
+                string raza = "Merino";
+                DateTime fechaNacimento = new DateTime(2020, 01, 01);
+                double costoAdquisicion = 100;
+                double costoAlimentacion = 100;
+                double peso = 100;
+                bool esHibrido = i % 2 == 0;
+                double pesoEstimadoLana = 100;
+                Ovino ovino = new Ovino(idCaravana, sexo, raza, fechaNacimento, costoAdquisicion, costoAlimentacion, peso, esHibrido, pesoEstimadoLana);
+                AltaAnimal(ovino);
+                PreCargarVacunaciones(ovino);
+            }
+        }
+
+        public void PreCargarBovinos()
+        {
+            for (int i = 0; i < 150; i++)
+            {
+                string idCaravana = GenerateRandomString(8);
+                Sexo sexo = (i % 2 == 0) ? Sexo.Macho : Sexo.Hembra;
+                string raza = "Merino";
+                DateTime fechaNacimento = new DateTime(2020, 01, 01);
+                double costoAdquisicion = 100;
+                double costoAlimentacion = 100;
+                double peso = 100;
+                bool esHibrido = i % 2 == 0;
+                Alimentacion alimentacion = (i % 2 == 0) ? Alimentacion.Grano : Alimentacion.Pastura;
+                Bovino bovino = new Bovino(idCaravana, sexo, raza, fechaNacimento, costoAdquisicion, costoAlimentacion, peso, esHibrido, alimentacion);
+                AltaAnimal(bovino);
+                PreCargarVacunaciones(bovino);
+                AddAnimalToPotrero(a, GetPotrero(1));
+            }
+        }
+
+        private void PreCargarVacunaciones(Animal a)
+        {
+            foreach(Vacuna v in _vacunas)
+            {
+                a.VacunarAnimal(v);
+            }
         }
 
         private void PreCargarVacunas()
