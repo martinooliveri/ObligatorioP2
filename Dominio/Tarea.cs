@@ -43,9 +43,12 @@ namespace Dominio
         }
         public void CerrarTarea(string comentario)
         {
-            FueCompletada = true;
-            Comentario = comentario;
-            FechaDeCierre = DateTime.Now;
+            if ( FueCompletada == false ) 
+            { 
+                FueCompletada = true;
+                Comentario = comentario;
+                FechaDeCierre = DateTime.Now;
+            }
         }
     }
 }
