@@ -47,5 +47,23 @@ namespace WebApp.Controllers
             IEnumerable<Tarea> tareas = p.GetTareas();
             return View(tareas);
         }
+
+        [HttpGet]
+        public ActionResult AsignarTarea(int id)
+        {
+            if (HttpContext.Session.GetString("loggedUserRole") == null || HttpContext.Session.GetString("loggedUserEmail") == null || 
+                HttpContext.Session.GetString("loggedUserRole") == "Capataz")
+            {
+                return RedirectToAction("Logout", "Home");
+            }
+            Peon? p = s.GetPeonPorId(id);
+            if (p == null) return View();
+            ViewBag.NombrePeon = p.Nombre;
+            Tarea? t = s.GetTareas();
+            if (t == null) return View();
+            s.AddTareaToPeon(t, p);
+
+            return View();
+        }
     }
 }
