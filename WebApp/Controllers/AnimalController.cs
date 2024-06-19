@@ -9,7 +9,6 @@ namespace WebApp.Controllers
 
         private Sistema s = Sistema.GetInstancia();
 
-        // GET: Animal/LibresListado/
         [HttpGet]
         public IActionResult LibresListado()
         {
@@ -17,14 +16,11 @@ namespace WebApp.Controllers
             return View(a);
         }
 
-        // GET: Animal/AltaBovino/
         [HttpGet]
         public ActionResult AltaBovino()
         {
             return View();
         }
-
-        // POST: Animal/AltaBovino/
         [HttpPost]
         public ActionResult AltaBovino(Bovino b)
         {
@@ -40,21 +36,19 @@ namespace WebApp.Controllers
             return View();
         }
 
-        // GET: Animal/Vacunar/
         [HttpGet]
         public ActionResult Vacunar()
         {
             List<Vacuna> vacunas = s.GetVacunas();
             return View(vacunas);
         }
-        // POST: Animal/Vacunar/
         [HttpPost]
         public ActionResult Vacunar(string idCaravana, int idVacuna)
         {
             try
             {
                 Animal? a = s.GetAnimalPorNumeroCaravana(idCaravana);
-                Vacuna? v = s.GetVacuna(idVacuna);
+                Vacuna? v = s.GetVacunaPorId(idVacuna);
                 if (a == null) throw new Exception("No se encontro el animal. ");
                 if (v == null) throw new Exception("No se encontro la vacuna. ");
                 a.VacunarAnimal(v);
@@ -121,28 +115,6 @@ namespace WebApp.Controllers
                     ViewBag.TipoAnimal = tipoAnimal;
                     return View(animales);
                 }
-            }
-        }
-
-
-        // GET: Animal/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Animal/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
             }
         }
     }

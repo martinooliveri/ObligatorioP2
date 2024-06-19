@@ -9,10 +9,11 @@ namespace WebApp.Controllers
     {
         Sistema s = Sistema.GetInstancia();
 
-        private readonly ILogger<HomeController> _logger;
-        public HomeController(ILogger<HomeController> logger)
+        [HttpGet]
+        public IActionResult Logout()
         {
-            _logger = logger;
+            HttpContext.Session.Clear();
+            return RedirectToAction("Login");
         }
 
         [HttpGet]
@@ -20,7 +21,6 @@ namespace WebApp.Controllers
         {
             return View();
         }
-
         [HttpPost]
         public IActionResult Login(string email, string contrasenia)
         {
@@ -30,7 +30,7 @@ namespace WebApp.Controllers
                 HttpContext.Session.SetString("loggedUserEmail", email);
                 HttpContext.Session.SetString("loggedUserPass", contrasenia);
                 HttpContext.Session.SetString("loggedUserRole", e.GetTipo());
-                HttpContext.Session.SetString("loggedUserID", value: e.Id.ToString());
+                HttpContext.Session.SetString("loggedUserID", e.Id.ToString());
                 return RedirectToAction("Perfil", "Empleado", new { id = e.Id });
             }
             else
@@ -41,18 +41,10 @@ namespace WebApp.Controllers
         }
 
         [HttpGet]
-        public IActionResult Logout()
-        {
-            HttpContext.Session.Clear();
-            return RedirectToAction("Login");
-        }
-
-        [HttpGet]
         public IActionResult Registro()
         {
             return View();
         }
-
         [HttpPost]
         public IActionResult Registro(Peon p)
         {
@@ -67,12 +59,6 @@ namespace WebApp.Controllers
                 ViewBag.MessageError = e.Message;
             }
             return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

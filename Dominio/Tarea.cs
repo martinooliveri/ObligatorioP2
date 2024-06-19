@@ -50,5 +50,11 @@ namespace Dominio
                 FechaDeCierre = DateTime.Now;
             }
         }
+        public override bool Equals(object? obj)
+        {
+            return obj is Tarea tarea &&
+                   Id == tarea.Id &&
+                   Descripcion == tarea.Descripcion;
+        }
     }
 }

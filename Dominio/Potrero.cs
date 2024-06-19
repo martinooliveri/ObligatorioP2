@@ -10,7 +10,7 @@ namespace Dominio
     public class Potrero : IValidable, IComparable
     {
         public int Id { get; set; }
-        public static int UltimoId { get; set; } = 1;
+        public static int UltimoId { get; set; } = 1500;
         public string Descripcion { get; set; }
         public double Hectareas { get; set; }
         public int CapacidadMaxima { get; set; }
@@ -96,24 +96,20 @@ namespace Dominio
         public int CompareTo(object? obj)
         {
             Potrero? p = obj as Potrero;
-            if(CapacidadMaxima.CompareTo(p.CapacidadMaxima) > 1)
+            if(CapacidadMaxima.CompareTo(p.CapacidadMaxima) == -1)
             {
                 return -1;
             }
-            else if(CapacidadMaxima.CompareTo(p.CapacidadMaxima) < 1)
+            else if(CapacidadMaxima.CompareTo(p.CapacidadMaxima) == 1)
             {
                 return 1;
             }
-            else if(GetCantidadAnimales() < p.GetCantidadAnimales()) //segundo criterio de ordenamiento
+            else 
             {
-                return 1;
+                if(GetCantidadAnimales() < p.GetCantidadAnimales()) return 1;
+                if(GetCantidadAnimales() > p.GetCantidadAnimales()) return -1;
+                return 0;
             }
-            else if(GetCantidadAnimales() > p.GetCantidadAnimales())
-            {
-                return -1;
-            }
-            else return 0;
         }
-
     }
 }

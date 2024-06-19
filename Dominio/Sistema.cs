@@ -127,28 +127,25 @@ namespace Dominio
             AddTareaToPeon(t15, p);
         }
 
-        //Cortesia de ChatGPT para automatizar la generacion de ID de caravana
-        public static string GenerateRandomString(int length)
+        //Cortesia de ChatGPT para automatizar la generacion de ID de caravana,
+        //la chance de que se repitan dos strings generados por esta funcion es de una en doscientos dieciocho billones (aprox)
+        public static string GenerarNumeroCaravana(int largo)
         {
             char[] chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789".ToCharArray();
-            var stringBuilder = new StringBuilder();
-            var random = new Random();
+            Random random = new Random();
+            string resultado = "";
 
-            for (int i = 0; i < length; i++)
+            for (int i = 0; i < largo; i++)
             {
                 int index = random.Next(chars.Length);
-                stringBuilder.Append(chars[index]);
+                resultado += chars[index];
             }
-            return stringBuilder.ToString();
+            return resultado;
         }
         private void PreCargarAnimales()
         {
             PreCargarOvinos();
             PreCargarBovinos();
-
-           
-
-
             Ovino.PrecioKiloLana = 3.5;
             Ovino.PrecioKiloOvinoEnPie = 2.0;
             Bovino.PrecioKiloBovinoEnPie = 1.7; 
@@ -158,7 +155,7 @@ namespace Dominio
         {
             for (int i = 0; i < 150; i++)
             {
-                string idCaravana = GenerateRandomString(8);
+                string idCaravana = GenerarNumeroCaravana(8);
                 Sexo sexo = (i % 2 == 0) ? Sexo.Macho : Sexo.Hembra;
                 string raza = "Merino";
                 DateTime fechaNacimento = new DateTime(2020, 01, 01);
@@ -177,7 +174,7 @@ namespace Dominio
         {
             for (int i = 0; i < 15; i++)
             {
-                string idCaravana = GenerateRandomString(8);
+                string idCaravana = GenerarNumeroCaravana(8);
                 Sexo sexo = (i % 2 == 0) ? Sexo.Macho : Sexo.Hembra;
                 string raza = "Merino";
                 DateTime fechaNacimento = new DateTime(2020, 01, 01);
@@ -189,16 +186,6 @@ namespace Dominio
                 Bovino bovino = new Bovino(idCaravana, sexo, raza, fechaNacimento, costoAdquisicion, costoAlimentacion, peso, esHibrido, alimentacion);
                 AltaAnimal(bovino);
                 PreCargarVacunaciones(bovino);
-            }
-        }
-
-        
-
-        private void PreCargarVacunaciones(Animal a)
-        {
-            foreach(Vacuna v in _vacunas)
-            {
-                a.VacunarAnimal(v);
             }
         }
 
@@ -214,7 +201,6 @@ namespace Dominio
             Vacuna v8 = new Vacuna("Bronquitis", "Vacuna contra la bronquitis infecciosa en aves", "Virus de la bronquitis infecciosa aviar");
             Vacuna v9 = new Vacuna("Gripe Aviar", "Vacuna contra la gripe aviar en aves de corral", "Virus de la gripe aviar H5N1");
             Vacuna v10 = new Vacuna("Pasteurelosis", "Vacuna para prevenir la pasteurelosis en conejos", "Pasteurella multocida");
-
             AltaVacuna(v1);
             AltaVacuna(v2);
             AltaVacuna(v3);
@@ -225,9 +211,16 @@ namespace Dominio
             AltaVacuna(v8);
             AltaVacuna(v9);
             AltaVacuna(v10);
-
-
         }
+
+        private void PreCargarVacunaciones(Animal a)
+        {
+            foreach (Vacuna v in _vacunas)
+            {
+                a.VacunarAnimal(v);
+            }
+        }
+
         private void PreCargarPotreros()
         {
             Potrero p1 = new Potrero("Pastizal en la entrada norte", 150.5, 2850);
@@ -254,27 +247,233 @@ namespace Dominio
             {
                 AddAnimalToPotrero(a, p1);
             }
-
-
         }
 
         #endregion
 
-        public void CambiarPrecioKiloLana(double valor)
-        {
-            Ovino.CambiarValorKiloLana(valor);
-        }
+        #region GETTERS
 
         public double GetPrecioKiloLana()
         {
             return Ovino.PrecioKiloLana;
         }
 
+        public List<Animal> GetAnimales()
+        {
+            return _animales;
+        }
+
+        //se escribe Animal? porque puede devolver null
+        public Animal? GetAnimalPorId(int? id)
+        {
+            if (id == null) return null;
+            foreach (Animal a in _animales)
+            {
+                if (a.Id == id)
+                { return a; }
+            }
+            return null;
+        }
+
+        public Animal? GetAnimalPorNumeroCaravana(string numeroCaravana)
+        {
+
+            foreach (Animal a in _animales)
+            {
+                if (a.NumeroCaravana == numeroCaravana)
+                { return a; }
+            }
+            return null;
+        }
+
+        public List<Animal> GetAnimalesPorTipoYPeso(string tipoAnimal, double pesoAnimal)
+        {
+            List<Animal> animales = new List<Animal>();
+            if ((tipoAnimal != "Bovino" && tipoAnimal != "Ovino") || pesoAnimal <= 0) return animales;
+            foreach (Animal a in _animales)
+            {
+                if (a.GetTipo() == tipoAnimal && a.PesoActual > pesoAnimal)
+                { animales.Add(a); }
+            }
+            return animales;
+        }
+
+        public List<Animal> GetAnimalesLibres()
+        {
+            List<Animal> resultado = new List<Animal>();
+            foreach (Animal a in _animales)
+            {
+                if(AnimalEstaLibre(a))
+                {
+                    resultado.Add(a);
+                }
+            }
+            return resultado;
+        }
+
+        public List<Ovino> GetOvinos() 
+        {
+            List<Ovino> ovinos = new List<Ovino>();
+            foreach (Animal a in _animales)
+            {
+                if (a is Ovino ovino)
+                {
+                    ovinos.Add(ovino);
+                }
+            }
+            return ovinos;
+        }
+
+        public List<Bovino> GetBovinos() 
+        {
+            List<Bovino> bovinos = new List<Bovino>();
+            foreach(Animal a in _animales)
+            {
+                if(a is Bovino bovino)
+                {
+                    bovinos.Add(bovino);
+                }
+            }
+            return bovinos;
+        }
+
+        public List<Vacuna> GetVacunas()
+        {
+            return _vacunas;
+        }
+
+        public Vacuna? GetVacunaPorId(int id)
+        {
+            foreach (Vacuna v in _vacunas)
+            {
+                if (v.Id == id)
+                { return v; }
+            }
+            return null;
+        }
+
+        public List<Tarea> GetTareas()
+        {
+            return _tareas;
+        }
+
+        public  List<Potrero> GetPotreros()
+        {
+            return _potreros;
+        }
+
+        public Potrero? GetPotreroPorId(int id)
+        {
+            foreach (Potrero p in _potreros)
+            {
+                if (p.Id == id)
+                { return p; }
+            }
+            return null;
+        }
+
+        public List<Potrero> GetPotrerosDeMayorAreaYCapacidad(double hectareas, int capacidad)
+        {
+            List<Potrero> potreros = new List<Potrero>();
+            foreach (Potrero p in GetPotreros())
+            {
+                if (p.Hectareas >= hectareas && p.CapacidadMaxima >= capacidad)
+                {
+                    {
+                        potreros.Add(p);
+                    }
+                }
+            }
+            return potreros;
+        }
+
+        public List<Potrero> GetPotrerosOrdenadosPorCapacidadYCantidad()
+        {
+            List<Potrero> resultado = GetPotreros();
+            resultado.Sort();
+            return resultado;
+        }
+
+        public List<Empleado> GetEmpleados()
+        {
+            return _empleados;
+        }
+        public List<Peon> GetPeones()
+        {
+            List<Peon> peones = new List<Peon>();
+            foreach (Empleado e in GetEmpleados())
+            {
+                if (e is Peon peon)
+                {
+                    peones.Add(peon);
+                }
+            }
+            return peones;
+        }
+        public List<Capataz> GetCapataces()
+        {
+            List<Capataz> capataces = new List<Capataz>();
+            foreach(Empleado e in GetEmpleados()) 
+            {
+                if(e is Capataz capataz)
+                {
+                    capataces.Add(capataz);
+                }
+            }
+            return capataces;
+        }
+        
+
+        //Es necesario implementar la interfaz IComparable para usar Sort()
+        public List<Peon> GetPeonesOrdenadosPorNombre()
+        {
+            List<Peon> peones = GetPeones();
+            peones.Sort();
+            return peones;
+        }
+
+        public Peon? GetPeonPorId(int id)
+        {
+            foreach(Peon p in GetPeones())
+            {
+                if (p.Id == id)
+                { return p; }
+            }
+            return null;
+        }
+
+        public Empleado? GetEmpleadoPorEmail(string email)
+        {
+            foreach(Empleado e in _empleados)
+            {
+                if(String.Equals(e.Email, email))
+                { return e; }
+            }
+            return null;
+        }
+
+        public Empleado? GetEmpleadoPorId(int id)
+        {
+            foreach (Empleado e in _empleados)
+            {
+                if (e.Id == id)
+                { return e; }
+            }
+            return null;
+        }
+
+        #endregion
+
+        #region OTROS METODOS
         public void AddTareaToPeon(Tarea t, Peon p)
         {
             try
             {
                 t.Validar();
+                if (TareaYaFueAsignada(t))
+                {
+                    throw new Exception("Esta tarea ya fue asignada a un peon.");
+                }
                 p.GetTareas().Add(t);
             }
             catch (Exception)
@@ -283,7 +482,7 @@ namespace Dominio
             }
         }
 
-        //agrega un animal al potrero si y solo si el animal esta libre y no excede la capacidad maxima del potrero
+        //agrega un animal al potrero si y solo si el animal es valido, esta libre y siz no excede la capacidad maxima del potrero
         public void AddAnimalToPotrero(Animal a, Potrero p)
         {
             try
@@ -295,7 +494,7 @@ namespace Dominio
                 }
                 if (p.GetCantidadAnimales() == p.CapacidadMaxima)
                 {
-                    throw new Exception("Capacidad maxima");
+                    throw new Exception("Capacidad maxima fue alcanzada");
                 }
                 p.GetAnimales().Add(a);
             }
@@ -303,6 +502,15 @@ namespace Dominio
             {
                 throw;
             }
+        }
+
+        public bool TareaYaFueAsignada(Tarea t)
+        {
+            foreach (Peon p in GetPeones())
+            {
+                if (p.GetTareas().Contains(t)) return true;
+            }
+            return false;
         }
 
         //fue necesario implementar Equals en la clase Animal para usar Contains() 
@@ -320,19 +528,34 @@ namespace Dominio
             return estaLibre;
         }
 
-        public List<Animal> GetAnimalesLibres()
+        public void CambiarPrecioKiloLana(double valor)
         {
-            List<Animal> resultado = new List<Animal>();
-            foreach (Animal a in _animales)
+            Ovino.CambiarValorKiloLana(valor);
+        }
+
+        public bool LoginValido(Empleado e, string email, string contrasenia)
+        {
+            return e.EmailCorrecto(email) && e.ContraseniaCorrecta(contrasenia); 
+        }
+
+        public void ValidarEmail(string email)
+        {
+            bool esValido = true;
+            foreach(Empleado e in _empleados)
             {
-                if(AnimalEstaLibre(a))
+                if(e.Email == email)
                 {
-                    resultado.Add(a);
+                    esValido = false;
+                    break;
                 }
             }
-            return resultado;
+            if(!esValido) throw new Exception("Direccion de correo ingresada ya esta asociado a una cuenta");
+            return;
         }
-        
+
+        #endregion
+
+        #region ALTAS DEL SISTEMA
 
         public void AltaAnimal(Animal a)
         {
@@ -430,208 +653,7 @@ namespace Dominio
             }
         }
 
-        public List<Animal> GetAnimales()
-        {
-            return _animales;
-        }
-        public List<Ovino> GetOvinos() 
-        {
-            List<Ovino> ovinos = new List<Ovino>();
-            foreach (Animal a in GetAnimales())
-            {
-                if (a is Ovino ovino)
-                {
-                    ovinos.Add(ovino);
-                }
-            }
-            return ovinos;
-        }
-        public List<Bovino> GetBovinos() 
-        {
-            List<Bovino> bovinos = new List<Bovino>();
-            foreach(Animal a in GetAnimales())
-            {
-                if(a is Bovino bovino)
-                {
-                    bovinos.Add(bovino);
-                }
-            }
-            return bovinos;
-        }
-        public List<Tarea> GetTareas()
-        {
-            return _tareas;
-        }
-        public  List<Potrero> GetPotreros()
-        {
-            return _potreros;
-        }
-
-        public Potrero? GetPotreroPorId(int id)
-        {
-            foreach (Potrero p in _potreros)
-            {
-                if (p.Id == id)
-                { return p; }
-            }
-            return null;
-        }
-
-        public List<Potrero> GetPotrerosDeMayorAreaYCapacidad(double hectareas, int capacidad)
-        {
-            List<Potrero> potreros = new List<Potrero>();
-            foreach (Potrero p in GetPotreros())
-            {
-                if (p.Hectareas >= hectareas && p.CapacidadMaxima >= capacidad)
-                {
-                    {
-                        potreros.Add(p);
-                    }
-                }
-            }
-            return potreros;
-        }
-        public List<Empleado> GetEmpleados()
-        {
-            return _empleados;
-        }
-        public List<Peon> GetPeones()
-        {
-            List<Peon> peones = new List<Peon>();
-            foreach (Empleado e in GetEmpleados())
-            {
-                if (e is Peon peon)
-                {
-                    peones.Add(peon);
-                }
-            }
-            return peones;
-        }
-        public List<Capataz> GetCapataces()
-        {
-            List<Capataz> capataces = new List<Capataz>();
-            foreach(Empleado e in GetEmpleados()) 
-            {
-                if(e is Capataz capataz)
-                {
-                    capataces.Add(capataz);
-                }
-            }
-            return capataces;
-        }
-        public List<Vacuna> GetVacunas()
-        {
-            return _vacunas;
-        }
-        //Es necesario implementar la interfaz IComparable para usar Sort()
-        public List<Peon> GetPeonesOrdenadosPorNombre()
-        {
-            List<Peon> peones = GetPeones();
-            peones.Sort();
-            return peones;
-        }
-
-        public Peon? GetPeon(int id)
-        {
-            foreach(Peon p in GetPeones())
-            {
-                if (p.Id == id)
-                { return p; }
-            }
-            return null;
-        }
-
-        //se escribe Animal? porque puede devolver null
-        public Animal? GetAnimalPorId(int? id) 
-        {
-            if(id == null) return null;
-            foreach(Animal a in _animales)
-            {
-                if(a.Id == id)
-                { return a; }
-            }
-            return null;
-        }
-        public Animal? GetAnimalPorNumeroCaravana(string numeroCaravana)
-        {
-
-            foreach (Animal a in _animales)
-            {
-                if (a.NumeroCaravana == numeroCaravana)
-                { return a; }
-            }
-            return null;
-        }
-        public List<Animal> GetAnimalesPorTipoYPeso(string tipoAnimal, double pesoAnimal)
-        {
-            List<Animal> animales = new List<Animal>();
-            if ((tipoAnimal != "Bovino" && tipoAnimal != "Ovino") || pesoAnimal <= 0) return animales;
-            foreach (Animal a in _animales)
-            {
-                if (a.GetTipo() == tipoAnimal && a.PesoActual > pesoAnimal)
-                { animales.Add(a); }
-            }
-            return animales;
-        }
-
-        public Vacuna? GetVacuna(int id)
-        {
-            foreach (Vacuna v in _vacunas)
-            {
-                if (v.Id == id)
-                { return v; }
-            }
-            return null;
-        }
-
-        public Empleado? GetEmpleadoPorEmail(string email)
-        {
-            foreach(Empleado e in _empleados)
-            {
-                if(String.Equals(e.Email, email))
-                { return e; }
-            }
-            return null;
-        }
-
-        public Empleado? GetEmpleadoPorId(int id)
-        {
-            foreach (Empleado e in _empleados)
-            {
-                if (e.Id == id)
-                { return e; }
-            }
-            return null;
-        }
-
-        public bool LoginValido(Empleado e, string email, string contrasenia)
-        {
-            return e.EmailCorrecto(email) && e.ContraseniaCorrecta(contrasenia); 
-        }
-
-       
-
-        public void ValidarEmail(string email)
-        {
-            bool esValido = true;
-            foreach(Empleado e in _empleados)
-            {
-                if(e.Email == email)
-                {
-                    esValido = false;
-                    break;
-                }
-            }
-            if(!esValido) throw new Exception("Direccion de correo ingresada ya esta asociado a una cuenta");
-            return;
-        }
-
-        public List<Potrero> GetPotrerosOrdenadosPorCapacidadYCantidad()
-        {
-            List<Potrero> resultado = GetPotreros();
-            resultado.Sort();
-            return resultado;
-        }
+        #endregion
     }
 }
 

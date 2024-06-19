@@ -17,12 +17,7 @@ namespace WebApp.Controllers
             {
                 return RedirectToAction("Logout", "Home");
             }
-            List<Peon> p = s.GetPeones();
-            if(p.Count > 0)
-            {
-                return View(p);
-            }
-            return View();
+            return View(s.GetPeones());
         }
 
         [HttpGet]
@@ -40,14 +35,13 @@ namespace WebApp.Controllers
         [HttpGet]
         public ActionResult Tareas(int id)
         {
-            if (HttpContext.Session.GetString("loggedUserEmail") == null ||
-                HttpContext.Session.GetString("loggedUserID") != id.ToString() || 
-                HttpContext.Session.GetString("loggedUserRole") != "Capataz")
+            if (HttpContext.Session.GetString("loggedUserRole") == "Peon" && HttpContext.Session.GetString("loggedUserID") != id.ToString() ||
+                HttpContext.Session.GetString("loggedUserEmail") == null)
             {
                 return RedirectToAction("Logout", "Home");
             }
 
-            Peon? p = s.GetPeon(id);
+            Peon? p = s.GetPeonPorId(id);
             if (p == null) return View();
             ViewBag.NombrePeon = p.Nombre;
             IEnumerable<Tarea> tareas = p.GetTareas();

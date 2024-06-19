@@ -42,7 +42,7 @@
                                 && Context.Session.GetString("loggedUserRole") == "Capataz")
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Empleado" asp-action="ListadoPeones">
+                                <a class="nav-link text-dark" asp-controller="Empleado" asp-action="PeonesListado">
                                     Listado de Peones</a>
                             </li>
                             <li class="nav-item">
@@ -62,16 +62,17 @@
                                     Ver Potreros</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Home" asp-action="Logout">
-                                    Cerrar Sesion</a>
-                            </li>
-                            <li class="nav-item">
                                 <a class="nav-link text-dark" asp-controller="Potrero" asp-action="Index">
                                     Ver Potreros</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-controller="Animal" asp-action="AsignarPotrero">
                                     Asignar Potrero
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Home" asp-action="Logout">
+                                    Cerrar Sesion
                                 </a>
                             </li>
                         }

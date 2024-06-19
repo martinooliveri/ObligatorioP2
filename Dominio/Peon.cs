@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +16,15 @@ namespace Dominio
         {
             return _tareas;
         }
-
+        public List<Tarea> GetTareasPendientes()
+        {
+            List<Tarea> resultado = new List<Tarea>();
+            foreach(Tarea t in _tareas)
+            {
+                if(!t.FueCompletada) resultado.Add(t);
+            }
+            return resultado;
+        }
         public Peon(){}
 
         public Peon(string email, string contrasenia, string nombre, DateTime fechaIngreso, bool esResidente) : base(nombre, email, contrasenia, fechaIngreso)
