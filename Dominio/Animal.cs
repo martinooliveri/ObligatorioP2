@@ -102,7 +102,7 @@ namespace Dominio
         }
         private void ValidarFechaNacimiento()
         {
-            if (FechaNacimiento == DateTime.MinValue || FechaNacimiento.Year < 1980 || FechaNacimiento.Month > 12 || FechaNacimiento.Month < 0 || FechaNacimiento.Day > 31 || FechaNacimiento.Day < 1)
+            if ((FechaNacimiento == DateTime.MinValue || FechaNacimiento.Year < 1980 || FechaNacimiento.Month > 12 || FechaNacimiento.Month < 0 || FechaNacimiento.Day > 31 || FechaNacimiento.Day < 1) || FechaNacimiento > DateTime.Today)
             {
                 throw new Exception("Fecha ingresada no es valida");
             }

@@ -132,4 +132,17 @@ namespace Dominio
 
         public abstract string GetTipo();
     }
+    /*    public double VueltasAlSolDesdeQueTrabajaEnLaEstancia(DateTime fechaDeIngreso)
+    {
+        FechaIngreso = fechaDeIngreso;
+        int aniosEnLaEstancia = 0;
+        if(fechaDeIngreso > DateTime.Today)
+        {
+            throw new Exception("La fecha de ingreso debe ser anterior a la fecha de hoy");
+        }
+        aniosEnLaEstancia = FechaIngreso.Year - DateTime.Today.Year;
+
+        return aniosEnLaEstancia;
+    }
+    */
 }
