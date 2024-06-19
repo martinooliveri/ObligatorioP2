@@ -33,7 +33,7 @@ namespace WebApp.Controllers
                 s.AltaAnimal(b);
                 ViewBag.Message = "Alta de bovino exitosa";
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 ViewBag.Message = e.Message;
             }
@@ -47,26 +47,52 @@ namespace WebApp.Controllers
             List<Vacuna> vacunas = s.GetVacunas();
             return View(vacunas);
         }
-
         // POST: Animal/Vacunar/
         [HttpPost]
         public ActionResult Vacunar(string idCaravana, int idVacuna)
         {
             try
             {
-                Animal? a = s.GetAnimal(idCaravana);
+                Animal? a = s.GetAnimalPorNumeroCaravana(idCaravana);
                 Vacuna? v = s.GetVacuna(idVacuna);
                 if (a == null) throw new Exception("No se encontro el animal. ");
                 if (v == null) throw new Exception("No se encontro la vacuna. ");
                 a.VacunarAnimal(v);
                 ViewBag.Message = "Vacunacion registrada exitosamente. ";
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 ViewBag.Message = e.Message + "Revise los datos e intentelo nuevamente. ";
             }
             List<Vacuna> vacunas = s.GetVacunas();
             return View(vacunas);
+        }
+
+        [HttpGet]
+        public IActionResult AsignarPotrero(int id)
+        {   
+            Animal? a = s.GetAnimalPorId(id);
+            if (a != null) ViewBag.NumeroCaravana = a.NumeroCaravana;
+            return View(s.GetPotreros());
+        }
+        [HttpPost]
+        public IActionResult AsignarPotrero(string idCaravana, int idPotrero)
+        {
+            try
+            {
+                Animal? a = s.GetAnimalPorNumeroCaravana(idCaravana);
+                Potrero? p = s.GetPotreroPorId(idPotrero);
+                if (a == null) throw new Exception("No se encontro el animal. ");
+                if (p == null) throw new Exception("No se encontro el potrero. ");
+                s.AddAnimalToPotrero( a , p );
+                ViewBag.Message = $"{a.GetTipo()} con caravana {idCaravana} asignado al potrero #{idPotrero}.";
+            }
+            catch (Exception e)
+            {
+                ViewBag.Message = e.Message + " // Revise los datos e intentelo nuevamente. ";
+            }
+            IEnumerable<Potrero> potreros = s.GetPotreros();
+            return View(potreros);
         }
 
         [HttpGet]

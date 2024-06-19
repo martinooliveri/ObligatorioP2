@@ -13,7 +13,7 @@ namespace Dominio
 
         public Capataz(){}
         
-        public Capataz(string email, string nombre, DateTime fechaIngreso, int numeroSupervisados) : base(email, nombre, fechaIngreso)
+        public Capataz(string email, string contrasenia, string nombre, DateTime fechaIngreso, int numeroSupervisados) : base(nombre, email, contrasenia, fechaIngreso)
         {
             NumeroSupervisados = numeroSupervisados;
         }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,11 +9,11 @@ namespace Dominio
 {
     public class Sistema
     {
-        public List<Animal> _animales { get; } = new List<Animal>();
-        public List<Empleado> _empleados { get; } = new List<Empleado>();
-        public List<Tarea> _tareas { get; } = new List<Tarea>();
-        public List<Potrero> _potreros { get; } = new List<Potrero>();
-        public List<Vacuna> _vacunas { get; } = new List<Vacuna>();
+        private List<Animal> _animales { get; } = new List<Animal>();
+        private List<Empleado> _empleados { get; } = new List<Empleado>();
+        private List<Tarea> _tareas { get; } = new List<Tarea>();
+        private List<Potrero> _potreros { get; } = new List<Potrero>();
+        private List<Vacuna> _vacunas { get; } = new List<Vacuna>();
 
         private static Sistema _instancia; //atributo privado por singleton pattern
 
@@ -42,19 +43,20 @@ namespace Dominio
         private void PreCargarEmpleados()
         {
             
-            
-            Peon p1 = new Peon("martinooliveri@gmail.com", "Martino Oliveri", DateTime.Now.AddDays(-10), true);
-            Peon p2 = new Peon("usuario1@example.com", "Maria Rodriguez", DateTime.Now.AddDays(-10), false);
-            Peon p3 = new Peon("correo2@gmail.com", "Juan Pérez", DateTime.Now.AddDays(-10), true);
-            Peon p4 = new Peon("usuario3@example.com", "Luisa Martinez", DateTime.Now.AddDays(-10), false);
-            Peon p5 = new Peon("correo4@gmail.com", "Ana García", DateTime.Now.AddDays(-10), true);
-            Peon p6 = new Peon("email5@example.com", "Pedro López", DateTime.Now.AddDays(-10), false);
-            Peon p7 = new Peon("correo6@gmail.com", "Laura Fernández", DateTime.Now.AddDays(-10), true);
-            Peon p8 = new Peon("usuario7@example.com", "Diego Sanchez", DateTime.Now.AddDays(-10), false);
-            Peon p9 = new Peon("correo8@gmail.com", "Carolina Gómez", DateTime.Now.AddDays(-10), true);
-            Peon p10 = new Peon("email9@example.com", "Roberto Diaz", DateTime.Now.AddDays(-10), false);
-            Capataz c1 = new Capataz("federicochaer@example.com", "Federico Chaer", new DateTime(2003, 12, 15), 8);
-            Capataz c2 = new Capataz("john@example.com", "John Doe", new DateTime(2014, 4, 24), 5);
+            Capataz c0 = new Capataz("martinooliveri@gmail.com", "HOLA1234@#m", "Martino Oliveri", DateTime.Now.AddYears(-10), 10);
+
+            Peon p1 = new Peon("martinooliveri2@gmail.com", "HOLA1234@#m", "Martino Oliveri", DateTime.Now.AddDays(-10), true);
+            Peon p2 = new Peon("usuario1@example.com", "HOLA1234@#m", "Maria Rodriguez", DateTime.Now.AddDays(-10), false);
+            Peon p3 = new Peon("correo2@gmail.com", "HOLA1234@#m", "Juan Pérez", DateTime.Now.AddDays(-10), true);
+            Peon p4 = new Peon("usuario3@example.com", "HOLA1234@#m", "Luisa Martinez", DateTime.Now.AddDays(-10), false);
+            Peon p5 = new Peon("correo4@gmail.com", "HOLA1234@#m", "Ana García", DateTime.Now.AddDays(-10), true);
+            Peon p6 = new Peon("email5@example.com", "HOLA1234@#m", "Pedro López", DateTime.Now.AddDays(-10), false);
+            Peon p7 = new Peon("correo6@gmail.com", "HOLA1234@#m", "Laura Fernández", DateTime.Now.AddDays(-10), true);
+            Peon p8 = new Peon("usuario7@example.com", "HOLA1234@#m", "Diego Sanchez", DateTime.Now.AddDays(-10), false);
+            Peon p9 = new Peon("correo8@gmail.com", "HOLA1234@#m", "Carolina Gómez", DateTime.Now.AddDays(-10), true);
+            Peon p10 = new Peon("email9@example.com", "HOLA1234@#m", "Roberto Diaz", DateTime.Now.AddDays(-10), false);
+            Capataz c1 = new Capataz("federicochaer@example.com", "HOLA1234@#m", "Federico Chaer", new DateTime(2003, 12, 15), 8);
+            Capataz c2 = new Capataz("john@example.com", "HOLA1234@#m", "John Doe", new DateTime(2014, 4, 24), 5);
             
 
             AltaEmpleado(p1);
@@ -67,7 +69,8 @@ namespace Dominio
             AltaEmpleado(p8);
             AltaEmpleado(p9);
             AltaEmpleado(p10);
-
+            
+            AltaEmpleado(c0);
             AltaEmpleado(c1);
             AltaEmpleado(c2);
         }
@@ -172,7 +175,7 @@ namespace Dominio
 
         public void PreCargarBovinos()
         {
-            for (int i = 0; i < 150; i++)
+            for (int i = 0; i < 15; i++)
             {
                 string idCaravana = GenerateRandomString(8);
                 Sexo sexo = (i % 2 == 0) ? Sexo.Macho : Sexo.Hembra;
@@ -186,9 +189,10 @@ namespace Dominio
                 Bovino bovino = new Bovino(idCaravana, sexo, raza, fechaNacimento, costoAdquisicion, costoAlimentacion, peso, esHibrido, alimentacion);
                 AltaAnimal(bovino);
                 PreCargarVacunaciones(bovino);
-                AddAnimalToPotrero(a, GetPotrero(1));
             }
         }
+
+        
 
         private void PreCargarVacunaciones(Animal a)
         {
@@ -463,6 +467,16 @@ namespace Dominio
             return _potreros;
         }
 
+        public Potrero? GetPotreroPorId(int id)
+        {
+            foreach (Potrero p in _potreros)
+            {
+                if (p.Id == id)
+                { return p; }
+            }
+            return null;
+        }
+
         public List<Potrero> GetPotrerosDeMayorAreaYCapacidad(double hectareas, int capacidad)
         {
             List<Potrero> potreros = new List<Potrero>();
@@ -519,29 +533,45 @@ namespace Dominio
 
         public Peon? GetPeon(int id)
         {
-            Peon? peon = null;
             foreach(Peon p in GetPeones())
             {
                 if (p.Id == id)
-                {
-                    peon = p;
-                    break;
-                }
+                { return p; }
             }
-            return peon;
+            return null;
         }
 
         //se escribe Animal? porque puede devolver null
-        public Animal? GetAnimal(string idCaravana)
+        public Animal? GetAnimalPorId(int? id) 
         {
+            if(id == null) return null;
             foreach(Animal a in _animales)
             {
-                if(a.NumeroCaravana == idCaravana)
-                {
-                    return a;
-                }
+                if(a.Id == id)
+                { return a; }
             }
             return null;
+        }
+        public Animal? GetAnimalPorNumeroCaravana(string numeroCaravana)
+        {
+
+            foreach (Animal a in _animales)
+            {
+                if (a.NumeroCaravana == numeroCaravana)
+                { return a; }
+            }
+            return null;
+        }
+        public List<Animal> GetAnimalesPorTipoYPeso(string tipoAnimal, double pesoAnimal)
+        {
+            List<Animal> animales = new List<Animal>();
+            if ((tipoAnimal != "Bovino" && tipoAnimal != "Ovino") || pesoAnimal <= 0) return animales;
+            foreach (Animal a in _animales)
+            {
+                if (a.GetTipo() == tipoAnimal && a.PesoActual > pesoAnimal)
+                { animales.Add(a); }
+            }
+            return animales;
         }
 
         public Vacuna? GetVacuna(int id)
@@ -549,39 +579,29 @@ namespace Dominio
             foreach (Vacuna v in _vacunas)
             {
                 if (v.Id == id)
-                {
-                    return v;
-                }
+                { return v; }
             }
             return null;
         }
 
         public Empleado? GetEmpleadoPorEmail(string email)
         {
-            Empleado? empleado = null;
             foreach(Empleado e in _empleados)
             {
                 if(String.Equals(e.Email, email))
-                {
-                    empleado = e; 
-                    break; 
-                }
+                { return e; }
             }
-            return empleado;
+            return null;
         }
 
         public Empleado? GetEmpleadoPorId(int id)
         {
-            Empleado? empleado = null;
             foreach (Empleado e in _empleados)
             {
                 if (e.Id == id)
-                {
-                    empleado = e;
-                    break;
-                }
+                { return e; }
             }
-            return empleado;
+            return null;
         }
 
         public bool LoginValido(Empleado e, string email, string contrasenia)
@@ -589,17 +609,7 @@ namespace Dominio
             return e.EmailCorrecto(email) && e.ContraseniaCorrecta(contrasenia); 
         }
 
-        public List<Animal> GetAnimalesPorTipoYPeso(string tipoAnimal, double pesoAnimal)
-        {
-            List<Animal> animales = new List<Animal>();
-            if((tipoAnimal != "Bovino" && tipoAnimal != "Ovino") || pesoAnimal <= 0) return animales;
-            foreach(Animal a in _animales)
-            {
-                if(a.GetTipo() == tipoAnimal && a.PesoActual > pesoAnimal)
-                {  animales.Add(a); }
-            }
-            return animales;
-        }
+       
 
         public void ValidarEmail(string email)
         {

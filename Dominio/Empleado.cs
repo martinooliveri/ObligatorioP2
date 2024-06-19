@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations; //para evitar mantener codigo propio de validacion de emails
+using System.ComponentModel.DataAnnotations;
+using System.Text.RegularExpressions; //para evitar mantener codigo propio de validacion de emails
 
 namespace Dominio
 {
@@ -23,12 +24,13 @@ namespace Dominio
             UltimoId++;
         }
 
-        public Empleado(string email, string nombre, DateTime fechaIngreso)
+        public Empleado(string nombre, string email, string contrasenia, DateTime fechaIngreso)
         {
             Id = UltimoId;
             UltimoId++;
-            Email = email;
             Nombre = nombre;
+            Email = email;
+            Contrasenia = contrasenia;
             FechaIngreso = fechaIngreso;
         }
 
@@ -63,36 +65,37 @@ namespace Dominio
             }
         }
 
+
+        //Cortesia de chatgpt
         public void ValidarContrasenia()
         {
-            if (string.IsNullOrWhiteSpace(Contrasenia))
+            if (string.IsNullOrEmpty(Contrasenia))
             {
-                throw new Exception("La contraseña no puede ser vacía.");
+                throw new Exception("Contraseña no puede ser vacia.");
             }
 
-            if (Contrasenia.Length < 8)
+            // Largo minimo
+            if (Contrasenia.Length < 8 || Contrasenia.Length > 20)
             {
-                throw new Exception("La contraseña debe tener al menos 8 caracteres.");
+                throw new Exception("La contraseña debe tener 8 caracteres de minimo y 20 de maximo.");
             }
 
-            if (!Contrasenia.Any(char.IsUpper))
+            // Una letra minuscula
+            if (!Regex.IsMatch(Contrasenia, "[a-z]"))
             {
-                throw new Exception("La contraseña debe contener al menos una letra mayúscula.");
+                throw new Exception("La contraseña debe tener una letra minuscula.");
             }
 
-            if (!Contrasenia.Any(char.IsLower))
+            // Una letra mayuscula
+            if (!Regex.IsMatch(Contrasenia, "[A-Z]"))
             {
-                throw new Exception("La contraseña debe contener al menos una letra minúscula.");
+                throw new Exception("La contraseña debe tener una letra mayuscula.");
             }
 
-            if (!Contrasenia.Any(char.IsDigit))
+            // Caracter especial (!@#$%&)
+            if (!Regex.IsMatch(Contrasenia, "[!@#$%&]"))
             {
-                throw new Exception("La contraseña debe contener al menos un dígito.");
-            }
-
-            if (!Contrasenia.Any(ch => !char.IsLetterOrDigit(ch)))
-            {
-                throw new Exception("La contraseña debe contener al menos un carácter especial.");
+                throw new Exception("La contraseña debe tener un caracter especial: !@#$%&");
             }
         }
 

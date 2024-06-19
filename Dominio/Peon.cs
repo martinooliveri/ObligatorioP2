@@ -18,7 +18,7 @@ namespace Dominio
 
         public Peon(){}
 
-        public Peon(string email, string nombre, DateTime fechaIngreso, bool esResidente) : base(email, nombre, fechaIngreso)
+        public Peon(string email, string contrasenia, string nombre, DateTime fechaIngreso, bool esResidente) : base(nombre, email, contrasenia, fechaIngreso)
         {
             EsResidente = esResidente;
         }
