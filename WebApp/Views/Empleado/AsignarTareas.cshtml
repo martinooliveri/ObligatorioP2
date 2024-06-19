@@ -1,0 +1,36 @@
+﻿@using Dominio
+@model IEnumerable<Tarea>
+
+    <h1>Asignacion de tareas a @ViewBag.NombrePeon</h1>
+@if (Model == null || !Model.Any())
+{
+    <h1>No tiene tareas asignadas abiertas</h1>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <td>ID Tarea</td>
+                <td>Descripcion</td>
+                <td>Fecha maxima de realizacion</td>
+                <td>Asignar</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Tarea t in Model)
+            {
+                <tr>
+                    <td>@t.Id</td>
+                    <td>@t.Descripcion</td>
+                    <td>@t.FechaRealizacion.ToString("d")</td>
+                    <td><a href="/Dominio/@AddTareaToPeon(t,p)">Asignar</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
+
+
+

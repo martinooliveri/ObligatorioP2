@@ -60,7 +60,7 @@ namespace WebApp.Controllers
             Peon? p = s.GetPeonPorId(id);
             if (p == null) return View();
             ViewBag.NombrePeon = p.Nombre;
-            Tarea? t = s.GetTareas();
+            IEnumerable <Tarea> t = s.GetTareas();
             if (t == null) return View();
             s.AddTareaToPeon(t, p);
 
