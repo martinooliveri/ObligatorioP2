@@ -51,7 +51,8 @@ namespace WebApp.Controllers
         [HttpGet]
         public ActionResult AsignarTarea(int id)
         {
-            if (HttpContext.Session.GetString("loggedUserRole") == null || HttpContext.Session.GetString("loggedUserEmail") == null || 
+            if (HttpContext.Session.GetString("loggedUserRole") == null ||
+                HttpContext.Session.GetString("loggedUserEmail") == null || 
                 HttpContext.Session.GetString("loggedUserRole") == "Capataz")
             {
                 return RedirectToAction("Logout", "Home");
