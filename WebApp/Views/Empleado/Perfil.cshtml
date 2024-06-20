@@ -31,7 +31,7 @@ else
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (Tarea t in p.GetTareas())
+                    @foreach (Tarea t in p.GetTareasPendientes())
                     {
                         <tr>
                             <td>@t.Descripcion</td>
