@@ -22,43 +22,43 @@ else if (@ViewBag.MessageExito != null)
     </h3>
 
 }
-@if (Model == null)
+@if (Model == null || !Model.Any())
 {
     <h2>
         No tiene tareas asignadas
     </h2>
-    <a href="/Empleado/Perfil/@ViewBag.idEmpleado">Ir al inicio</a>
+    <a href="/Empleado/Perfil/@ViewBag.IdPeon">Ir al inicio</a>
     <p>Intentelo nuevamente mas tarde</p>
 }
 else
 {
     
+
+    <form method="post" class="needs-validation" novalidate>
+
+
+        <div class="form-group">
+            <label for="txtComentario" class="form-label">INGRESE UN COMENTARIO DE LA TAREA (OBLIGATORIO): </label>
+            <br>
+            <input id="txtComentario" class="form-control" name="comentario" type="text" placeholder="Comentario...">
+            <br />
+        </div>
+        <div class="form-group">
+            <label for="slcTarea" class="form-label">Seleccione una tarea para cerrar</label>
+            <select id="slcTarea" name="idTarea" class="form-select-lgs">
+                <option value="-1">Seleccione una opcion...</option>
+
+                @foreach (Tarea t in Model)
+                {
+                    <option value="@t.Id">#@t.Id| @t.Descripcion</option>
+                }
+            </select>
+            <br />
+        </div>
+        <br />
+        <button type="submit" class="btn btn-primary"> Cerrar Tarea </button>
+        <input name="IdPeon" type="hidden" value="@ViewBag.IdPeon">
+    </form>
+
 }
-
-<form method="post" class="needs-validation" novalidate>
-
-
-    <div class="form-group">
-        <label for="txtComentario" class="form-label">INGRESE UN COMENTARIO DE LA TAREA (OBLIGATORIO): </label>
-        <br>
-        <input id="txtComentario" class="form-control" name="comentario" type="text" placeholder="Comentario...">
-        <br />
-    </div>
-    <div class="form-group">
-        <label for="slcTarea" class="form-label">Seleccione una tarea para cerrar</label>
-        <select id="slcTarea" name="idTarea" class="form-select-lgs">
-            <option value="-1">Seleccione una opcion...</option>
-
-            @foreach (Tarea t in Model)
-            {
-                <option value="@t.Id">#@t.Id| @t.Descripcion</option>
-            }
-        </select>
-        <br />
-    </div>
-    <br />
-    <button type="submit" class="btn btn-primary"> Cerrar Tarea </button>
-    <input name="IdPeon" type="hidden" value="@ViewBag.IdPeon">
-</form>
-
 

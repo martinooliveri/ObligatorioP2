@@ -46,11 +46,13 @@ namespace WebApp.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Registro(Peon p)
+        public IActionResult Registro([FromForm] Peon p, [FromForm] string repeticionContrasenia)
         {
             try
             {
                 s.ValidarEmail(p.Email);
+                if (repeticionContrasenia == null) throw new Exception("Ingrese la repeticion de contraseña");
+                if (p.Contrasenia != repeticionContrasenia) throw new Exception("Las contraseñas no coinciden");
                 s.AltaEmpleado(p);
                 ViewBag.MessageSuccess = "Registro exitoso, ya puede ingresar al sistema";
             }

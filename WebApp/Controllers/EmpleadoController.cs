@@ -35,7 +35,8 @@ namespace WebApp.Controllers
         [HttpGet]
         public IActionResult Tareas(int id)
         {
-            if (HttpContext.Session.GetString("loggedUserRole") == "Peon" && HttpContext.Session.GetString("loggedUserID") != id.ToString() ||
+            if (HttpContext.Session.GetString("loggedUserRole") == "Peon" && 
+                HttpContext.Session.GetString("loggedUserID") != id.ToString() ||
                 HttpContext.Session.GetString("loggedUserEmail") == null)
             {
                 return RedirectToAction("Logout", "Home");
@@ -104,6 +105,7 @@ namespace WebApp.Controllers
         {
             if (HttpContext.Session.GetString("loggedUserRole") == null ||
                 HttpContext.Session.GetString("loggedUserEmail") == null ||
+                HttpContext.Session.GetString("loggedUserID") != id.ToString() ||
                 HttpContext.Session.GetString("loggedUserRole") != "Peon")
             {
                 return RedirectToAction("Logout", "Home");
@@ -123,17 +125,17 @@ namespace WebApp.Controllers
         {
             if (HttpContext.Session.GetString("loggedUserRole") == null ||
                 HttpContext.Session.GetString("loggedUserEmail") == null ||
+                HttpContext.Session.GetString("loggedUserID") != id.ToString() ||
                 HttpContext.Session.GetString("loggedUserRole") != "Peon")
             {
                 return RedirectToAction("Logout", "Home");
             }
             List<Tarea> tareas = new List<Tarea>();
+            Peon? p = s.GetPeonPorId(id);
             try
             {
                 Tarea? t;
-                Peon? p = s.GetPeonPorId(id);
                 ViewBag.IdPeon = p.Id;
-                tareas = p.GetTareasPendientes();
                 
                 if (p == null) throw new Exception("No se encontro el peon.");
                 t = p.GetTareaPorId(idTarea);
@@ -145,6 +147,7 @@ namespace WebApp.Controllers
             {
                 ViewBag.MessageError = e.Message;
             }
+            tareas = p.GetTareasPendientes();
             return View(tareas);
             
         }

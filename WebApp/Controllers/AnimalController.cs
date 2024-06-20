@@ -12,6 +12,11 @@ namespace WebApp.Controllers
         [HttpGet]
         public IActionResult LibresListado()
         {
+            if (HttpContext.Session.GetString("loggedUserEmail") == null ||
+                HttpContext.Session.GetString("loggedUserRole") != "Capataz")
+            {
+                return RedirectToAction("Logout", "Home");
+            }
             List<Animal> a = s.GetAnimalesLibres();
             return View(a);
         }
@@ -19,11 +24,21 @@ namespace WebApp.Controllers
         [HttpGet]
         public IActionResult AltaBovino()
         {
+            if (HttpContext.Session.GetString("loggedUserEmail") == null ||
+                HttpContext.Session.GetString("loggedUserRole") != "Capataz")
+            {
+                return RedirectToAction("Logout", "Home");
+            }
             return View();
         }
         [HttpPost]
         public IActionResult AltaBovino(Bovino b)
         {
+            if (HttpContext.Session.GetString("loggedUserEmail") == null ||
+                HttpContext.Session.GetString("loggedUserRole") != "Capataz")
+            {
+                return RedirectToAction("Logout", "Home");
+            }
             try
             {
                 s.AltaAnimal(b);
@@ -39,12 +54,22 @@ namespace WebApp.Controllers
         [HttpGet]
         public IActionResult Vacunar()
         {
+            if (HttpContext.Session.GetString("loggedUserEmail") == null ||
+                HttpContext.Session.GetString("loggedUserRole") != "Peon")
+            {
+                return RedirectToAction("Logout", "Home");
+            }
             List<Vacuna> vacunas = s.GetVacunas();
             return View(vacunas);
         }
         [HttpPost]
         public IActionResult Vacunar(string idCaravana, int idVacuna)
         {
+            if (HttpContext.Session.GetString("loggedUserEmail") == null ||
+                HttpContext.Session.GetString("loggedUserRole") != "Peon")
+            {
+                return RedirectToAction("Logout", "Home");
+            }
             try
             {
                 Animal? a = s.GetAnimalPorNumeroCaravana(idCaravana);
@@ -64,7 +89,12 @@ namespace WebApp.Controllers
 
         [HttpGet]
         public IActionResult AsignarPotrero(int id)
-        {   
+        {
+            if (HttpContext.Session.GetString("loggedUserEmail") == null ||
+                HttpContext.Session.GetString("loggedUserRole") != "Capataz")
+            {
+                return RedirectToAction("Logout", "Home");
+            }
             Animal? a = s.GetAnimalPorId(id);
             if (a != null) ViewBag.NumeroCaravana = a.NumeroCaravana;
             return View(s.GetPotreros());
@@ -72,6 +102,11 @@ namespace WebApp.Controllers
         [HttpPost]
         public IActionResult AsignarPotrero(string idCaravana, int idPotrero)
         {
+            if (HttpContext.Session.GetString("loggedUserEmail") == null ||
+                HttpContext.Session.GetString("loggedUserRole") != "Capataz")
+            {
+                return RedirectToAction("Logout", "Home");
+            }
             try
             {
                 Animal? a = s.GetAnimalPorNumeroCaravana(idCaravana);
@@ -91,12 +126,22 @@ namespace WebApp.Controllers
 
         [HttpGet]
         public IActionResult ListadoFiltrado()
-        { 
+        {
+            if (HttpContext.Session.GetString("loggedUserEmail") == null ||
+                HttpContext.Session.GetString("loggedUserRole") != "Capataz")
+            {
+                return RedirectToAction("Logout", "Home");
+            }
             return View(); 
         }
         [HttpPost]
         public IActionResult ListadoFiltrado(string tipoAnimal, double pesoAnimal)
         {
+            if (HttpContext.Session.GetString("loggedUserEmail") == null ||
+                HttpContext.Session.GetString("loggedUserRole") != "Capataz")
+            {
+                return RedirectToAction("Logout", "Home");
+            }
             if ((tipoAnimal != "Bovino" && tipoAnimal != "Ovino") || pesoAnimal <= 0)
             {
                 ViewBag.Message = "Revise los datos ingresados.";

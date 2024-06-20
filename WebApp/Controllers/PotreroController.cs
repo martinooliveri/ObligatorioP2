@@ -10,6 +10,12 @@ namespace WebApp.Controllers
         // GET: PotreroController
         public IActionResult Index()
         {
+            if (HttpContext.Session.GetString("loggedUserRole") == null ||
+                HttpContext.Session.GetString("loggedUserEmail") == null ||
+                HttpContext.Session.GetString("loggedUserRole") != "Capataz")
+            {
+                return RedirectToAction("Logout", "Home");
+            }
             IEnumerable<Potrero> potrerosOrdenados = s.GetPotrerosOrdenadosPorCapacidadYCantidad(); 
             return View(potrerosOrdenados);
         }
