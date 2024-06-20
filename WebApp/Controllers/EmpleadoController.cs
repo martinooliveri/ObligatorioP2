@@ -60,10 +60,29 @@ namespace WebApp.Controllers
             Peon? p = s.GetPeonPorId(id);
             if (p == null) return View();
             ViewBag.NombrePeon = p.Nombre;
-            IEnumerable <Tarea> t = s.GetTareas();
-            if (t == null) return View();
-            s.AddTareaToPeon(t, p);
+            IEnumerable <Tarea>? tareas = s.GetTareas();
+            foreach (Tarea t in tareas)
+            {
+                if (tareas == null) return View();
+                s.AddTareaToPeon(t, p);
+            }
+            return View();
+        }
 
+        [HttpPost]
+        public ActionResult CerrarTarea(int id, string comentario)
+        {
+            IEnumerable<Tarea>? tareas = s.GetTareas(); // Asume que tienes un servicio que obtiene la tarea por ID
+            if (tareas == null)
+            {
+                return NotFound();
+            }
+            foreach (Tarea t in tareas)
+            {
+                t.FueCompletada = true;
+                t.Comentario = comentario;
+                t.FechaDeCierre = DateTime.Now;
+            }
             return View();
         }
     }

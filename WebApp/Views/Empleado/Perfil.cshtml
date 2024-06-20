@@ -40,7 +40,7 @@ else
                             <td>@(t.FueCompletada ? "Si" : "No")</td>
                             <td>@(t.FueCompletada ? t.FechaDeCierre.ToString("d") : "N/A")</td>
                             <td>@(t.FueCompletada ? t.Comentario : "N/A")</td>
-                            <td><a href="/Empleado/CerrarTarea/@t.Id">Cerrar tarea</a></td>
+                            <td><a href="/Empleado/Perfil/@t.Id">Cerrar tarea</a></td>
                         </tr>
                     }
                 </tbody>
@@ -65,7 +65,7 @@ else
         <br>
         <a href="/Empleado/PeonesListado">Ver listado de empleados</a>
         <br>
-        <a href="/Empleado/PeonesListado">Ver listado de empleados</a>
+        <a href="/Empleado/AsignarTareas">Asignar Tarea</a>
         <br>
     }
 }

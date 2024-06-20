@@ -24,7 +24,13 @@ else
                     <td>@t.Id</td>
                     <td>@t.Descripcion</td>
                     <td>@t.FechaRealizacion.ToString("d")</td>
-                    <td><a href="/Dominio/@AddTareaToPeon(t,p)">Asignar</a></td>
+                    <td>
+                        <form asp-action="AsignarTarea" method="post">
+                            <input type="hidden" name="nombrePeon" value="@ViewBag.NombrePeon" />
+                            <input type="hidden" name="tareaId" value="@t.Id" />
+                            <button type="submit" class="btn btn-primary">Asignar</button>
+                        </form>
+                    </td>
                 </tr>
             }
         </tbody>
