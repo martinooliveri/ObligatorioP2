@@ -8,7 +8,7 @@ namespace WebApp.Controllers
     {
         Sistema s = Sistema.GetInstancia();
         // GET: PotreroController
-        public ActionResult Index()
+        public IActionResult Index()
         {
             IEnumerable<Potrero> potrerosOrdenados = s.GetPotrerosOrdenadosPorCapacidadYCantidad(); 
             return View(potrerosOrdenados);

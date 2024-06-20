@@ -17,12 +17,12 @@ namespace WebApp.Controllers
         }
 
         [HttpGet]
-        public ActionResult AltaBovino()
+        public IActionResult AltaBovino()
         {
             return View();
         }
         [HttpPost]
-        public ActionResult AltaBovino(Bovino b)
+        public IActionResult AltaBovino(Bovino b)
         {
             try
             {
@@ -37,13 +37,13 @@ namespace WebApp.Controllers
         }
 
         [HttpGet]
-        public ActionResult Vacunar()
+        public IActionResult Vacunar()
         {
             List<Vacuna> vacunas = s.GetVacunas();
             return View(vacunas);
         }
         [HttpPost]
-        public ActionResult Vacunar(string idCaravana, int idVacuna)
+        public IActionResult Vacunar(string idCaravana, int idVacuna)
         {
             try
             {

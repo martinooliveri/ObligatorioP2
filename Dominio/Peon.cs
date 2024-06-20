@@ -57,6 +57,15 @@ namespace Dominio
         {
             return -Nombre.CompareTo(other.Nombre);
         }
+
+        public Tarea? GetTareaPorId(int id)
+        {
+            foreach(Tarea t in _tareas)
+            {
+                if(t.Id == id) return t;
+            }
+            return null;
+        }
     }
     
        

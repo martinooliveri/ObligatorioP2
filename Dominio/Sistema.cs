@@ -342,6 +342,18 @@ namespace Dominio
         {
             return _tareas;
         }
+
+        public Tarea GetTareaPorId(int id)
+        {
+            foreach (Tarea t in _tareas)
+            {
+                if (t.Id == id)
+                { return t; }
+            }
+            return null;
+        }
+
+
         public  List<Potrero> GetPotreros()
         {
             return _potreros;
@@ -628,6 +640,9 @@ namespace Dominio
                 throw;
             }
         }
+
+        
+
 
         #endregion
     }

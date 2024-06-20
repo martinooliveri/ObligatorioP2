@@ -43,6 +43,7 @@ namespace Dominio
         }
         public void CerrarTarea(string comentario)
         {
+            if (comentario == null) throw new Exception("El comentario no puede estar vacio");
             if ( FueCompletada == false ) 
             { 
                 FueCompletada = true;
@@ -54,7 +55,8 @@ namespace Dominio
         {
             return obj is Tarea tarea &&
                    Id == tarea.Id &&
-                   Descripcion == tarea.Descripcion;
+                   Descripcion == tarea.Descripcion &&
+                   FechaRealizacion == tarea.FechaRealizacion;
         }
     }
 }

@@ -10,7 +10,7 @@ namespace WebApp.Controllers
 
         // GET: EmpleadoController
         [HttpGet]
-        public ActionResult ListadoPeones()
+        public IActionResult PeonesListado()
         {
             if (HttpContext.Session.GetString("loggedUserEmail") == null ||
                 HttpContext.Session.GetString("loggedUserRole") != "Capataz")
@@ -23,7 +23,7 @@ namespace WebApp.Controllers
         [HttpGet]
         public IActionResult Perfil(int id)
         {
-            if (HttpContext.Session.GetString("loggedUserEmail") == null || 
+            if (HttpContext.Session.GetString("loggedUserEmail") == null ||
                 HttpContext.Session.GetString("loggedUserID") != id.ToString())
             {
                 return RedirectToAction("Logout", "Home");
@@ -33,7 +33,7 @@ namespace WebApp.Controllers
         }
 
         [HttpGet]
-        public ActionResult Tareas(int id)
+        public IActionResult Tareas(int id)
         {
             if (HttpContext.Session.GetString("loggedUserRole") == "Peon" && HttpContext.Session.GetString("loggedUserID") != id.ToString() ||
                 HttpContext.Session.GetString("loggedUserEmail") == null)
@@ -49,41 +49,103 @@ namespace WebApp.Controllers
         }
 
         [HttpGet]
-        public ActionResult AsignarTarea(int id)
+        public IActionResult AsignarTarea(int id)
         {
             if (HttpContext.Session.GetString("loggedUserRole") == null ||
-                HttpContext.Session.GetString("loggedUserEmail") == null || 
-                HttpContext.Session.GetString("loggedUserRole") == "Capataz")
+                HttpContext.Session.GetString("loggedUserEmail") == null ||
+                HttpContext.Session.GetString("loggedUserRole") != "Capataz" ||
+                id == 0)
             {
                 return RedirectToAction("Logout", "Home");
             }
-            Peon? p = s.GetPeonPorId(id);
-            if (p == null) return View();
-            ViewBag.NombrePeon = p.Nombre;
-            IEnumerable <Tarea>? tareas = s.GetTareas();
-            foreach (Tarea t in tareas)
+            try
             {
-                if (tareas == null) return View();
-                s.AddTareaToPeon(t, p);
+                Peon? p = s.GetPeonPorId(id);
+                if (p == null) throw new Exception("Peon no encontrado");
+                ViewBag.NombrePeon = p.Nombre;
+                ViewBag.PeonId = p.Id;
+            }
+            catch (Exception e)
+            {
+                ViewBag.MessageError = e.Message;
             }
             return View();
         }
 
         [HttpPost]
-        public ActionResult CerrarTarea(int id, string comentario)
+        public IActionResult AsignarTarea([FromForm] Tarea t, [FromForm] int PeonId) //este detalle del [FromForm] permite recibir un objeto con el model binding y tambien recibir otro parametro a la vez
         {
-            IEnumerable<Tarea>? tareas = s.GetTareas(); // Asume que tienes un servicio que obtiene la tarea por ID
-            if (tareas == null)
+            if (HttpContext.Session.GetString("loggedUserRole") == null ||
+                HttpContext.Session.GetString("loggedUserEmail") == null ||
+                HttpContext.Session.GetString("loggedUserRole") != "Capataz")
             {
-                return NotFound();
+                return RedirectToAction("Logout", "Home");
             }
-            foreach (Tarea t in tareas)
+
+            try
             {
-                t.FueCompletada = true;
-                t.Comentario = comentario;
-                t.FechaDeCierre = DateTime.Now;
+                Peon? p = s.GetPeonPorId(PeonId);
+                if (p == null) throw new Exception("Peon no encontrado");
+                ViewBag.NombrePeon = p.Nombre;
+                ViewBag.PeonId = p.Id;
+                s.AddTareaToPeon(t, p);
+                ViewBag.MessageExito = $"Tarea #{t.Id} asignada correctamente";
+            }
+            catch (Exception e)
+            {
+                ViewBag.MessageError = e.Message;
+            }
+
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult CerrarTarea(int id)
+        {
+            if (HttpContext.Session.GetString("loggedUserRole") == null ||
+                HttpContext.Session.GetString("loggedUserEmail") == null ||
+                HttpContext.Session.GetString("loggedUserRole") != "Peon")
+            {
+                return RedirectToAction("Logout", "Home");
+            }
+            Peon? p = s.GetPeonPorId(id);
+            if (p != null)
+            {
+                ViewBag.IdPeon = p.Id;
+                IEnumerable<Tarea> tareas = p.GetTareasPendientes();
+                return View(tareas);
             }
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult CerrarTarea(int id, int idTarea, string comentario)
+        {
+            if (HttpContext.Session.GetString("loggedUserRole") == null ||
+                HttpContext.Session.GetString("loggedUserEmail") == null ||
+                HttpContext.Session.GetString("loggedUserRole") != "Peon")
+            {
+                return RedirectToAction("Logout", "Home");
+            }
+            List<Tarea> tareas = new List<Tarea>();
+            try
+            {
+                Tarea? t;
+                Peon? p = s.GetPeonPorId(id);
+                if (p == null) throw new Exception("No se encontro el peon.");
+                t = p.GetTareaPorId(idTarea);
+                if (t == null) throw new Exception("No autorizado.");
+                t.CerrarTarea(comentario);
+                ViewBag.MessageExito = $"Tarea #{t.Id} cerrada correctamente";
+                tareas = p.GetTareasPendientes();
+                ViewBag.IdPeon = p.Id;
+            }
+            catch (Exception e)
+            {
+                ViewBag.MessageError = e.Message;
+            }
+            return View(tareas);
+            
         }
     }
 }

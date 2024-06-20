@@ -1,0 +1,48 @@
+﻿@using Dominio
+@model Tarea
+
+
+
+    <h1>Asignacion de tareas a @ViewBag.NombrePeon</h1>
+
+
+@if (@ViewBag.MessageError != null)
+{
+    <h3>
+        <img height="30" src="/img/warning.webp" />
+        @ViewBag.MessageError
+        <img height="30" src="/img/warning.webp" />
+    </h3>
+
+}
+else if (@ViewBag.MessageExito != null)
+{
+    <h3>
+        <img height="30" src="/img/approved.webp" />
+        @ViewBag.MessageExito
+        <img height="30" src="/img/approved.webp" />
+    </h3>
+
+}
+
+    <form method="post" class="needs-validation" novalidate>
+
+
+        <div class="form-group">
+            <label for="txtDescripcionTarea" class="form-label">INGRESE LA DESCRIPCION DE LA TAREA:</label>
+            <br>
+        <input id="txtDescripcionTarea" class="form-control" asp-for="Descripcion" type="text" placeholder="Descripcion...">
+            <br />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="FechaRealizacion" class="form-label">FECHA MAXIMA DE REALIZACION:</label>
+            <input class="form-control" type="date" asp-for="FechaRealizacion" />
+        </div>
+        <br />
+        <button type="submit" class="btn btn-primary"> Asignar Tarea </button>
+        <input name="PeonId" type="hidden" value="@ViewBag.PeonId">
+    </form>
+
+
+
