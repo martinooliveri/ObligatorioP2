@@ -39,7 +39,6 @@ namespace Dominio
             PreCargarVacunas();
             PreCargarPotreros();
         }
-
         private void PreCargarEmpleados()
         {
             
@@ -169,7 +168,6 @@ namespace Dominio
                 PreCargarVacunaciones(ovino);
             }
         }
-
         public void PreCargarBovinos()
         {
             for (int i = 0; i < 15; i++)
@@ -188,7 +186,6 @@ namespace Dominio
                 PreCargarVacunaciones(bovino);
             }
         }
-
         private void PreCargarVacunas()
         {
             Vacuna v1 = new Vacuna("Rabia", "Vacuna contra la rabia en animales", "Virus de la rabia");
@@ -212,7 +209,6 @@ namespace Dominio
             AltaVacuna(v9);
             AltaVacuna(v10);
         }
-
         private void PreCargarVacunaciones(Animal a)
         {
             foreach (Vacuna v in _vacunas)
@@ -220,7 +216,6 @@ namespace Dominio
                 a.VacunarAnimal(v);
             }
         }
-
         private void PreCargarPotreros()
         {
             Potrero p1 = new Potrero("Pastizal en la entrada norte", 150.5, 2850);
@@ -257,7 +252,6 @@ namespace Dominio
         {
             return Ovino.PrecioKiloLana;
         }
-
         public List<Animal> GetAnimales()
         {
             return _animales;
@@ -274,7 +268,6 @@ namespace Dominio
             }
             return null;
         }
-
         public Animal? GetAnimalPorNumeroCaravana(string numeroCaravana)
         {
 
@@ -285,7 +278,6 @@ namespace Dominio
             }
             return null;
         }
-
         public List<Animal> GetAnimalesPorTipoYPeso(string tipoAnimal, double pesoAnimal)
         {
             List<Animal> animales = new List<Animal>();
@@ -297,7 +289,6 @@ namespace Dominio
             }
             return animales;
         }
-
         public List<Animal> GetAnimalesLibres()
         {
             List<Animal> resultado = new List<Animal>();
@@ -310,7 +301,6 @@ namespace Dominio
             }
             return resultado;
         }
-
         public List<Ovino> GetOvinos() 
         {
             List<Ovino> ovinos = new List<Ovino>();
@@ -323,7 +313,6 @@ namespace Dominio
             }
             return ovinos;
         }
-
         public List<Bovino> GetBovinos() 
         {
             List<Bovino> bovinos = new List<Bovino>();
@@ -336,12 +325,10 @@ namespace Dominio
             }
             return bovinos;
         }
-
         public List<Vacuna> GetVacunas()
         {
             return _vacunas;
         }
-
         public Vacuna? GetVacunaPorId(int id)
         {
             foreach (Vacuna v in _vacunas)
@@ -351,17 +338,14 @@ namespace Dominio
             }
             return null;
         }
-
         public List<Tarea> GetTareas()
         {
             return _tareas;
         }
-
         public  List<Potrero> GetPotreros()
         {
             return _potreros;
         }
-
         public Potrero? GetPotreroPorId(int id)
         {
             foreach (Potrero p in _potreros)
@@ -371,7 +355,6 @@ namespace Dominio
             }
             return null;
         }
-
         public List<Potrero> GetPotrerosDeMayorAreaYCapacidad(double hectareas, int capacidad)
         {
             List<Potrero> potreros = new List<Potrero>();
@@ -386,7 +369,6 @@ namespace Dominio
             }
             return potreros;
         }
-
         public List<Potrero> GetPotrerosOrdenadosPorCapacidadYCantidad()
         {
             List<Potrero> resultado = GetPotreros();
@@ -431,7 +413,6 @@ namespace Dominio
             peones.Sort();
             return peones;
         }
-
         public Peon? GetPeonPorId(int id)
         {
             foreach(Peon p in GetPeones())
@@ -441,7 +422,6 @@ namespace Dominio
             }
             return null;
         }
-
         public Empleado? GetEmpleadoPorEmail(string email)
         {
             foreach(Empleado e in _empleados)
@@ -451,7 +431,6 @@ namespace Dominio
             }
             return null;
         }
-
         public Empleado? GetEmpleadoPorId(int id)
         {
             foreach (Empleado e in _empleados)
@@ -465,6 +444,7 @@ namespace Dominio
         #endregion
 
         #region OTROS METODOS
+        //agrega una tarea al peon si y solo si la tarea es valida y no esta asignada a otro empleado
         public void AddTareaToPeon(Tarea t, Peon p)
         {
             try
@@ -512,7 +492,6 @@ namespace Dominio
             }
             return false;
         }
-
         //fue necesario implementar Equals en la clase Animal para usar Contains() 
         public bool AnimalEstaLibre(Animal a)
         {
@@ -527,17 +506,14 @@ namespace Dominio
             }
             return estaLibre;
         }
-
         public void CambiarPrecioKiloLana(double valor)
         {
             Ovino.CambiarValorKiloLana(valor);
         }
-
         public bool LoginValido(Empleado e, string email, string contrasenia)
         {
             return e.EmailCorrecto(email) && e.ContraseniaCorrecta(contrasenia); 
         }
-
         public void ValidarEmail(string email)
         {
             bool esValido = true;
