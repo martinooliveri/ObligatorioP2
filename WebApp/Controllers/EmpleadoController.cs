@@ -132,13 +132,14 @@ namespace WebApp.Controllers
             {
                 Tarea? t;
                 Peon? p = s.GetPeonPorId(id);
+                ViewBag.IdPeon = p.Id;
+                tareas = p.GetTareasPendientes();
+                
                 if (p == null) throw new Exception("No se encontro el peon.");
                 t = p.GetTareaPorId(idTarea);
-                if (t == null) throw new Exception("No autorizado.");
+                if (t == null) throw new Exception("Debe seleccionar una tarea");
                 t.CerrarTarea(comentario);
                 ViewBag.MessageExito = $"Tarea #{t.Id} cerrada correctamente";
-                tareas = p.GetTareasPendientes();
-                ViewBag.IdPeon = p.Id;
             }
             catch (Exception e)
             {
